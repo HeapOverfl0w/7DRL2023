@@ -4,6 +4,8 @@ class WeaponMenu {
     this.card = document.getElementById('card');
     this.newWeaponSelected = false;
     this.newWeapons = [this.card, this.card, this.card];
+    this.currentWeapons = undefined;
+    this.selectedCard = this.newWeapons[0];
     this.ctx = ctx;
     this.borderWidth = 1;
     this.borderGrowth = 0.2;
@@ -11,6 +13,7 @@ class WeaponMenu {
 
   //fix
   drawNewWeaponMenu(currentWeapons) {
+    this.currentWeapons = currentWeapons;
     let width = this.ctx.canvas.width;
     this.ctx.drawImage(this.menuBackgroundImage, 0, 0);
     const cardHeight = this.card.height;
@@ -18,13 +21,24 @@ class WeaponMenu {
     const numNewCards = this.newWeapons.length;
     const numCurrentCards = currentWeapons.length;
 
+    if (!this.newWeaponSelected) {
+      this.drawSelection(width, cardWidth, numNewCards, cardHeight, 35, 20);
+    } else {
+      this.drawSelection(
+        width,
+        cardWidth,
+        numCurrentCards,
+        cardHeight,
+        220,
+        20
+      );
+    }
+
     // Top row new Weapons
     this.drawWeaponRow(width, cardWidth, numNewCards, 35, this.newWeapons);
-    this.drawSelection(width, cardWidth, numNewCards, cardHeight, 35, 20);
 
     // Bottom row current weapons
-    // this.drawWeaponRow(width, cardWidth, numCurrentCards, 220, currentWeapons);
-    // this.drawSelection(width, cardWidth, numCurrentCards, cardHeight, 220, 20);
+    this.drawWeaponRow(width, cardWidth, numCurrentCards, 220, currentWeapons);
   }
 
   drawWeaponRow(canvasWidth, cardWidth, numCards, yStart, weapons) {
@@ -37,7 +51,7 @@ class WeaponMenu {
     });
   }
 
-  calculateGap(canvasWidth, cardWidth, numCards, yStart) {
+  calculateGap(canvasWidth, cardWidth, numCards) {
     const gap = (canvasWidth - cardWidth * numCards) / (numCards + 1);
     return gap;
   }
@@ -85,6 +99,53 @@ class WeaponMenu {
           'manaCost'
         )
       );
+    }
+  }
+
+  handleKeyUp(keyCode) {
+    let currentCardToReplace = undefined;
+    if (!this.newWeaponSelected) {
+      if (keyCode == 49) {
+        this.selectedCard = this.newWeapons[0];
+        console.log('Pressing 1 for selection 1', this.selectedCard);
+        this.newWeaponSelected = true;
+      }
+      if (keyCode == 50) {
+        this.selectedCard = this.newWeapons[1];
+        console.log('Pressing 2 for selection 1', this.selectedCard);
+        this.newWeaponSelected = true;
+      }
+      if (keyCode == 51) {
+        this.selectedCard = this.newWeapons[2];
+        console.log('Pressing 3 for selection 1', this.selectedCard);
+        this.newWeaponSelected = true;
+      }
+    } else if (this.newWeaponSelected) {
+      if (keyCode == 49) {
+        currentCardToReplace = this.currentWeapons[0];
+        console.log('Pressing 1 for selection 1', currentCardToReplace);
+        this.newWeaponSelected = false;
+      }
+      if (keyCode == 50) {
+        currentCardToReplace = this.currentWeapons[1];
+        console.log('Pressing 2 for selection 2', currentCardToReplace);
+        this.newWeaponSelected = false;
+      }
+      if (keyCode == 51) {
+        currentCardToReplace = this.currentWeapons[2];
+        console.log('Pressing 3 for selection 3', currentCardToReplace);
+        this.newWeaponSelected = false;
+      }
+      if (keyCode == 52) {
+        currentCardToReplace = this.currentWeapons[3];
+        console.log('Pressing 4 for selection 3', currentCardToReplace);
+        this.newWeaponSelected = false;
+      }
+      if (keyCode == 53) {
+        currentCardToReplace = this.currentWeapons[4];
+        console.log('Pressing 5 for selection 3', currentCardToReplace);
+        this.newWeaponSelected = false;
+      }
     }
   }
 }
