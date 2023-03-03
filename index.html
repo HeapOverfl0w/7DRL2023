@@ -1,29 +1,31 @@
 <html>
   <head>
     <title>FPS</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <canvas id="scene"></canvas>
-    <div style="display:none;"> 
+    <div style="display: none">
       <audio id="spell">
-        <source src="./sounds/spell.wav" type="audio/wav">
-      </audio>    
+        <source src="./sounds/spell.wav" type="audio/wav" />
+      </audio>
       <audio id="fire">
-        <source src="./sounds/fire.mp3" type="audio/mp3">
-      </audio> 
+        <source src="./sounds/fire.mp3" type="audio/mp3" />
+      </audio>
     </div>
-    <div style="display:none;">
-      <img src="./resources/death_cutscene.png"/>
-      <img src="./resources/default.png"/>
-      <img src="./resources/defaultHigh.png"/>
-      <img id="defaultskybox" src="./resources/defaultskybox.png"/>
-      <img id="hud" src="./resources/HUD.png"/>
-      <img src="./resources/test.png"/>
-      <img src="./resources/empty.png"/>
-      <img src="./resources/water.png"/>
-      <img src="./resources/statue.png"/>
-      <img src="./resources/teleport.png"/>
+    <div style="display: none">
+      <img src="./resources/death_cutscene.png" />
+      <img src="./resources/default.png" />
+      <img src="./resources/defaultHigh.png" />
+      <img id="defaultskybox" src="./resources/defaultskybox.png" />
+      <img id="hud" src="./resources/HUD.png" />
+      <img src="./resources/test.png" />
+      <img src="./resources/empty.png" />
+      <img src="./resources/water.png" />
+      <img src="./resources/statue.png" />
+      <img src="./resources/teleport.png" />
+      <img id="menuBackground" src="./resources/backgroundMenu.png" />
+      <img id="card" src="./resources/card.png" />
     </div>
   </body>
 </html>
@@ -45,47 +47,46 @@
 <script src="Hazard.js"></script>
 <script src="Boss.js"></script>
 <script src="Cutscene.js"></script>
+<script src="WeaponMenu.js"></script>
 <script src="./Levels/TestLevel.js"></script>
 <script>
-  var cvs = document.getElementById("scene");
+  var cvs = document.getElementById('scene');
   var main;
   var pointerLocked = false;
 
-  window.onload = function() {
-    cvs.width = 720;//480;
-    cvs.height = 405;//270;
+  window.onload = function () {
+    cvs.width = 720; //480;
+    cvs.height = 405; //270;
     let aspectRatio = cvs.width / cvs.height;
     let width = window.innerWidth;
     if (window.innerWidth / aspectRatio > window.innerHeight) {
       width = window.innerHeight * aspectRatio;
     }
-    cvs.style.width = width + "px";
-    cvs.style.height = width / aspectRatio + "px";
-    let ctx = cvs.getContext("2d");
-    ctx.font = "10px MS Gothic";
+    cvs.style.width = width + 'px';
+    cvs.style.height = width / aspectRatio + 'px';
+    let ctx = cvs.getContext('2d');
+    ctx.font = '10px MS Gothic';
 
     main = new Main(ctx);
     main.initialize();
   };
 
-  window.onresize = function(){
+  window.onresize = function () {
     let aspectRatio = cvs.width / cvs.height;
     let width = window.innerWidth;
     if (window.innerWidth / aspectRatio > window.innerHeight) {
       width = window.innerHeight * aspectRatio;
     }
-    cvs.style.width = width + "px";
-    cvs.style.height = width / aspectRatio + "px";
+    cvs.style.width = width + 'px';
+    cvs.style.height = width / aspectRatio + 'px';
   };
 
-  document.addEventListener('keydown', function(event) {
-    if (main != undefined)
-      main.handleKeyDown(event.keyCode);
+  document.addEventListener('keydown', function (event) {
+    if (main != undefined) main.handleKeyDown(event.keyCode);
   });
 
-  document.addEventListener('keyup', function(event) {
-    if (main != undefined)
-      main.handleKeyUp(event.keyCode);
+  document.addEventListener('keyup', function (event) {
+    if (main != undefined) main.handleKeyUp(event.keyCode);
   });
 
   document.addEventListener('mousemove', function (event) {
@@ -94,16 +95,13 @@
   });
 
   document.addEventListener('mouseup', function (event) {
-    if (main != undefined && !pointerLocked) 
-      cvs.requestPointerLock();
+    if (main != undefined && !pointerLocked) cvs.requestPointerLock();
 
-    if (main != undefined && pointerLocked) 
-      main.handleMouseUp();
+    if (main != undefined && pointerLocked) main.handleMouseUp();
   });
 
   document.addEventListener('mousedown', function (event) {
-    if (main != undefined && pointerLocked) 
-      main.handleMouseDown();
+    if (main != undefined && pointerLocked) main.handleMouseDown();
   });
 
   document.addEventListener('pointerlockchange', function (event) {
