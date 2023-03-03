@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "game/*": [ "../*" ],
+      "resources/*": [ "../resources/*" ]
+    }
+  }
+}
