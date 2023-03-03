@@ -7,7 +7,8 @@ class Data {
             "test",
             "empty",
             "water",
-            "statue"
+            "statue",
+            "teleport"
         ];
     }
 
@@ -48,6 +49,7 @@ class Data {
 
         this.animations["test"] = new Animation(this.textures["test"], 64, 64, 1, 0, false);
         this.animations["statue"] = new Animation(this.textures["statue"], 64, 128, 1, 0, false);
+        this.animations["teleport"] = new Animation(this.textures["teleport"], 128, 128, 3, 350, true);
 
         //cutscenes
         this.animations["death_cutscene"] = new Animation(this.textures["death_cutscene"], 240, 135, 6, 800, false);
@@ -59,6 +61,8 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
+
+        this.teleports["portal"] = new Teleport(this.animations["teleport"], 0, 0);
     }
 
     createBillboards() {

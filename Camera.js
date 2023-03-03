@@ -47,10 +47,10 @@ class Camera
     //bar height = 108, bar width = 28
     //health
     ctx.fillStyle = "#b80b1a";
-    ctx.fillRect(81, 289 - (109 * (1 - (this.playerHealth / this.playerMaxHealth))), 29, 109 * (this.playerHealth / this.playerMaxHealth));
+    ctx.fillRect(81, 289 + (109 * (1 - (this.playerHealth / this.playerMaxHealth))), 29, 109 * (this.playerHealth / this.playerMaxHealth));
     //mana
     ctx.fillStyle = "#0b11b8";
-    ctx.fillRect(width - 111, 289 - (109 * (1 - (this.playerMana / this.playerMaxMana))), 29, 109 * (this.playerMana / this.playerMaxMana));
+    ctx.fillRect(width - 111, 289 + (109 * (1 - (this.playerMana / this.playerMaxMana))), 29, 109 * (this.playerMana / this.playerMaxMana));
 
     ctx.drawImage(this.hudBoxImage,0,0);
 

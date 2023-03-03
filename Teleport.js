@@ -1,10 +1,6 @@
 class Teleport extends Billboard {
-    constructor(animation, x, y, toLevel, toLevelX, toLevelY, direction) {
+    constructor(animation, x, y) {
         super(animation, x, y);
-        this.toLevel = toLevel;
-        this.toLevelX = toLevelX;
-        this.toLevelY = toLevelY;
-        this.direction = direction;
     }
 
     isPlayerInside(camera) {
@@ -16,6 +12,6 @@ class Teleport extends Billboard {
     }
 
     copy(x,y) {
-        return new Teleport(this.defaultAnimation, x, y, this.toLevel, this.toLevelX, this.toLevelY,this.direction);
+        return new Teleport(this.defaultAnimation, x, y);
     }
 }

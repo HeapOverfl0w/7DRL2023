@@ -20,6 +20,8 @@ class Main
     this.startTime = Date.now();
     this.endTime = 0;
 
+    this.showItemSelection = false;
+
     this.keysDown = [];
     this.mouseDown = false;
   }
@@ -49,11 +51,11 @@ class Main
 
     let teleport = main.level.getTeleportOnPlayer(main.camera);
     if (teleport !== undefined) {
-      teleport.toLevel.loadData(main.data);
+      main.showItemSelection = true;
       main.level.stopAllAnimations();
-      main.level = teleport.toLevel;
-      main.camera.x = teleport.toLevelX;
-      main.camera.y = teleport.toLevelY;
+      main.level = main.levelFactory.generateLevel();
+      main.camera.x = main.level.startLocationX;
+      main.camera.y = main.level.startLocationY;
     }
 
     //draw HUD data

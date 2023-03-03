@@ -74,8 +74,7 @@ class LevelFactory
                         levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
                     }
                 }
-            }
-            
+            } 
         }
 
         if (levelType !== "islands") {
@@ -126,12 +125,28 @@ class LevelFactory
             billboards.push(billboard);
         }
 
-        
+        //create end level teleport 
+        //find farthest distance room from start
+        let farthestDistanceRoom = rooms[1];
+        let farthestDistance = Math.sqrt(Math.pow(rooms[0].xStart - rooms[1].xStart, 2) + Math.pow(rooms[0].yStart - rooms[1].yStart, 2));
+        for(let r = 2; r < roomCount; r++) {
+            let distance = Math.sqrt(Math.pow(rooms[0].xStart - rooms[r].xStart, 2) + Math.pow(rooms[0].yStart - rooms[r].yStart, 2));
+            if (distance > farthestDistance) {
+                farthestDistance = distance;
+                farthestDistanceRoom = rooms[r];
+            }
+        }
 
-        return new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, "#1d1c1f", 
+        let teleport = {type: "portal", x: farthestDistanceRoom.xStart + Math.random() * farthestDistanceRoom.width, y: farthestDistanceRoom.yStart + Math.random() * farthestDistanceRoom.height};
+
+        let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, "#1d1c1f", 
             billboards,
             [],
-            [], [], []);
+            [], [], [teleport]);
+
+        result.loadData(this.data);
+
+        return result;
     }
     
 
