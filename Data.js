@@ -10,8 +10,9 @@ class Data {
             "statue",
             "teleport",
             "fists",
-            "card",
-            "punch"
+            "fistsAttack",
+            "punch",
+            "fistscard"
         ];
     }
 
@@ -55,7 +56,8 @@ class Data {
         this.animations["teleport"] = new Animation(this.textures["teleport"], 128, 128, 3, 350, true);
 
         //weapons
-        this.animations["fistsIdle"] = new Animation(this.textures["fists"], 702, 405, 1, 0, true);
+        this.animations["fistsIdle"] = new Animation(this.textures["fists"], 720, 405, 3, 400, true);
+        this.animations["fistsAttack"] = new Animation(this.textures["fistsAttack"], 720, 405, 3, 200, true);
 
         //projectiles
         this.animations["punch"] = new Animation(this.textures["punch"], 32, 32, 1, 0, true);
@@ -100,7 +102,7 @@ class Data {
     createWeapons() {
         this.weapons = {};
 
-        this.weapons["fists"] = new Weapon("Fists", this.animations["fistsIdle"], this.animations["fistsIdle"], this.textures["card"], undefined, 0, 0, 0);
+        this.weapons["fists"] = new Weapon("Fists", this.animations["fistsIdle"], this.animations["fistsAttack"], this.textures["fistscard"], undefined, 0, 0, 0);
     }
 
     createCutscenes() {
