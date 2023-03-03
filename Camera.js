@@ -1,6 +1,6 @@
 class Camera
 {
-  constructor(startX, startY, startAngle, fov, speed, defaultWeapon)
+  constructor(startX, startY, startAngle, fov, speed, defaultWeapons)
   {
     this.x = startX;
     this.y = startY;
@@ -10,15 +10,19 @@ class Camera
     this.height = 16;
     this.isStrafing = false;
 
-    this.activeWeapon = defaultWeapon;
+    this.activeWeapon = defaultWeapons[0];
     if (this.activeWeapon)
       this.activeWeapon.switchTo();
-    this.weapons = [ defaultWeapon ];
+    this.weapons = defaultWeapons;
     this.playerMaxHealth = 20;
     this.playerMaxMana = 20;
     this.myTurn = true;
     this.playerHealth = this.playerMaxHealth;
     this.playerMana = this.playerMaxMana;
+    this.resistLightning = 0;
+    this.resistFire = 0;
+    this.resistBlunt = 0;
+    this.resistSlash = 0;
     this.hudBoxImage = document.getElementById("hud");
   }
 
@@ -69,19 +73,17 @@ class Camera
   }
 
   handleKeyUp(keyCode) {
-    //switch weapons on F
-    if (this.activeWeapon && this.activeWeapon.isReady() && keyCode == 70) {
-      let requestedWeaponIndex = this.weapons.indexOf(this.activeWeapon) + 1;
-      if (this.weapons.length <= requestedWeaponIndex) {
-        this.activeWeapon.stopAttack();
-        this.weapons[0].switchTo();
-        this.activeWeapon = this.weapons[0];
-      }
-      else {
-        this.activeWeapon.stopAttack();
-        this.weapons[requestedWeaponIndex].switchTo();
-        this.activeWeapon = this.weapons[requestedWeaponIndex];
-      }
+    let weaponSlot = 0;
+    let buttonPressed = false;
+    if (keyCode >= 49 || keyCode <= 53) {
+      weaponSlot = keyCode - 49;
+      buttonPressed = true;
+    }
+
+    if (buttonPressed && this.activeWeapon && this.activeWeapon.isReady()) {
+      this.activeWeapon.stopAttack();
+      this.weapons[weaponSlot].switchTo();
+      this.activeWeapon = this.weapons[weaponSlot];
     }
   }
 

@@ -45,7 +45,7 @@ class AudioHandler {
                 this.playDrill();
                 break;
             default:
-                this.playShot();
+                //this.playShot();
         }
     }
 

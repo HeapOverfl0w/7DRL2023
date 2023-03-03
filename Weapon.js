@@ -1,15 +1,14 @@
 class Weapon {
-    constructor(name, defaultAnimation, attackAnimation, reloadAnimation, isRanged, projectile, maxMagazineSize) {
+    constructor(name, defaultAnimation, attackAnimation, card, projectile, projectileCount, projectileAngle, manaCost) {
         this.name = name;
+        this.card = card;
         this.defaultAnimation = defaultAnimation;
         this.activeAnimation = defaultAnimation;
         this.attackAnimation = attackAnimation;
-        this.reloadAnimation = reloadAnimation;
-        this.isRanged = isRanged;
         this.projectile = projectile;
-        this.ammo = 0;
-        this.maxMagazineSize = maxMagazineSize;
-        this.magazineAmmo = 0;
+        this.projectileCount = projectileCount;
+        this.projectileAngle = projectileAngle;
+        this.manaCost = manaCost;
     }
 
     switchTo() {
@@ -24,33 +23,18 @@ class Weapon {
 
     attack(level, camera, audio) {
         //only shoot if weapon is ready and ammo is in the magazine
-        if (this.isReady() && (this.magazineAmmo > 0 || !this.isRanged)) {
+        if (this.isReady() && camera.playerMana - this.manaCost > 0) {
             audio.playWeaponAttack(this.name);
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
-            if (this.isRanged)
-                this.magazineAmmo--;
+            camera.playerMana -= this.manaCost;
             if (this.projectile !== undefined) {
-                level.projectiles.push(this.projectile.copy(camera.x, camera.y, Math.cos(camera.angle), Math.sin(camera.angle), true));
-            }
-        }
-        else if (this.isReady() && (this.magazineAmmo <= 0 && this.isRanged)) {
-            this.reload(audio);
-        }
-    }
-
-    reload(audio) {
-        if (this.magazineAmmo !== this.maxMagazineSize && this.ammo > 0) {
-            audio.playReload();
-            this.activeAnimation.stop();
-            this.activeAnimation = this.reloadAnimation;
-            this.activeAnimation.start();
-            this.ammo -= this.maxMagazineSize - this.magazineAmmo;
-            this.magazineAmmo = this.maxMagazineSize;
-            if (this.ammo < 0) {
-                this.magazineAmmo += this.ammo;
-                this.ammo = 0;
+                for(let p = 0; p < this.projectileCount; p++) {
+                    let angleModifier = p % 2 == 0 ? p * -1 * this.projectileAngle : p * this.projectileAngle;
+                    level.projectiles.push(this.projectile.copy(camera.x, camera.y, Math.cos(camera.angle + angleModifier), Math.sin(camera.angle + angleModifier), true));
+                }
+                
             }
         }
     }
@@ -77,9 +61,7 @@ class Weapon {
         }
     }
 
-    copy(ammo) {
-        let weapon = new Weapon(this.name, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.reloadAnimation.copy(), this.isRanged, this.projectile, this.maxMagazineSize);
-        weapon.ammo = ammo;
-        return weapon;
+    copy(projectile, projectileCount, projectileAngle, manaCost) {
+        return new Weapon(this.name, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.card, projectile, projectileCount, projectileAngle, manaCost);
     }
 }

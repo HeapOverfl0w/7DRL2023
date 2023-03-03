@@ -1,7 +1,7 @@
 //import { Billboard } from "./Billboard";
 
 class Enemy extends Billboard {
-    constructor(name, maxLife, speed, range, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, x, y) {
+    constructor(name, maxLife, speed, range, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
         super(walkAnimation, x, y);
         this.name = name;
         this.life = maxLife;
@@ -14,6 +14,11 @@ class Enemy extends Billboard {
         this.destroyAnimation = destroyAnimation;
         this.isHit = false;
 
+        this.resistLightning = resistLightning;
+        this.resistFire = resistFire;
+        this.resistBlunt = resistBlunt;
+        this.resistSlash = resistSlash;
+
         this.maxViewRange = 20;
         this.maxAttackRange = range;
     }
@@ -24,7 +29,23 @@ class Enemy extends Billboard {
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.hasSeenCamera = true;
-                this.life -= level.projectiles[p].damage;
+                let resist = 0;
+                switch(level.projectiles[p].damageType) {
+                    case LIGHTNING:
+                        resist = this.resistLightning;
+                        break;
+                    case BLUNT:
+                        resist = this.resistBlunt;
+                        break;
+                    case SLASH:
+                        resist = this.resistSlash;
+                        break;
+                    case FIRE:
+                        resist = this.resistFire;
+                        break;
+                }
+
+                this.life -= (level.projectiles[p].minDamage + Math.random() * level.projectiles[p].maxDamage) * (1 - resist);
                 this.isHit = true;
                 setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
                 level.projectiles[p].hitWall = true;
@@ -120,6 +141,7 @@ class Enemy extends Billboard {
     }
 
     copy(x, y) {
-        return new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.isStationary, this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), x, y);
+        return new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.isStationary, 
+            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
     }
 }

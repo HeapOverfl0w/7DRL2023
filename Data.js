@@ -8,7 +8,10 @@ class Data {
             "empty",
             "water",
             "statue",
-            "teleport"
+            "teleport",
+            "fists",
+            "card",
+            "punch"
         ];
     }
 
@@ -51,6 +54,12 @@ class Data {
         this.animations["statue"] = new Animation(this.textures["statue"], 64, 128, 1, 0, false);
         this.animations["teleport"] = new Animation(this.textures["teleport"], 128, 128, 3, 350, true);
 
+        //weapons
+        this.animations["fistsIdle"] = new Animation(this.textures["fists"], 702, 405, 1, 0, true);
+
+        //projectiles
+        this.animations["punch"] = new Animation(this.textures["punch"], 32, 32, 1, 0, true);
+
         //cutscenes
         this.animations["death_cutscene"] = new Animation(this.textures["death_cutscene"], 240, 135, 6, 800, false);
     }
@@ -76,6 +85,8 @@ class Data {
 
     createProjectiles() {
         this.projectiles = {};
+
+        this.projectiles["punch"] = new Projectile(this.animations["punch"], 0, 0, 0, 0, 1, 2, 0, 0, BLUNT);
     }
 
     createPowerups() {
@@ -88,6 +99,8 @@ class Data {
 
     createWeapons() {
         this.weapons = {};
+
+        this.weapons["fists"] = new Weapon("Fists", this.animations["fistsIdle"], this.animations["fistsIdle"], this.textures["card"], undefined, 0, 0, 0);
     }
 
     createCutscenes() {

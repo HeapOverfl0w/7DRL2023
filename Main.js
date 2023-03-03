@@ -10,10 +10,11 @@ class Main
     this.filter.type = "none";
     this.levelFactory = new LevelFactory(this.data);
     this.level = this.levelFactory.generateLevel();
-    this.level.loadData(this.data);
 
     this.activeCutscene = undefined;
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, undefined);
+    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
+    let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
     this.rayCaster = new RayCaster(40);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -133,7 +134,12 @@ class Main
   restartGame() {
     this.startTime = new Date().getTime();
     this.camera.stopAllWeaponAnimations();
-    this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
+    this.level = this.levelFactory.generateLevel();
+
+    this.activeCutscene = undefined;
+    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
+    let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
     this.level = ApartmentLevel4.copy();
     this.level.loadData(this.data);
   }
