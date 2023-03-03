@@ -81,16 +81,34 @@ class Weapon {
 
   drawCard(position, yStart, ctx) {
     const textOffset = 45;
+    let damageType;
+
+    switch (this.projectile.damageType) {
+      case 0:
+        damageType = 'Light';
+        break;
+      case 1:
+        damageType = 'Fire';
+      case 2:
+        damageType = 'Blunt';
+      case 3:
+        damageType = 'Slash';
+    }
+
     ctx.drawImage(this.card, Math.floor(position), Math.floor(yStart));
     ctx.fillStyle = 'black';
-    ctx.fillText('Damage', position + textOffset, yStart + 80);
     ctx.fillText(
-      `${this.projectile.damageType}`,
+      `${this.projectile.minDamage - this.projectile.maxDamage}`,
       position + textOffset,
-      yStart + 90
+      yStart + 80
     );
-    ctx.fillText('Mana', position + textOffset, yStart + 100);
-    ctx.fillText('Range', position + textOffset, yStart + 110);
+    ctx.fillText(`${damageType}`, position + textOffset, yStart + 90);
+    ctx.fillText(`${this.manaCost}`, position + textOffset, yStart + 100);
+    ctx.fillText(
+      `${this.projectile.maxDistance}`,
+      position + textOffset,
+      yStart + 110
+    );
   }
 
   copy(projectile, projectileCount, projectileAngle, manaCost) {

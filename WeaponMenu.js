@@ -30,12 +30,8 @@ class WeaponMenu {
   drawWeaponRow(canvasWidth, cardWidth, numCards, yStart, weapons) {
     const gap = this.calculateGap(canvasWidth, cardWidth, numCards);
     let position = gap;
-    // for (let i = 0; i < numCards; i++) {
-    //   this.ctx.drawImage(this.card, position, yStart);
-    //   position += gap + cardWidth;
-    // }
+
     weapons.forEach((element) => {
-      // this.ctx.drawImage(element.card, position, yStart);
       element.drawCard(position, yStart, this.ctx);
       position += gap + cardWidth;
     });
