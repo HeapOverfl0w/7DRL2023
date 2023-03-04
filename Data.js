@@ -8,6 +8,7 @@ class Data {
       'empty',
       'water',
       'statue',
+      'shrub',
       'teleport',
       'fists',
       'fistsAttack',
@@ -59,6 +60,7 @@ class Data {
     this.animations['test'] = new Animation(this.textures['test'], 64, 64, 1,0, false);
     this.animations['statue'] = new Animation(this.textures['statue'], 64, 128, 1, 0, false);
     this.animations['teleport'] = new Animation(this.textures['teleport'], 128, 128, 3, 350, true);
+    this.animations['shrub'] = new Animation(this.textures['shrub'], 40, 96, 2, 1000, true);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -93,6 +95,7 @@ class Data {
 
     this.billboards['test'] = new Billboard(this.animations['test'], 0, 0);
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
+    this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
@@ -110,7 +113,7 @@ class Data {
   createEnemies() {
     this.enemies = {};
 
-    this.enemies["harpy"] = new Enemy("Harpy", 4, 4, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["harpy"] = new Enemy("Harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }

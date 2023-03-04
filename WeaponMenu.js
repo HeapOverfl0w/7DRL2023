@@ -8,7 +8,7 @@ class WeaponMenu {
     this.newWeapons = [this.card, this.card, this.card];
     this.selectedCard = this.newWeapons[0];
     this.selectedIndex = this.ctx = ctx;
-    this.borderWidth = 1;
+    this.borderWidth = 2;
     this.borderGrowth = 0.2;
   }
 
@@ -106,19 +106,10 @@ class WeaponMenu {
 
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
-      if (keyCode == 49) {
-        this.selectedCard = this.newWeapons[0];
-        this.selectedIndex = 0;
-        this.newWeaponSelected = true;
-      }
-      if (keyCode == 50) {
-        this.selectedCard = this.newWeapons[1];
-        this.selectedIndex = 1;
-        this.newWeaponSelected = true;
-      }
-      if (keyCode == 51) {
-        this.selectedCard = this.newWeapons[2];
-        this.selectedIndex = 2;
+      if (keyCode >=49 && keyCode <= 51){
+        const keyValue = keyCode-49
+        this.selectedCard = this.newWeapons[keyValue]
+        this.selectedIndex = keyValue
         this.newWeaponSelected = true;
       }
     } else if (this.newWeaponSelected) {

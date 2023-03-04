@@ -1,11 +1,12 @@
 //import { Billboard } from "./Billboard";
 
 class Enemy extends Billboard {
-    constructor(name, maxLife, speed, range, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
+    constructor(name, maxLife, speed, range, score, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
         super(walkAnimation, x, y);
         this.name = name;
         this.life = maxLife;
         this.maxLife = maxLife;
+        this.score = score;
         this.projectile = projectile;
         this.attackAnimation = attackAnimation;
         this.hasSeenCamera = false;
@@ -66,6 +67,8 @@ class Enemy extends Billboard {
                     //level.powerups.push(data.powerups["health"].copy(this.x, this.y));
                 }
             }
+            camera.score += this.score;
+            camera.kills += 1;
             return;
         }
 
