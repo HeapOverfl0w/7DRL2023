@@ -7,6 +7,9 @@ class Camera
     this.angle = startAngle;
     this.fov = fov;
     this.speed = speed;
+    this.score = 0;
+    this.kills = 0;
+    this.level = 1
     this.height = 16;
     this.isStrafing = false;
     this.showWeaponCard = false;
@@ -57,6 +60,15 @@ class Camera
     ctx.fillRect(width - 111, 289 + (109 * (1 - (this.playerMana / this.playerMaxMana))), 29, 109 * (this.playerMana / this.playerMaxMana));
 
     ctx.drawImage(this.hudBoxImage,0,0);
+
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Level ${this.level}`, 130, 13);
+    ctx.fillText(`Score ${this.score}`, 180, 13);
+    ctx.fillText(`Speed ${this.speed}`, 230, 13);
+    ctx.fillText(`Fire Resist ${this.resistFire}`, 280, 13);
+    ctx.fillText(`Blunt Resist ${this.resistBlunt}`, 355, 13);
+    ctx.fillText(`Slash Resist ${this.resistSlash}`, 430, 13);
+    ctx.fillText(`Light Resist ${this.resistLightning}`, 510, 13);
 
     if (this.showWeaponCard) {
       this.activeWeapon.drawCard(20, 100, ctx);
