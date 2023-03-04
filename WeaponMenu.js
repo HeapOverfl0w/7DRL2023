@@ -122,27 +122,14 @@ class WeaponMenu {
         this.newWeaponSelected = true;
       }
     } else if (this.newWeaponSelected) {
-      if (keyCode == 49) {
-        this.camera.weapons[0] = this.selectedCard;
+      if (keyCode >= 49 && keyCode <= 53) {
+        this.camera.weapons[keyCode - 49] = this.selectedCard;
         this.newWeaponSelected = false;
-      }
-      if (keyCode == 50) {
-        this.camera.weapons[1] = this.selectedCard;
-        this.newWeaponSelected = false;
-      }
-      if (keyCode == 51) {
-        this.camera.weapons[2] = this.selectedCard;
-        this.newWeaponSelected = false;
-      }
-      if (keyCode == 52) {
-        this.camera.weapons[3] = this.selectedCard;
-        this.newWeaponSelected = false;
-      }
-      if (keyCode == 53) {
-        this.camera.weapons[4] = this.selectedCard;
-        this.newWeaponSelected = false;
+        return true;
       }
     }
+
+    return false;
   }
 
   // Handle weapon generation

@@ -65,7 +65,7 @@ class Data {
 
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
-    this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, true);
+    this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, false);
 
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);

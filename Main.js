@@ -21,6 +21,8 @@ class Main
     this.startTime = Date.now();
     this.endTime = 0;
 
+    this.weaponMenu = new WeaponMenu(this.ctx, this.camera, this.data);
+
     this.showItemSelection = false;
 
     this.keysDown = [];
@@ -46,21 +48,23 @@ class Main
 
     main.level.update(main.level, main.camera, main.data, main.audio, 1/main.FPS);
 
-    main.rayCaster.draw(main.ctx, main.camera, main.level, main.filter);
+    if (main.showItemSelection) {
+      main.weaponMenu.drawNewWeaponMenu();
+    } else {
+      main.rayCaster.draw(main.ctx, main.camera, main.level, main.filter);
+      //draw HUD data
+      main.camera.drawHUD(main.ctx);
+    }
 
     main.audio.update();
 
     let teleport = main.level.getTeleportOnPlayer(main.camera);
     if (teleport !== undefined) {
       main.showItemSelection = true;
-      main.level.stopAllAnimations();
-      main.level = main.levelFactory.generateLevel();
-      main.camera.x = main.level.startLocationX;
-      main.camera.y = main.level.startLocationY;
+      main.keysDown = [];
+      main.weaponMenu.generateNewWeapons(3);
+      main.level.endLevel();
     }
-
-    //draw HUD data
-    main.camera.drawHUD(main.ctx);
 
     if (main.mouseDown)
       main.camera.handleMouseDown(main.level, main.audio);
@@ -86,17 +90,28 @@ class Main
   }
 
   handleMouseUp() {
-    this.mouseDown = false;
-    this.camera.handleMouseUp();
+    if (!this.showItemSelection) {
+      this.mouseDown = false;
+      this.camera.handleMouseUp();
+    }
   }
 
   handleKeyDown(keyCode) {
-    if (!this.keysDown.includes(keyCode))
+    if (!this.keysDown.includes(keyCode) && !this.showItemSelection)
       this.keysDown.push(keyCode);
   }
 
   handleKeyUp(keyCode)
   {
+    if (this.showItemSelection) {
+      if (this.weaponMenu.handleKeyUp(keyCode)) {
+        this.showItemSelection = false;
+        main.level = main.levelFactory.generateLevel();
+        main.camera.x = main.level.startLocationX;
+        main.camera.y = main.level.startLocationY;
+      }
+      return;
+    }
     if (this.activeCutscene !== undefined && (this.activeCutscene.skippable || (this.activeCutscene.isOver()))) {
       /*if (this.activeCutscene != this.data.introCutscene) {
         this.restartGame();

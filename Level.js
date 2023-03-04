@@ -49,6 +49,13 @@ class Level
     }
   }
 
+  endLevel() {
+    this.stopAllAnimations();
+    this.enemies = [];
+    this.hazards = [];
+    this.projectiles = [];
+  }
+
   async turnBasedUpdate(level, camera, data,  audio, updateInterval) {
     //move and remove player projectiles
     let projectilesToRemove = [];
