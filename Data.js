@@ -96,18 +96,7 @@ class Data {
   createProjectiles() {
     this.projectiles = {};
 
-    this.projectiles['punch'] = new Projectile(
-      this.animations['punch'],
-      0,
-      0,
-      0,
-      0,
-      1,
-      2,
-      0,
-      0,
-      BLUNT
-    );
+    this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
   }
 
   createPowerups() {
@@ -125,16 +114,7 @@ class Data {
   createWeapons() {
     this.weapons = {};
 
-    this.weapons['fists'] = new Weapon(
-      'Fists',
-      this.animations['fistsIdle'],
-      this.animations['fistsAttack'],
-      document.getElementById('fistCard'),
-      undefined,
-      0,
-      0,
-      0
-    );
+    this.weapons['fists'] = new Weapon('Fists', this.animations['fistsIdle'], this.animations['fistsAttack'], document.getElementById('fistCard'), undefined, 0, 0, 0);
   }
 
   createCutscenes() {
