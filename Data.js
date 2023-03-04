@@ -5,7 +5,6 @@ class Data {
       'default',
       'defaultHigh',
       'lava',
-      'asdfasdfasdfasdf',
       'test',
       'empty',
       'water',
