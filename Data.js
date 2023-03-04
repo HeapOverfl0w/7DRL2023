@@ -13,6 +13,9 @@ class Data {
       'fistsAttack',
       'punch',
       'fistscard',
+      "harpy",
+      "harpyAttack",
+      "harpyDeath"
     ];
   }
 
@@ -51,68 +54,24 @@ class Data {
   createAnimations() {
     this.animations = {};
 
-    this.animations['test'] = new Animation(
-      this.textures['test'],
-      64,
-      64,
-      1,
-      0,
-      false
-    );
-    this.animations['statue'] = new Animation(
-      this.textures['statue'],
-      64,
-      128,
-      1,
-      0,
-      false
-    );
-    this.animations['teleport'] = new Animation(
-      this.textures['teleport'],
-      128,
-      128,
-      3,
-      350,
-      true
-    );
+    this.animations['test'] = new Animation(this.textures['test'], 64, 64, 1,0, false);
+    this.animations['statue'] = new Animation(this.textures['statue'], 64, 128, 1, 0, false);
+    this.animations['teleport'] = new Animation(this.textures['teleport'], 128, 128, 3, 350, true);
+
+    //enemies
+    this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
+    this.animations["harpyAttack"] = new Animation(this.textures["harpyAttack"], 40, 96, 2, 1250, false);
+    this.animations["harpyDeath"] = new Animation(this.textures["harpyDeath"], 40, 96, 3, 600, false);
 
     //weapons
-    this.animations['fistsIdle'] = new Animation(
-      this.textures['fists'],
-      720,
-      405,
-      3,
-      400,
-      true
-    );
-    this.animations['fistsAttack'] = new Animation(
-      this.textures['fistsAttack'],
-      720,
-      405,
-      3,
-      200,
-      true
-    );
+    this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
+    this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, true);
 
     //projectiles
-    this.animations['punch'] = new Animation(
-      this.textures['punch'],
-      32,
-      32,
-      1,
-      0,
-      true
-    );
+    this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
 
     //cutscenes
-    this.animations['death_cutscene'] = new Animation(
-      this.textures['death_cutscene'],
-      240,
-      135,
-      6,
-      800,
-      false
-    );
+    this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
   }
 
   createHazards() {
@@ -157,6 +116,10 @@ class Data {
 
   createEnemies() {
     this.enemies = {};
+
+    this.enemies["harpy"] = new Enemy("Harpy", 4, 4, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+
+    this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
 
   createWeapons() {

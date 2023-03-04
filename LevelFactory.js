@@ -125,6 +125,16 @@ class LevelFactory
             billboards.push(billboard);
         }
 
+        //add random enemies
+        const enemyCount = Math.round(Math.random() * 30);
+        const enemies = [];
+        for(let b = 0; b < enemyCount; b++) {
+            let enemyIndex = Math.round(Math.random() * (this.data.enemiesArray.length - 1));
+            let enemy = { type: this.data.enemiesArray[enemyIndex], x: 0, y: 0 };
+            this.placeBillboard(enemy, levelArray);
+            enemies.push(enemy);
+        }
+
         //create end level teleport 
         //find farthest distance room from start
         let farthestDistanceRoom = rooms[1];
@@ -141,7 +151,7 @@ class LevelFactory
 
         let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, "#1d1c1f", 
             billboards,
-            [],
+            enemies,
             [], [], [teleport]);
 
         result.loadData(this.data);

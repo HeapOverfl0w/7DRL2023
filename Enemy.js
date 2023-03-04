@@ -55,15 +55,15 @@ class Enemy extends Billboard {
         if (this.life <= 0) {
             if (this.activeAnimation != this.destroyAnimation)
             {
-                audio.playDeath();
+                //audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
                 if (rand < 0.15) {
-                    level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
+                    //level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
                 }
                 else if (rand < 0.2) {
-                    level.powerups.push(data.powerups["health"].copy(this.x, this.y));
+                    //level.powerups.push(data.powerups["health"].copy(this.x, this.y));
                 }
             }
             return;
@@ -85,10 +85,10 @@ class Enemy extends Billboard {
                 
                 //randomly play enemy sounds
                 if (Math.random() < 0.001) {
-                    if (Math.random() < 0.5)
-                        audio.playGrowl();
-                    else
-                        audio.playSpirit();
+                    //if (Math.random() < 0.5)
+                        //audio.playGrowl();
+                    //else
+                        //audio.playSpirit();
                 }
             }
         }
@@ -116,7 +116,7 @@ class Enemy extends Billboard {
             this.activeAnimation.start();
         }
         else if (playerInView && this.maxAttackRange > distanceFromPlayer){
-            audio.playSpell();
+            //audio.playSpell();
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();

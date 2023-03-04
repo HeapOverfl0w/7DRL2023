@@ -16,7 +16,6 @@ class Camera
     this.weapons = defaultWeapons;
     this.playerMaxHealth = 20;
     this.playerMaxMana = 20;
-    this.myTurn = true;
     this.playerHealth = this.playerMaxHealth;
     this.playerMana = this.playerMaxMana;
     this.resistLightning = 0;
@@ -63,7 +62,7 @@ class Camera
   }
 
   handleMouseDown(level, audio) {
-    if (this.activeWeapon && this.myTurn)
+    if (this.activeWeapon)
       this.activeWeapon.attack(level, this, audio);
   }
 

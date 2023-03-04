@@ -27,21 +27,21 @@ class Projectile extends Billboard {
             let resist = 0;
             switch(this.damageType) {
                 case LIGHTNING:
-                    resist = this.resistLightning;
+                    resist = camera.resistLightning;
                     break;
                 case BLUNT:
-                    resist = this.resistBlunt;
+                    resist = camera.resistBlunt;
                     break;
                 case SLASH:
-                    resist = this.resistSlash;
+                    resist = camera.resistSlash;
                     break;
                 case FIRE:
-                    resist = this.resistFire;
+                    resist = camera.resistFire;
                     break;
             }
 
-            camera.playerHealth -= (this.minDamage + Math.random()) * this.maxDamage * (1 - resist);
-            audio.playPain();
+            camera.playerHealth -= (this.minDamage + Math.random() * this.maxDamage) * (1 - resist);
+            //audio.playPain();
         }
 
         if (level.isWall(Math.floor(this.x), Math.floor(this.y)))
