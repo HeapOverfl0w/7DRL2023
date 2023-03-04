@@ -9,6 +9,7 @@ class Camera
     this.speed = speed;
     this.height = 16;
     this.isStrafing = false;
+    this.showWeaponCard = false;
 
     this.activeWeapon = defaultWeapons[0];
     if (this.activeWeapon)
@@ -57,8 +58,22 @@ class Camera
 
     ctx.drawImage(this.hudBoxImage,0,0);
 
+    if (this.showWeaponCard) {
+      this.activeWeapon.drawCard(20, 100, ctx);
+    }
+
     // ctx.fillStyle = "#000000";
     // ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
+  }
+
+  startShowWeaponCardTimeout() {
+    this.showWeaponCardTimer = setTimeout((() => {
+      this.showWeaponCard = false;
+    }).bind(this), 3000);
+  }
+
+  stopShowWeaponCardTimer() {
+    clearTimeout(this.showWeaponCardTimer);
   }
 
   handleMouseDown(level, audio) {
@@ -81,6 +96,9 @@ class Camera
 
     if (buttonPressed && this.activeWeapon && this.activeWeapon.isReady()) {
       this.activeWeapon.stopAttack();
+      this.stopShowWeaponCardTimer();
+      this.showWeaponCard = true;
+      this.startShowWeaponCardTimeout();
       this.weapons[weaponSlot].switchTo();
       this.activeWeapon = this.weapons[weaponSlot];
     }
