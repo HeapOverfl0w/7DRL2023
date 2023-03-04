@@ -14,7 +14,9 @@ class Main
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
+    let knucklesProjectile = this.data.projectiles["punch"].copyBase(5, 10, BLUNT);
+    let knuckles = this.data.weapons["knuckles"].copy(knucklesProjectile, 1, 0, 0);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, knuckles]);
     this.rayCaster = new RayCaster(40);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -135,10 +137,10 @@ class Main
     
     if (removeAt != -1)
       this.keysDown.splice(removeAt,1);
+      
+      
+    this.camera.handleKeyUp(keyCode);
 
-    if (keyCode == 70) {
-      this.camera.handleKeyUp(keyCode);
-    }
 
     if (keyCode == 65 || keyCode == 68) {
       if (!this.keysDown.includes(65) && !this.keysDown.includes(68))

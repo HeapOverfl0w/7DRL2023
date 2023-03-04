@@ -74,7 +74,7 @@ class Camera
   handleKeyUp(keyCode) {
     let weaponSlot = 0;
     let buttonPressed = false;
-    if (keyCode >= 49 || keyCode <= 53) {
+    if (keyCode >= 49 && keyCode <= 53) {
       weaponSlot = keyCode - 49;
       buttonPressed = true;
     }

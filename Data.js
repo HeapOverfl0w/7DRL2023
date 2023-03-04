@@ -11,6 +11,8 @@ class Data {
       'teleport',
       'fists',
       'fistsAttack',
+      'knuckles',
+      'knucklesAttack',
       'punch',
       'fistscard',
       "harpy",
@@ -66,6 +68,8 @@ class Data {
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
     this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, false);
+    this.animations['knucklesIdle'] = new Animation(this.textures['knuckles'], 720, 405, 3, 400, true);
+    this.animations['knucklesAttack'] = new Animation(this.textures['knucklesAttack'], 720, 405, 3, 200, false);
 
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
@@ -115,6 +119,7 @@ class Data {
     this.weapons = {};
 
     this.weapons['fists'] = new Weapon('Fists', this.animations['fistsIdle'], this.animations['fistsAttack'], document.getElementById('fistCard'), undefined, 0, 0, 0);
+    this.weapons['knuckles'] = new Weapon('Knuckles', this.animations['knucklesIdle'], this.animations['knucklesAttack'], document.getElementById('knucklesCard'), undefined, 0, 0, 0);
   }
 
   createCutscenes() {
