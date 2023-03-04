@@ -1,111 +1,183 @@
 class Data {
-    constructor() {
-        this.textures = [
-            "death_cutscene",
-            "default",
-            "defaultHigh",
-            "test",
-            "empty",
-            "water",
-            "statue",
-            "teleport",
-            "fists",
-            "fistsAttack",
-            "punch",
-            "fistscard"
-        ];
+  constructor() {
+    this.textures = [
+      'death_cutscene',
+      'default',
+      'defaultHigh',
+      'test',
+      'empty',
+      'water',
+      'statue',
+      'teleport',
+      'fists',
+      'fistsAttack',
+      'punch',
+      'fistscard',
+    ];
+  }
+
+  load() {
+    this.loadTextures();
+    this.createAnimations();
+    this.createProjectiles();
+    this.createBillboards();
+    this.createPowerups();
+    this.createEnemies();
+    this.createWeapons();
+    this.createHazards();
+    this.createTeleports();
+
+    this.createCutscenes();
+  }
+
+  loadTextures() {
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let textures = {};
+
+    for (let i = 0; i < this.textures.length; i++) {
+      let img = new Image();
+      img.src = 'resources\\' + this.textures[i] + '.png';
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      let imgData = ctx.getImageData(0, 0, img.width, img.height);
+      textures[this.textures[i]] = imgData;
     }
+    this.textures = textures;
+  }
 
-    load() {
-        this.loadTextures();
-        this.createAnimations();
-        this.createProjectiles();
-        this.createBillboards();
-        this.createPowerups();
-        this.createEnemies();
-        this.createWeapons();
-        this.createHazards();
-        this.createTeleports();
+  createAnimations() {
+    this.animations = {};
 
-        this.createCutscenes();
-    }
+    this.animations['test'] = new Animation(
+      this.textures['test'],
+      64,
+      64,
+      1,
+      0,
+      false
+    );
+    this.animations['statue'] = new Animation(
+      this.textures['statue'],
+      64,
+      128,
+      1,
+      0,
+      false
+    );
+    this.animations['teleport'] = new Animation(
+      this.textures['teleport'],
+      128,
+      128,
+      3,
+      350,
+      true
+    );
 
-    loadTextures() {
-        let canvas = document.createElement("canvas");
-        let ctx = canvas.getContext("2d");
+    //weapons
+    this.animations['fistsIdle'] = new Animation(
+      this.textures['fists'],
+      720,
+      405,
+      3,
+      400,
+      true
+    );
+    this.animations['fistsAttack'] = new Animation(
+      this.textures['fistsAttack'],
+      720,
+      405,
+      3,
+      200,
+      true
+    );
 
-        let textures = {};
+    //projectiles
+    this.animations['punch'] = new Animation(
+      this.textures['punch'],
+      32,
+      32,
+      1,
+      0,
+      true
+    );
 
-        for (let i = 0; i < this.textures.length; i++) {
-            let img = new Image();
-            img.src = "resources\\" + this.textures[i] + ".png";
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            let imgData = ctx.getImageData(0,0,img.width,img.height);
-            textures[this.textures[i]] = imgData;
-        }
-        this.textures = textures;
-    }
+    //cutscenes
+    this.animations['death_cutscene'] = new Animation(
+      this.textures['death_cutscene'],
+      240,
+      135,
+      6,
+      800,
+      false
+    );
+  }
 
-    createAnimations() {
-        this.animations = {};
+  createHazards() {
+    this.hazards = {};
+  }
 
-        this.animations["test"] = new Animation(this.textures["test"], 64, 64, 1, 0, false);
-        this.animations["statue"] = new Animation(this.textures["statue"], 64, 128, 1, 0, false);
-        this.animations["teleport"] = new Animation(this.textures["teleport"], 128, 128, 3, 350, true);
+  createTeleports() {
+    this.teleports = {};
 
-        //weapons
-        this.animations["fistsIdle"] = new Animation(this.textures["fists"], 720, 405, 3, 400, true);
-        this.animations["fistsAttack"] = new Animation(this.textures["fistsAttack"], 720, 405, 3, 200, true);
+    this.teleports['portal'] = new Teleport(this.animations['teleport'], 0, 0);
+  }
 
-        //projectiles
-        this.animations["punch"] = new Animation(this.textures["punch"], 32, 32, 1, 0, true);
+  createBillboards() {
+    this.billboards = {};
 
-        //cutscenes
-        this.animations["death_cutscene"] = new Animation(this.textures["death_cutscene"], 240, 135, 6, 800, false);
-    }
+    this.billboards['test'] = new Billboard(this.animations['test'], 0, 0);
+    this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
 
-    createHazards() {
-        this.hazards = {};
-    }
+    this.billboardsArray = Object.keys(this.billboards).map((key) => key);
+  }
 
-    createTeleports() {
-        this.teleports = {};
+  createProjectiles() {
+    this.projectiles = {};
 
-        this.teleports["portal"] = new Teleport(this.animations["teleport"], 0, 0);
-    }
+    this.projectiles['punch'] = new Projectile(
+      this.animations['punch'],
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0,
+      BLUNT
+    );
+  }
 
-    createBillboards() {
-        this.billboards = {};
+  createPowerups() {
+    this.powerups = {};
+  }
 
-        this.billboards["test"] = new Billboard(this.animations["test"], 0, 0);
-        this.billboards["statue"] = new Billboard(this.animations["statue"], 0, 0);
+  createEnemies() {
+    this.enemies = {};
+  }
 
-        this.billboardsArray = Object.keys(this.billboards).map(key => key);
-    }
+  createWeapons() {
+    this.weapons = {};
 
-    createProjectiles() {
-        this.projectiles = {};
+    this.weapons['fists'] = new Weapon(
+      'Fists',
+      this.animations['fistsIdle'],
+      this.animations['fistsAttack'],
+      document.getElementById('fistCard'),
+      undefined,
+      0,
+      0,
+      0
+    );
+  }
 
-        this.projectiles["punch"] = new Projectile(this.animations["punch"], 0, 0, 0, 0, 1, 2, 0, 0, BLUNT);
-    }
-
-    createPowerups() {
-        this.powerups = {};
-    }
-
-    createEnemies() {
-        this.enemies = {};
-    }
-
-    createWeapons() {
-        this.weapons = {};
-
-        this.weapons["fists"] = new Weapon("Fists", this.animations["fistsIdle"], this.animations["fistsAttack"], this.textures["fistscard"], undefined, 0, 0, 0);
-    }
-
-    createCutscenes() {
-        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]], false);
-    }
+  createCutscenes() {
+    this.deathCutscene = new Cutscene(
+      [this.animations['death_cutscene']],
+      false
+    );
+  }
 }

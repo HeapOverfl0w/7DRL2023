@@ -80,25 +80,28 @@ class Weapon {
   }
 
   drawCard(position, yStart, ctx) {
-    const textOffset = 45;
+    const textOffset = 55;
     let damageType;
 
     switch (this.projectile.damageType) {
-      case 0:
+      case LIGHTNING:
         damageType = 'Light';
         break;
-      case 1:
+      case FIRE:
         damageType = 'Fire';
-      case 2:
+        break;
+      case BLUNT:
         damageType = 'Blunt';
-      case 3:
+        break;
+      case SLASH:
         damageType = 'Slash';
+        break;
     }
 
     ctx.drawImage(this.card, Math.floor(position), Math.floor(yStart));
     ctx.fillStyle = 'black';
     ctx.fillText(
-      `${this.projectile.minDamage - this.projectile.maxDamage}`,
+      `${this.projectile.minDamage} - ${this.projectile.maxDamage}`,
       position + textOffset,
       yStart + 80
     );
