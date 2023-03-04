@@ -9,6 +9,7 @@ class LevelFactory
         const floorWithCeiling = 15;
         const wall = Math.random() > 0.5 ? 50 : 51;
         const water = 30;
+        const lava = 2;
         const levelWidth = Math.round(Math.random() * 150) + 100;
         const levelHeight = Math.round(Math.random() * 150) + 100;
         let levelArray = new Array(levelWidth);
@@ -21,7 +22,7 @@ class LevelFactory
         } else {
             levelType = "outside";
         }
-
+        console.log('LEVEL TYPE:', levelType)
         for(let x = 0; x < levelWidth; x++) {
             levelArray[x] = new Array(levelHeight);
             for(let y = 0; y < levelHeight; y++) {
@@ -47,6 +48,9 @@ class LevelFactory
             for(let x = xStart; x < xStart + width; x++) {
                 for(let y = yStart; y < yStart + height; y++) {
                     levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                    if (levelArray[x][y] === 2 ) {
+                        levelArray[x][y] = lava;
+                    }
                 }
             }
         }
@@ -62,6 +66,9 @@ class LevelFactory
                 for(let x = roomOne.xStart; x != roomTwo.xStart; x += xHallwayStep) {
                     for(let y = roomOne.yStart; y <= roomOne.yStart + hallwayLength; y++) {
                         levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                        if (levelArray[x][y] === 2 ) {
+                            levelArray[x][y] = lava;
+                        }
                     }
                 }
             }
@@ -72,6 +79,9 @@ class LevelFactory
                 for(let y = roomOne.yStart; y != roomTwo.yStart; y += yHallwayStep) {
                     for(let x = roomTwo.xStart; x <= roomTwo.xStart + hallwayLength; x++) {
                         levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                        if (levelArray[x][y] === 2 ) {
+                            levelArray[x][y] = lava;
+                        }
                     }
                 }
             } 

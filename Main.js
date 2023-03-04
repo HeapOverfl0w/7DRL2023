@@ -10,6 +10,7 @@ class Main
     this.filter.type = "none";
     this.levelFactory = new LevelFactory(this.data);
     this.level = this.levelFactory.generateLevel();
+    console.log(this.level)
 
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);

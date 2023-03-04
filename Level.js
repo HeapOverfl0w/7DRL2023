@@ -268,6 +268,8 @@ class Level
         return this.data.textures["default"];
       case 30:
         return this.data.textures["water"];
+      case 2:
+        return this.data.textures["lava"]
       default:
         return this.data.textures["empty"];
     }

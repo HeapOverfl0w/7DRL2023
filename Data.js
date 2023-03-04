@@ -4,6 +4,7 @@ class Data {
       'death_cutscene',
       'default',
       'defaultHigh',
+      'lava',
       'test',
       'empty',
       'water',
@@ -38,8 +39,9 @@ class Data {
     let ctx = canvas.getContext('2d');
 
     let textures = {};
-
+    console.log('textures length:', this.textures.length)
     for (let i = 0; i < this.textures.length; i++) {
+      console.log('loop it:', i)
       let img = new Image();
       img.src = 'resources\\' + this.textures[i] + '.png';
       canvas.width = img.width;
