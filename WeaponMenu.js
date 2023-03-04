@@ -1,8 +1,9 @@
 class WeaponMenu {
-  constructor(ctx, camera) {
+  constructor(ctx, camera, data) {
     this.menuBackgroundImage = document.getElementById('menuBackground');
     this.card = document.getElementById('card');
     this.camera = camera;
+    this.data = data;
     this.newWeaponSelected = false;
     this.newWeapons = [this.card, this.card, this.card];
     this.selectedCard = this.newWeapons[0];
@@ -95,20 +96,11 @@ class WeaponMenu {
 
   generateNewWeapons(numWeapons) {
     // Add random generation of properties for weapon
+    let fistsProjectile = this.data.projectiles['punch'].copyBase(1, 3, BLUNT);
+    let fists = this.data.weapons['fists'].copy(fistsProjectile, 1, 0, 0);
     this.newWeapons = [];
     for (let i = 0; i < numWeapons; i++) {
-      this.newWeapons.push(
-        new Weapon(
-          'Fists',
-          'defaultAnimation',
-          'attackAnimation',
-          document.getElementById('card'),
-          'projectile',
-          'projectileCount',
-          'projectileAngle',
-          'manaCost'
-        )
-      );
+      this.newWeapons.push(fists);
     }
   }
 
