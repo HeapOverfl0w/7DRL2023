@@ -16,7 +16,7 @@ class Powerup extends Billboard {
                     camera.playerHealth = camera.playerHealth + 5 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 5;
                     break;
                 case "mana":
-                    camera.playerMana = camera.playerMana + 5 > camera.playerMaxMana ? camera.playerMana : camera.playerMana + 5;
+                    camera.playerMana = camera.playerMana + 5 > camera.playerMaxMana ? camera.playerMaxMana : camera.playerMana + 5;
                     break;
                 default:
                     let weaponDoesNotExist = true;

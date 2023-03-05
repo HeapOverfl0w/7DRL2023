@@ -48,7 +48,7 @@ class Enemy2 extends Billboard {
                         break;
                 }
 
-                this.life -= (level.projectiles[p].minDamage + Math.random() * level.projectiles[p].maxDamage) * (1 - resist);
+                this.life -= (level.projectiles[p].minDamage + Math.random() * (level.projectiles[p].maxDamage - level.projectiles[p].minDamage)) * (1 - resist);
                 this.isHit = true;
                 setTimeout((enemy) => { enemy.isHit = false; }, 100, this);
                 level.projectiles[p].hitWall = true;
@@ -103,7 +103,7 @@ class Enemy2 extends Billboard {
         if (distanceFromPlayer > this.maxAttackRange) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;
             let y = this.y + Math.sin(angle) * this.speed * updateInterval;
-            if (!level.isWall(Math.floor(x), Math.floor(y))) {
+            if (!level.isPassable(Math.floor(x), Math.floor(y))) {
                 this.x = x;
                 this.y = y;
             }

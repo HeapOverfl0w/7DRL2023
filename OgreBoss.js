@@ -1,7 +1,7 @@
 //import { Billboard } from "./Billboard";
 
-class Enemy extends Billboard {
-    constructor(name, maxLife, speed, range, score, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
+class OgreBoss extends Billboard {
+    constructor(name, maxLife, speed, range, score, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, punchAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
         super(walkAnimation, x, y);
         this.name = name;
         this.life = maxLife;
@@ -13,12 +13,15 @@ class Enemy extends Billboard {
         this.isStationary = isStationary;
         this.speed = speed;
         this.destroyAnimation = destroyAnimation;
+        this.punchAnimation = punchAnimation;
         this.isHit = false;
 
         this.resistLightning = resistLightning;
         this.resistFire = resistFire;
         this.resistBlunt = resistBlunt;
         this.resistSlash = resistSlash;
+
+        this.lastTotemSummon = Date.now();
 
         this.maxViewRange = 20;
         this.maxAttackRange = range;
@@ -83,7 +86,7 @@ class Enemy extends Billboard {
                 this.hasSeenCamera = true;
 
             if (this.hasSeenCamera) {
-                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer);
+                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer, data);
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
                 
                 //randomly play enemy sounds
@@ -97,10 +100,26 @@ class Enemy extends Billboard {
         }
     }
 
-    move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
+    move(level, angle, playerInView, updateInterval, distanceFromPlayer, data) {
         if (this.isStationary)
             return;
-        if (distanceFromPlayer > this.maxAttackRange) {
+        if (this.lastTotemSummon + 10000 < Date.now() && this.hasSeenCamera) {
+            this.activeAnimation.stop();
+            this.activeAnimation = this.attackAnimation;
+            this.activeAnimation.start();
+            this.lastTotemSummon = Date.now();
+            level.enemies.push(data.enemies['totem'].copy(this.x + Math.random() * 3, this.y + Math.random() * 3));
+        }
+        if (distanceFromPlayer < 6) {
+            let x = this.x + Math.cos(angle) * this.speed * updateInterval;
+            let y = this.y + Math.sin(angle) * this.speed * updateInterval;
+            if (!level.isWall(Math.floor(x), Math.floor(y)))
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+        else if (distanceFromPlayer > this.maxAttackRange) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;
             let y = this.y + Math.sin(angle) * this.speed * updateInterval;
             if (!level.isPassable(Math.floor(x), Math.floor(y)))
@@ -112,11 +131,26 @@ class Enemy extends Billboard {
     }
 
     attack(angle, playerInView, distanceFromPlayer, level, audio) {
-        if (this.attackAnimation == this.activeAnimation && this.attackAnimation.isAnimating())
+        if (this.defaultAnimation != this.activeAnimation && this.activeAnimation.isAnimating())
             return;
-        else if (this.attackAnimation == this.activeAnimation && !this.attackAnimation.isAnimating()) {
+        else if (this.defaultAnimation != this.activeAnimation && !this.attackAnimation.isAnimating()) {
             this.activeAnimation = this.defaultAnimation;
             this.activeAnimation.start();
+        }
+        //if we're close enough then just punch
+        else if (playerInView && 4 > distanceFromPlayer) {
+            this.activeAnimation.stop();
+            this.activeAnimation = this.punchAnimation;
+            this.activeAnimation.start();
+            if (this.projectile !== undefined) {
+                const projectile = this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle));
+                projectile.minDamage = 2;
+                projectile.maxDamage = 4;
+                level.projectiles.push(projectile);
+            }
+        }
+        else if (playerInView && 5 > distanceFromPlayer) {
+            return;
         }
         else if (playerInView && this.maxAttackRange > distanceFromPlayer){
             //audio.playSpell();
@@ -124,7 +158,10 @@ class Enemy extends Billboard {
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
             if (this.projectile !== undefined) {
+                //throw out three projectiles
                 level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle)));
+                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle + 0.261799), Math.sin(angle + 0.261799)));
+                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle - 0.261799), Math.sin(angle - 0.261799)));
             }
         }
     }
@@ -144,8 +181,8 @@ class Enemy extends Billboard {
     }
 
     copy(x, y) {
-        const result = new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
-            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
+        const result = new OgreBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
+            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(),this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
 
         result.sizeModifier = this.sizeModifier;
         return result;

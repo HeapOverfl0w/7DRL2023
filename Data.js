@@ -27,7 +27,12 @@ class Data {
       "spookyTree",
       "ogre",
       "ogreAttack",
+      "ogrePunch",
       "ogreDeath",
+      "ogreProjectile",
+      "totem",
+      "totemAttack",
+      "totemDeath",
       "gorgon",
       "gorgonDeath",
       "gorgonAttack",
@@ -85,9 +90,14 @@ class Data {
     this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
     this.animations["gorgonAttack"] = new Animation(this.textures["gorgonAttack"], 64, 93, 2, 400, false);
 
-    this.animations["ogre"] = new Animation(this.textures["ogre"], 96, 160, 4, 400, true);
-    this.animations["ogreAttack"] = new Animation(this.textures["ogreAttack"], 96, 160, 3, 400, false);
-    this.animations["ogreDeath"] = new Animation(this.textures["ogreDeath"], 96, 160, 4, 400, false);
+    this.animations["ogre"] = new Animation(this.textures["ogre"], 80, 160, 4, 400, true);
+    this.animations["ogreAttack"] = new Animation(this.textures["ogreAttack"], 80, 160, 3, 400, false);
+    this.animations["ogreDeath"] = new Animation(this.textures["ogreDeath"], 80, 160, 4, 400, false);
+    this.animations["ogrePunch"] = new Animation(this.textures["ogrePunch"], 80, 160, 2, 700, false);
+
+    this.animations["totem"] = new Animation(this.textures["totem"], 32, 64, 2, 500, true);
+    this.animations["totemAttack"] = new Animation(this.textures["totemAttack"], 32, 64, 2, 1000, false);
+    this.animations["totemDeath"] = new Animation(this.textures["totemDeath"], 32, 64, 2, 1000, false);
 
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
@@ -102,6 +112,7 @@ class Data {
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
     this.animations['magicPunch'] = new Animation(this.textures['fistsMagicProjectile'], 32, 32, 3, 250, true);
     this.animations['gorgonFire'] = new Animation(this.textures['gorgonFire'], 64, 64, 3, 200, false);
+    this.animations['ogreProjectile'] = new Animation(this.textures['ogreProjectile'], 16, 16, 1, 0, false);
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
@@ -138,6 +149,7 @@ class Data {
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
     this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
+    this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 1, 15, 2, 3, FIRE);
   }
 
   createPowerups() {
@@ -153,8 +165,9 @@ class Data {
     this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
 
-    this.enemies["ogre"] = new Enemy("ogre", 30, 1.5, 15, 20, false, this.projectiles["gorgonFire"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], 0.2, 0.3, 0.1, -0.2, 0, 0);
+    this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
+    this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
 
