@@ -57,7 +57,7 @@ class Enemy2 extends Billboard {
 
         if (this.life <= 0) {
             if (this.activeAnimation != this.destroyAnimation) {
-                //audio.playDeath();
+                audio.playGorgonDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
