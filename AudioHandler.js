@@ -4,14 +4,18 @@ class AudioHandler {
 
         this.musicList = [];
         this.currentSong = 0;
+
         this.punch1 = document.getElementById("punch1")
         this.punch2 = document.getElementById("punch2")
         this.punch3 = document.getElementById("punch3")
         this.gorgonScream = document.getElementById("gorgonScream")
+        this.spell = document.getElementById("spell")
+
         this.punch1.volume = volume;
         this.punch2.volume = volume;
         this.punch3.volume = volume;
         this.gorgonScream.volume = volume;
+        this.spell.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
     }
@@ -43,6 +47,12 @@ class AudioHandler {
             case "Fists":
                 this.playPunch();
                 break;
+            case "Knuckles":
+                this.playPunch();
+                break;
+            case "Magic Fists":
+                this.playSpell();
+                break;
             case "shotgun":
                 this.playShotgunFire();
                 break;
@@ -59,12 +69,11 @@ class AudioHandler {
         }
     }
 
-    /*
-    playDarkMagic() {
-        this.darkmagic.currentTime = 0;
-        this.darkmagic.play();
+    
+    playSpell() {
+        this.spell.currentTime = 0;
+        this.spell.play();
     }
-    */
 
     playGorgonScream() {
         this.gorgonScream.play();
