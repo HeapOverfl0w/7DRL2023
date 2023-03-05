@@ -44,7 +44,10 @@ class Data {
       "grass_city",
       "wall1_city",
       "wall2_city",
-      "wall3_city"
+      "wall3_city",
+      "wall1_cemetary",
+      "wall2_cemetary",
+      "wall3_cemetary",
     ];
   }
 
