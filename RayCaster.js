@@ -53,9 +53,9 @@ class RayCaster {
       let z = rayData.distance * Math.cos(camera.angle - rayAngle);
       let wallLength = cvsHeight / z * aspectRatio;
       let floor = (cvsHeight + 32) / 2 * (1 + 1/z)  - 12;
-      if (rayData.texture !== undefined && rayData.texture.height > 32)
+      if (rayData.texture !== undefined && rayData.texture.height > 64)
         wallLength *= 2;
-      if (rayData.texture !== undefined && rayData.texture.height < 32)
+      if (rayData.texture !== undefined && rayData.texture.height < 64)
         wallLength /= 2;
       let ceiling = floor - wallLength;
 
@@ -81,13 +81,15 @@ class RayCaster {
           let textureSample = 4 * (ySample * rayData.texture.width + xSample);
           let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + x);
 
-          let r = rayData.texture.data[textureSample] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.r;
-          let g = rayData.texture.data[textureSample+1] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.g;
-          let b = rayData.texture.data[textureSample+2] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.b;
-          this.screenBuffer.data[screenBufferSample] = r;
-          this.screenBuffer.data[screenBufferSample + 1] = g;
-          this.screenBuffer.data[screenBufferSample + 2] = b;
-          this.screenBuffer.data[screenBufferSample + 3] = rayData.texture.data[textureSample + 3];
+          if (255 != rayData.texture.data[textureSample+3] + (rayData.distance / this.maxShadeDistance)) {
+            let r = rayData.texture.data[textureSample] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.r;
+            let g = rayData.texture.data[textureSample+1] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.g;
+            let b = rayData.texture.data[textureSample+2] + (rayData.distance / this.maxShadeDistance) * this.shadeColor.b;
+            this.screenBuffer.data[screenBufferSample] = r;
+            this.screenBuffer.data[screenBufferSample + 1] = g;
+            this.screenBuffer.data[screenBufferSample + 2] = b;
+            this.screenBuffer.data[screenBufferSample + 3] = rayData.texture.data[textureSample + 3];
+          }          
         }
         
         //ctx.drawImage(rayData.texture, Math.floor(rayData.texture.width * rayData.sample), 0, 1, rayData.texture.height, x, ceiling, 1, wallLength);

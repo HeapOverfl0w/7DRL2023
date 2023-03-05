@@ -42,6 +42,7 @@ class Data {
       "demonDeath",
       "demonProjectile",
       "grass_city",
+      "grass2_city",
       "wall1_city",
       "wall2_city",
       "wall3_city"

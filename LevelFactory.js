@@ -155,7 +155,7 @@ class LevelFactory
 
         let teleport = {type: "portal", x: farthestDistanceRoom.xStart + Math.random() * farthestDistanceRoom.width, y: farthestDistanceRoom.yStart + Math.random() * farthestDistanceRoom.height};
 
-        let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, "#1d1c1f", 
+        let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, this.getShadeColorByLevelType(levelType), 
             billboards,
             enemies,
             [], [], [teleport]);
@@ -183,9 +183,17 @@ class LevelFactory
         billboard.y = y;
     }
 
+    getShadeColorByLevelType(levelType) {
+        if (levelType === 'city') {
+            return '#1d1c1f';
+        } else {
+            return '#1d1c1f';
+        }
+    }
+
     getWallByLevelType(levelType) {
         if (levelType === 'city') {
-            let randomWall = Math.random();
+            const randomWall = Math.random();
             if (randomWall < 0.65) {
                 return 51;
             } else if (randomWall < 0.83) {
@@ -201,7 +209,12 @@ class LevelFactory
 
     getFloorByLevelType(levelType) {
         if (levelType === 'city') {
-            return 2;
+            const randomFloor = Math.random();
+            if (randomFloor < 0.5) {
+                return 2;
+            } else {
+                return 3;
+            }            
         } else if (levelType === 'cave'){
             return 15;
         } else {

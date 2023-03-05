@@ -277,6 +277,8 @@ class Level
         return this.data.textures["default"];
       case 2:
         return this.data.textures["grass_city"];
+      case 3:
+        return this.data.textures["grass2_city"];
       case 15:
         return this.data.textures["default"];
       case 30:
