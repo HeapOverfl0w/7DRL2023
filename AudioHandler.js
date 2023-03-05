@@ -10,6 +10,8 @@ class AudioHandler {
         this.punch3 = document.getElementById("punch3")
         this.gorgonScream = document.getElementById("gorgonScream")
         this.gorgonDeath = document.getElementById("gorgonDeath")
+        this.demonAttack = document.getElementById("demonAttack")
+        this.demonDeath = document.getElementById("demonDeath")
         this.spell = document.getElementById("spell")
 
         this.punch1.volume = volume;
@@ -17,6 +19,8 @@ class AudioHandler {
         this.punch3.volume = volume;
         this.gorgonScream.volume = volume;
         this.gorgonDeath.volume = volume;
+        this.demonAttack.volume = volume;
+        this.demonDeath.volume = volume;
         this.spell.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
@@ -83,6 +87,14 @@ class AudioHandler {
 
     playGorgonDeath() {
         this.gorgonDeath.play();
+    }
+
+    playDemonAttack() {
+        this.demonAttack.play();
+    }
+
+    playDemonDeath() {
+        this.demonDeath.play();
     }
 
     playPunch() {
