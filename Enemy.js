@@ -144,7 +144,10 @@ class Enemy extends Billboard {
     }
 
     copy(x, y) {
-        return new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
+        const result = new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
             this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
+
+        result.sizeModifier = this.sizeModifier;
+        return result;
     }
 }
