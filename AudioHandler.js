@@ -4,7 +4,13 @@ class AudioHandler {
 
         this.musicList = [];
         this.currentSong = 0;
+        this.punch1 = document.getElementById("punch1")
+        this.punch2 = document.getElementById("punch2")
+        this.punch3 = document.getElementById("punch3")
         this.gorgonScream = document.getElementById("gorgonScream")
+        this.punch1.volume = volume;
+        this.punch2.volume = volume;
+        this.punch3.volume = volume;
         this.gorgonScream.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
@@ -34,6 +40,9 @@ class AudioHandler {
 
     playWeaponAttack(weaponName) {
         switch (weaponName) {
+            case "Fists":
+                this.playPunch();
+                break;
             case "shotgun":
                 this.playShotgunFire();
                 break;
@@ -59,6 +68,13 @@ class AudioHandler {
 
     playGorgonScream() {
         this.gorgonScream.play();
+    }
+
+    playPunch() {
+        const rand = Math.random()
+        if (rand < 0.33) return this.punch1.play();
+        if (rand > 0.33 && rand < 0.66) return this.punch2.play();
+        if (rand > 0.66) return this.punch3.play();
     }
 
     playAudio(src) {
