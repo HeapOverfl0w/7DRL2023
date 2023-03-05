@@ -7,19 +7,23 @@ class LevelFactory
     generateLevel() {
         const floor = 1;
         const floorWithCeiling = 15;
-        const wall = Math.random() > 0.5 ? 50 : 51;
+        const wall = 50;
         const water = 30;
         const levelWidth = Math.round(Math.random() * 150) + 100;
         const levelHeight = Math.round(Math.random() * 150) + 100;
         let levelArray = new Array(levelWidth);
 
         let levelType = Math.random();
-        if (levelType < 0.3) {
-            levelType = "inside";
-        } else if (levelType > 0.6) {
+        if (levelType < 0.2) {
+            levelType = "cave";
+        } else if (levelType < 0.4) {
             levelType = "islands";
+        } else if (levelType < 0.6) {
+            levelType = "city";
+        } else if (levelType < 0.8) {
+            levelType = "cemetary";
         } else {
-            levelType = "outside";
+            levelType = "lava";
         }
 
         for(let x = 0; x < levelWidth; x++) {
@@ -46,7 +50,7 @@ class LevelFactory
 
             for(let x = xStart; x < xStart + width; x++) {
                 for(let y = yStart; y < yStart + height; y++) {
-                    levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                    levelArray[x][y] = this.getFloorByLevelType(levelType);
                 }
             }
         }
@@ -61,7 +65,7 @@ class LevelFactory
                 let hallwayLength = Math.round(Math.random() * 4) + 1;
                 for(let x = roomOne.xStart; x != roomTwo.xStart; x += xHallwayStep) {
                     for(let y = roomOne.yStart; y <= roomOne.yStart + hallwayLength; y++) {
-                        levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                        levelArray[x][y] = this.getHallwayFloorByLevelType(levelType);
                     }
                 }
             }
@@ -71,7 +75,7 @@ class LevelFactory
                 let hallwayLength = Math.round(Math.random() * 4) + 1;
                 for(let y = roomOne.yStart; y != roomTwo.yStart; y += yHallwayStep) {
                     for(let x = roomTwo.xStart; x <= roomTwo.xStart + hallwayLength; x++) {
-                        levelArray[x][y] = levelType === "inside" ? floorWithCeiling : floor;
+                        levelArray[x][y] = this.getHallwayFloorByLevelType(levelType);
                     }
                 }
             } 
@@ -79,6 +83,7 @@ class LevelFactory
 
         if (levelType !== "islands") {
             //add walls
+            //decide outdoor wall type
             for(let x = 0; x < levelWidth; x++) {
                 for(let y = 0; y < levelHeight; y++) {
                     //any adjacent floors
@@ -101,7 +106,7 @@ class LevelFactory
                         (bottomRight > 0 && bottomRight < 30) || 
                         (bottomLeft > 0 && bottomLeft < 30) || 
                         (topLeft > 0 && topLeft < 30))) {
-                        levelArray[x][y] = wall;
+                        levelArray[x][y] = this.getWallByLevelType(levelType);
                     }
                 }
             }
@@ -177,4 +182,34 @@ class LevelFactory
         billboard.x = x;
         billboard.y = y;
     }
+
+    getWallByLevelType(levelType) {
+        if (levelType === 'city') {
+            let randomWall = Math.random();
+            if (randomWall < 0.65) {
+                return 51;
+            } else if (randomWall < 0.83) {
+                return 52;
+            } else {
+                return 53;
+            }
+        }    
+        else {
+            return 50;
+        }
+    }
+
+    getFloorByLevelType(levelType) {
+        if (levelType === 'city') {
+            return 2;
+        } else if (levelType === 'cave'){
+            return 15;
+        } else {
+            return 1;
+        }
+    }
+
+    getHallwayFloorByLevelType(levelType) {
+        return this.getFloorByLevelType(levelType);
+    }   
 }

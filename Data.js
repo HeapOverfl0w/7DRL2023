@@ -36,7 +36,11 @@ class Data {
       "gorgon",
       "gorgonDeath",
       "gorgonAttack",
-      "gorgonFire"
+      "gorgonFire",
+      "grass_city",
+      "wall1_city",
+      "wall2_city",
+      "wall3_city"
     ];
   }
 

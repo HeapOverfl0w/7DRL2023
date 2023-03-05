@@ -232,7 +232,11 @@ class Level
         case 50:
           return this.data.textures["default"];
         case 51:
-          return this.data.textures["defaultHigh"];
+          return this.data.textures["wall1_city"];
+        case 52:
+          return this.data.textures["wall2_city"];
+        case 53:
+          return this.data.textures["wall3_city"];
         default:
           return undefined;
       }
@@ -271,6 +275,8 @@ class Level
     switch(this.levelArray[x][y]) {
       case 1:
         return this.data.textures["default"];
+      case 2:
+        return this.data.textures["grass_city"];
       case 15:
         return this.data.textures["default"];
       case 30:
