@@ -80,7 +80,7 @@ class Data {
 
     this.animations["gorgon"] = new Animation(this.textures["gorgon"], 64, 93, 3, 100, true);
     this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
-    this.animations["gorgonAttack"] = new Animation(this.textures["gorgonAttack"], 64, 93, 2, 100, false);
+    this.animations["gorgonAttack"] = new Animation(this.textures["gorgonAttack"], 64, 93, 2, 400, false);
 
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
