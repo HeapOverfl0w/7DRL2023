@@ -201,7 +201,16 @@ class LevelFactory
             } else {
                 return 53;
             }
-        }    
+        } else if (levelType === 'cemetary') {
+            let randomWall = Math.random();
+            if (randomWall < 0.65) {
+                return 61;
+            } else if (randomWall < 0.83) {
+                return 62;
+            } else {
+                return 63;
+            }
+        }
         else {
             return 50;
         }

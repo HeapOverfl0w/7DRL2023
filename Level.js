@@ -237,6 +237,12 @@ class Level
           return this.data.textures["wall2_city"];
         case 53:
           return this.data.textures["wall3_city"];
+        case 61:
+          return this.data.textures["wall1_cemetary"];
+        case 62:
+          return this.data.textures["wall2_cemetary"];
+        case 63:
+          return this.data.textures["wall3_cemetary"];
         default:
           return undefined;
       }
