@@ -18,7 +18,10 @@ class Data {
       'fistscard',
       "harpy",
       "harpyAttack",
-      "harpyDeath"
+      "harpyDeath",
+      "healthPotion",
+      "manaPotion",
+      "spookyTree"
     ];
   }
 
@@ -61,6 +64,7 @@ class Data {
     this.animations['statue'] = new Animation(this.textures['statue'], 64, 128, 1, 0, false);
     this.animations['teleport'] = new Animation(this.textures['teleport'], 128, 128, 3, 350, true);
     this.animations['shrub'] = new Animation(this.textures['shrub'], 40, 96, 2, 1000, true);
+    this.animations['spookyTree'] = new Animation(this.textures['spookyTree'], 128, 260, 1,0, false);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -78,6 +82,10 @@ class Data {
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
+
+    //powerups
+    this.animations['healthPotion'] = new Animation(this.textures['healthPotion'], 32, 32, 4, 400, true);
+    this.animations['manaPotion'] = new Animation(this.textures['manaPotion'], 32, 32, 4, 400, true);
   }
 
   createHazards() {
@@ -96,6 +104,7 @@ class Data {
     this.billboards['test'] = new Billboard(this.animations['test'], 0, 0);
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
+    this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, true);
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
@@ -108,6 +117,8 @@ class Data {
 
   createPowerups() {
     this.powerups = {};
+    this.powerups['healthPotion'] = new Powerup('health', this.animations['healthPotion'], 0, 0);
+    this.powerups['manaPotion'] = new Powerup('mana', this.animations['manaPotion'], 0, 0);
   }
 
   createEnemies() {

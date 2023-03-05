@@ -7,17 +7,16 @@ class Powerup extends Billboard {
 
     update(data, camera, audio) {
         if (!this.collected && this.isInside(camera)) {
-            if ((this.powerupType == "health" && camera.playerHealth == camera.playerMaxHealth) ||
-                (this.powerupType == "ammo" && !camera.activeWeapon.isRanged)) 
+            if ((this.powerupType == "health" && camera.playerHealth >= camera.playerMaxHealth) || 
+                (this.powerupType == "mana" && camera.playerMana >= camera.playerMaxMana)) 
                 return;
 
             switch(this.powerupType) {
-                case "ammo":
-                    let ammoAmount = camera.activeWeapon.maxMagazineSize > 4 ? camera.activeWeapon.maxMagazineSize : 4;
-                    camera.activeWeapon.ammo += ammoAmount;
-                    break;
                 case "health":
-                    camera.playerHealth = camera.playerHealth + 6 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 6;
+                    camera.playerHealth = camera.playerHealth + 5 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 5;
+                    break;
+                case "mana":
+                    camera.playerMana = camera.playerMana + 5 > camera.playerMaxMana ? camera.playerMana : camera.playerMana + 5;
                     break;
                 default:
                     let weaponDoesNotExist = true;

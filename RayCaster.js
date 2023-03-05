@@ -214,7 +214,8 @@ class RayCaster {
     {
       let billboardTexture = billboardsToDraw[i].billboard.getImageBuffer();
       let z = billboardsToDraw[i].dist * Math.cos(billboardsToDraw[i].angle);
-      let height = (cvsHeight + billboardTexture.height - 96) / z;
+      let heightModifier = billboardsToDraw[i].billboard.isLarge ? 2.5 : 1;
+      let height = (cvsHeight + billboardTexture.height - 96) / z * heightModifier;
       let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 13;
       let ceiling = floor - height;
       
