@@ -98,10 +98,13 @@ class WeaponMenu {
     // Add random generation of properties for weapon
     let fistsProjectile = this.data.projectiles['punch'].copyBase(1, 3, BLUNT);
     let fists = this.data.weapons['fists'].copy(fistsProjectile, 1, 0, 0);
-    this.newWeapons = [];
-    for (let i = 0; i < numWeapons; i++) {
-      this.newWeapons.push(fists);
-    }
+
+    let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
+    let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
+    this.newWeapons = [fists, fists, magicFists];
+    // for (let i = 0; i < numWeapons; i++) {
+    //   this.newWeapons.push(fists);
+    // }
   }
 
   handleKeyUp(keyCode) {

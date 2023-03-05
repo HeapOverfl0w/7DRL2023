@@ -12,6 +12,9 @@ class Data {
       'teleport',
       'fists',
       'fistsAttack',
+      'fistsMagic',
+      'fistsMagicAttack',
+      'fistsMagicProjectile',
       'knuckles',
       'knucklesAttack',
       'punch',
@@ -77,8 +80,12 @@ class Data {
     this.animations['knucklesIdle'] = new Animation(this.textures['knuckles'], 720, 405, 3, 400, true);
     this.animations['knucklesAttack'] = new Animation(this.textures['knucklesAttack'], 720, 405, 3, 200, false);
 
+    this.animations['fistsMagicIdle'] = new Animation(this.textures['fistsMagic'], 720, 405, 3, 400, true);
+    this.animations['fistsMagicAttack'] = new Animation(this.textures['fistsMagicAttack'], 720, 405, 3, 200, false);
+
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
+    this.animations['magicPunch'] = new Animation(this.textures['fistsMagicProjectile'], 32, 32, 3, 250, true);
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
@@ -113,6 +120,7 @@ class Data {
     this.projectiles = {};
 
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
+    this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
   }
 
   createPowerups() {
@@ -134,6 +142,7 @@ class Data {
 
     this.weapons['fists'] = new Weapon('Fists', this.animations['fistsIdle'], this.animations['fistsAttack'], document.getElementById('fistCard'), undefined, 0, 0, 0);
     this.weapons['knuckles'] = new Weapon('Knuckles', this.animations['knucklesIdle'], this.animations['knucklesAttack'], document.getElementById('knucklesCard'), undefined, 0, 0, 0);
+    this.weapons['magicFists'] = new Weapon('Magic Fists', this.animations['fistsMagicIdle'], this.animations['fistsMagicAttack'], document.getElementById('fistsCardMagic'), this.projectiles['magicPunch'], 1, 0, 2)
   }
 
   createCutscenes() {
