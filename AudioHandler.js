@@ -9,12 +9,14 @@ class AudioHandler {
         this.punch2 = document.getElementById("punch2")
         this.punch3 = document.getElementById("punch3")
         this.gorgonScream = document.getElementById("gorgonScream")
+        this.gorgonDeath = document.getElementById("gorgonDeath")
         this.spell = document.getElementById("spell")
 
         this.punch1.volume = volume;
         this.punch2.volume = volume;
         this.punch3.volume = volume;
         this.gorgonScream.volume = volume;
+        this.gorgonDeath.volume = volume;
         this.spell.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
@@ -77,6 +79,10 @@ class AudioHandler {
 
     playGorgonScream() {
         this.gorgonScream.play();
+    }
+
+    playGorgonDeath() {
+        this.gorgonDeath.play();
     }
 
     playPunch() {
