@@ -103,7 +103,7 @@ class Enemy extends Billboard {
         if (distanceFromPlayer > this.maxAttackRange) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;
             let y = this.y + Math.sin(angle) * this.speed * updateInterval;
-            if (!level.isPassable(Math.floor(x), Math.floor(y)))
+            if (level.isPassable(Math.floor(x), Math.floor(y)))
             {
                 this.x = x;
                 this.y = y;
