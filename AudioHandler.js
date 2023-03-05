@@ -4,7 +4,8 @@ class AudioHandler {
 
         this.musicList = [];
         this.currentSong = 0;
-
+        this.gorgonScream = document.getElementById("gorgonScream")
+        this.gorgonScream.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
     }
@@ -55,6 +56,10 @@ class AudioHandler {
         this.darkmagic.play();
     }
     */
+
+    playGorgonScream() {
+        this.gorgonScream.play();
+    }
 
     playAudio(src) {
         let audioCopy = new Audio();

@@ -128,6 +128,7 @@ class LevelFactory
         //add random enemies
         const enemyCount = Math.round(Math.random() * 30);
         const enemies = [];
+        
         for(let b = 0; b < enemyCount; b++) {
             let enemyIndex = Math.round(Math.random() * (this.data.enemiesArray.length - 1));
             let enemy = { type: this.data.enemiesArray[enemyIndex], x: 0, y: 0 };

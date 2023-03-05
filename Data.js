@@ -24,7 +24,11 @@ class Data {
       "harpyDeath",
       "healthPotion",
       "manaPotion",
-      "spookyTree"
+      "spookyTree",
+      "gorgon",
+      "gorgonDeath",
+      "gorgonAttack",
+      "gorgonFire"
     ];
   }
 
@@ -74,6 +78,10 @@ class Data {
     this.animations["harpyAttack"] = new Animation(this.textures["harpyAttack"], 40, 96, 2, 1250, false);
     this.animations["harpyDeath"] = new Animation(this.textures["harpyDeath"], 40, 96, 3, 600, false);
 
+    this.animations["gorgon"] = new Animation(this.textures["gorgon"], 64, 93, 3, 100, true);
+    this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
+    this.animations["gorgonAttack"] = new Animation(this.textures["gorgonAttack"], 64, 93, 2, 100, false);
+
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
     this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, false);
@@ -86,6 +94,7 @@ class Data {
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
     this.animations['magicPunch'] = new Animation(this.textures['fistsMagicProjectile'], 32, 32, 3, 250, true);
+    this.animations['gorgonFire'] = new Animation(this.textures['gorgonFire'], 64, 64, 3, 200, false);
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
@@ -121,6 +130,7 @@ class Data {
 
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
+    this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
   }
 
   createPowerups() {
@@ -132,7 +142,9 @@ class Data {
   createEnemies() {
     this.enemies = {};
 
-    this.enemies["harpy"] = new Enemy("Harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    // this.enemies["harpy"] = new Enemy("Harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+
 
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
