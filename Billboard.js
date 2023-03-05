@@ -1,10 +1,10 @@
 class Billboard {
-    constructor (animation, x, y, isLarge = false) {
+    constructor (animation, x, y, sizeModifier = 1) {
         this.defaultAnimation = animation;
         this.activeAnimation = animation;
         this.x = x;
         this.y = y;
-        this.isLarge = isLarge;
+        this.sizeModifier = sizeModifier;
     }
 
     isInside(billboard) {
@@ -23,6 +23,6 @@ class Billboard {
     }
 
     copy(x, y) {
-        return new Billboard(this.defaultAnimation.copy(), x, y, this.isLarge);
+        return new Billboard(this.defaultAnimation.copy(), x, y, this.sizeModifier);
     }
 }
