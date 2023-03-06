@@ -149,7 +149,7 @@ class Data {
     this.animations['demonProjectile'] = new Animation(this.textures['demonProjectile'], 64, 48, 4, 200, false);
 
     //cutscenes
-    this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 240, 135, 6, 800, false);
+    this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 720, 405, 6, 800, false);
 
     //powerups
     this.animations['healthPotion'] = new Animation(this.textures['healthPotion'], 32, 32, 4, 400, true);
@@ -187,7 +187,7 @@ class Data {
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
     this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
-    this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 1, 15, 2, 3, FIRE);
+    this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 0.5, 15, 2, 3, FIRE);
     this.projectiles['demonProjectile'] = new Projectile(this.animations['demonProjectile'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
   }
 
