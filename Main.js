@@ -19,7 +19,7 @@ class Main
     let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
     let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, magicFists, knuckles]);
-    this.rayCaster = new RayCaster(40);
+    this.rayCaster = new RayCaster(50);
     this.FPS = 30;
     this.fpsCounter = 0;
     this.startTime = Date.now();

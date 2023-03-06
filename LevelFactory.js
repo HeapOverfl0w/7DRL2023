@@ -185,7 +185,7 @@ class LevelFactory
 
     getShadeColorByLevelType(levelType) {
         if (levelType === 'city') {
-            return '#1d1c1f';
+            return '#5f8e9c';
         } else {
             return '#1d1c1f';
         }

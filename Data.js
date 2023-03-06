@@ -22,6 +22,9 @@ class Data {
       "harpy",
       "harpyAttack",
       "harpyDeath",
+      "skeleton",
+      "skeletonAttack",
+      "skeletonDeath",
       "healthPotion",
       "manaPotion",
       "spookyTree",
@@ -49,6 +52,8 @@ class Data {
       "wall1_cemetary",
       "wall2_cemetary",
       "wall3_cemetary",
+      "targetPractice",
+      "fountain"
     ];
   }
 
@@ -92,11 +97,17 @@ class Data {
     this.animations['teleport'] = new Animation(this.textures['teleport'], 128, 128, 3, 350, true);
     this.animations['shrub'] = new Animation(this.textures['shrub'], 40, 96, 2, 1000, true);
     this.animations['spookyTree'] = new Animation(this.textures['spookyTree'], 128, 260, 1,0, false);
+    this.animations['targetPractice'] = new Animation(this.textures['targetPractice'], 48, 64, 1,0, false);
+    this.animations['fountain'] = new Animation(this.textures['fountain'], 128, 128, 3, 200, true);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
     this.animations["harpyAttack"] = new Animation(this.textures["harpyAttack"], 40, 96, 2, 1250, false);
     this.animations["harpyDeath"] = new Animation(this.textures["harpyDeath"], 40, 96, 3, 600, false);
+
+    this.animations["skeleton"] = new Animation(this.textures["skeleton"], 32, 80, 4, 400, true);
+    this.animations["skeletonAttack"] = new Animation(this.textures["skeletonAttack"], 32, 80, 3, 700, false);
+    this.animations["skeletonDeath"] = new Animation(this.textures["skeletonDeath"], 32, 80, 3, 400, false);
 
     this.animations["gorgon"] = new Animation(this.textures["gorgon"], 64, 93, 3, 100, true);
     this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
@@ -156,6 +167,8 @@ class Data {
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
+    this.billboards['targetPractice'] = new Billboard(this.animations['targetPractice'], 0, 0);
+    this.billboards['fountain'] = new Billboard(this.animations['fountain'], 0, 0, 2);
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
@@ -181,7 +194,7 @@ class Data {
 
     this.enemies["harpy"] = new Enemy("harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
-
+    this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
 
     this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
