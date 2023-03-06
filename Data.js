@@ -55,7 +55,9 @@ class Data {
       "wall2_cemetary",
       "wall3_cemetary",
       "floor1_cemetary",
-      "floor2_cemetary"
+      "floor2_cemetary",
+      "fountain",
+      "targetPractice"
     ];
   }
 

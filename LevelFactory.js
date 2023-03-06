@@ -12,7 +12,7 @@ class LevelFactory
         const levelWidth = Math.round(Math.random() * 150) + 100;
         const levelHeight = Math.round(Math.random() * 150) + 100;
         let levelArray = new Array(levelWidth);
-        let skybox = document.getElementById("defaultskybox")
+        
 
         let levelType = Math.random();
         if (levelType < 0.2) {
@@ -34,10 +34,7 @@ class LevelFactory
             }
         }
 
-        // Set Skyboxes
-        if (levelType = "cemetary") {
-            skybox = document.getElementById("skybox_cemetary")
-        }
+        let skybox = this.getSkyboxByLevelType(levelType);
 
         //generate rooms
         let roomCount = Math.round(Math.random() * 7) + 2;
@@ -187,6 +184,15 @@ class LevelFactory
 
         billboard.x = x;
         billboard.y = y;
+    }
+
+    getSkyboxByLevelType(levelType) {
+        // Set Skyboxes
+        if (levelType === "cemetary") {
+            return document.getElementById("skybox_cemetary");
+        } else {
+            return document.getElementById('defaultskybox');
+        }
     }
 
     getShadeColorByLevelType(levelType) {
