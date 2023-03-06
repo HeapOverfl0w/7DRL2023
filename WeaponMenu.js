@@ -10,6 +10,16 @@ class WeaponMenu {
     this.selectedIndex = this.ctx = ctx;
     this.borderWidth = 2;
     this.borderGrowth = 0.2;
+
+    this.passives = [
+      new Passive('fireCard'),
+      new Passive('lightningCard'),
+      new Passive('bluntCard'),
+      new Passive('slashCard'),
+      new Passive('healthCard'),
+      new Passive('speedCard'),
+      new Passive('manaCard')
+    ];
   }
 
   drawNewWeaponMenu() {
@@ -94,14 +104,24 @@ class WeaponMenu {
     this.ctx.stroke();
   }
 
-  generateNewWeapons(numWeapons) {
+  generateNewWeapons() {
     // Add random generation of properties for weapon
-    let fistsProjectile = this.data.projectiles['punch'].copyBase(1, 3, BLUNT);
-    let fists = this.data.weapons['fists'].copy(fistsProjectile, 1, 0, 0);
+    const nextSelections = [];
 
-    let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
-    let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
-    this.newWeapons = [fists, fists, magicFists];
+    for (let i = 0; i < 3; i++) {
+      if (Math.random() < 0.5) { //add passive
+        const randomPassive = Math.floor(Math.random() * 5);
+        const selectedPassive = this.passives[randomPassive];
+        selectedPassive.setRandomValue();
+        nextSelections.push(selectedPassive);
+      } else { //add weapon
+        let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
+        let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
+        nextSelections.push(magicFists);
+      }
+    }
+
+    this.newWeapons = nextSelections;
     // for (let i = 0; i < numWeapons; i++) {
     //   this.newWeapons.push(fists);
     // }
@@ -114,6 +134,13 @@ class WeaponMenu {
         this.selectedCard = this.newWeapons[keyValue]
         this.selectedIndex = keyValue
         this.newWeaponSelected = true;
+
+        //if it's a passive card
+        if (this.selectedCard.addValueToCamera) {
+          this.selectedCard.addValueToCamera(this.camera);
+          this.newWeaponSelected = false;
+          return true;
+        }
       }
     } else if (this.newWeaponSelected) {
       if (keyCode >= 49 && keyCode <= 53) {

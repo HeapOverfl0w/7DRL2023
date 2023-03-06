@@ -66,7 +66,7 @@ class Main
     if (teleport !== undefined) {
       main.showItemSelection = true;
       main.keysDown = [];
-      main.weaponMenu.generateNewWeapons(3);
+      main.weaponMenu.generateNewWeapons();
       main.level.endLevel();
     }
 

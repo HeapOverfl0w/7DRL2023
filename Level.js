@@ -53,6 +53,7 @@ class Level
     this.stopAllAnimations();
     this.enemies = [];
     this.hazards = [];
+    this.teleports = [];
     this.projectiles = [];
   }
 

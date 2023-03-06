@@ -1,6 +1,6 @@
 class AudioHandler {
     constructor() {
-        const volume = 0.6;
+        const volume = 0.1;
 
         this.musicList = [];
         this.currentSong = 0;
