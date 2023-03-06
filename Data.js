@@ -12,6 +12,14 @@ class Data {
       'teleport',
       'fists',
       'fistsAttack',
+      'bow',
+      'bowAttack',
+      'magicBow',
+      'magicBowAttack',
+      'sword',
+      'swordAttack',
+      'swordProjectile',
+      'arrowProjectile',
       'fistsMagic',
       'fistsMagicAttack',
       'fistsMagicProjectile',
@@ -141,12 +149,21 @@ class Data {
     this.animations['fistsMagicIdle'] = new Animation(this.textures['fistsMagic'], 720, 405, 3, 400, true);
     this.animations['fistsMagicAttack'] = new Animation(this.textures['fistsMagicAttack'], 720, 405, 3, 200, false);
 
+    this.animations['bowIdle'] = new Animation(this.textures['bow'], 720, 405, 3, 450, true);
+    this.animations['bowAttack'] = new Animation(this.textures['bowAttack'], 720, 405, 4, 550, false);
+    this.animations['magicBowIdle'] = new Animation(this.textures['magicBow'], 720, 405, 3, 450, true);
+    this.animations['magicBowAttack'] = new Animation(this.textures['magicBowAttack'], 720, 405, 4, 550, false);
+    this.animations['swordIdle'] = new Animation(this.textures['sword'], 720, 405, 2, 450, true);
+    this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 350, false);
+
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
     this.animations['magicPunch'] = new Animation(this.textures['fistsMagicProjectile'], 32, 32, 3, 250, true);
     this.animations['gorgonFire'] = new Animation(this.textures['gorgonFire'], 64, 64, 3, 200, false);
     this.animations['ogreProjectile'] = new Animation(this.textures['ogreProjectile'], 16, 16, 1, 0, false);
     this.animations['demonProjectile'] = new Animation(this.textures['demonProjectile'], 64, 48, 4, 200, false);
+    this.animations['arrowProjectile'] = new Animation(this.textures['arrowProjectile'], 16, 16, 1, 0, false);
+    this.animations['swordProjectile'] = new Animation(this.textures['swordProjectile'], 32, 16, 1, 0, false);
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 720, 405, 6, 800, false);
@@ -189,6 +206,8 @@ class Data {
     this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
     this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 0.5, 15, 2, 3, FIRE);
     this.projectiles['demonProjectile'] = new Projectile(this.animations['demonProjectile'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
+    this.projectiles['arrowProjectile'] = new Projectile(this.animations['arrowProjectile'], 0, 0, 0, 0, 0.5, 25, 2, 3, SLASH);
+    this.projectiles['swordProjectile'] = new Projectile(this.animations['swordProjectile'], 0, 0, 0, 0, 0.5, 5, 2, 3, SLASH);
   }
 
   createPowerups() {
@@ -216,9 +235,12 @@ class Data {
   createWeapons() {
     this.weapons = {};
 
-    this.weapons['fists'] = new Weapon('Fists', this.animations['fistsIdle'], this.animations['fistsAttack'], document.getElementById('fistCard'), undefined, 0, 0, 0);
-    this.weapons['knuckles'] = new Weapon('Knuckles', this.animations['knucklesIdle'], this.animations['knucklesAttack'], document.getElementById('knucklesCard'), undefined, 0, 0, 0);
-    this.weapons['magicFists'] = new Weapon('Magic Fists', this.animations['fistsMagicIdle'], this.animations['fistsMagicAttack'], document.getElementById('fistsCardMagic'), this.projectiles['magicPunch'], 1, 0, 2)
+    this.weapons['fists'] = new Weapon('Fists', this.animations['fistsIdle'], this.animations['fistsAttack'], document.getElementById('fistCard'), this.projectiles['punch'], 0, 0, 0);
+    this.weapons['knuckles'] = new Weapon('Knuckles', this.animations['knucklesIdle'], this.animations['knucklesAttack'], document.getElementById('knucklesCard'), this.projectiles['punch'], 0, 0, 0);
+    this.weapons['magicFists'] = new Weapon('Magic Fists', this.animations['fistsMagicIdle'], this.animations['fistsMagicAttack'], document.getElementById('fistsCardMagic'), this.projectiles['magicPunch'], 1, 0, 2);
+    this.weapons['bow'] = new Weapon('Bow', this.animations['bowIdle'], this.animations['bowAttack'], document.getElementById('bowCard'), this.projectiles['arrowProjectile'], 0, 0, 0);
+    this.weapons['magicBow'] = new Weapon('Magic Bow', this.animations['magicBowIdle'], this.animations['magicBowAttack'], document.getElementById('magicBowCard'), this.projectiles['arrowProjectile'], 0, 0, 2);
+    this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 0, 0, 0);
   }
 
   createCutscenes() {

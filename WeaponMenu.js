@@ -130,9 +130,9 @@ class WeaponMenu {
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
       if (keyCode >=49 && keyCode <= 51){
-        const keyValue = keyCode-49
-        this.selectedCard = this.newWeapons[keyValue]
-        this.selectedIndex = keyValue
+        const keyValue = keyCode - 49;
+        this.selectedCard = this.newWeapons[keyValue];
+        this.selectedIndex = keyValue;
         this.newWeaponSelected = true;
 
         //if it's a passive card

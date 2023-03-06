@@ -18,7 +18,11 @@ class Main
     let knuckles = this.data.weapons["knuckles"].copy(knucklesProjectile, 1, 0, 0);
     let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
     let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, magicFists, knuckles]);
+    let bowProjectile = this.data.projectiles["arrowProjectile"].copyBase(10, 20, SLASH);
+    let bow = this.data.weapons["bow"].copy(bowProjectile, 1, 0, 0);
+    let swordProjectile = this.data.projectiles["swordProjectile"].copyBase(5, 7, SLASH);
+    let sword = this.data.weapons["sword"].copy(swordProjectile, 1, 0, 2);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, sword, bow, magicFists, knuckles]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -44,6 +48,12 @@ class Main
     if (main.activeCutscene !== undefined) {
       main.activeCutscene.update();
       main.activeCutscene.draw(main.ctx);
+
+      if (main.activeCutscene == main.data.deathCutscene && main.activeCutscene.isOver()) {
+        main.ctx.fillText(`Level: ${main.camera.level}`, 350, 260);
+        main.ctx.fillText(`Score: ${main.camera.score}`, 350, 270);
+      }
+
       return;
     }
 
@@ -67,6 +77,7 @@ class Main
       main.showItemSelection = true;
       main.keysDown = [];
       main.weaponMenu.generateNewWeapons();
+      main.camera.level++;
       main.level.endLevel();
     }
 
@@ -123,6 +134,10 @@ class Main
       else {
         this.audio.playAndLoopMusic();
       }*/
+
+      if (this.activeCutscene == this.data.deathCutscene) {
+        this.restartGame();
+      }
       this.activeCutscene = undefined;
     }
 
@@ -158,8 +173,8 @@ class Main
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    this.level = this.levelFactory.generateLevel();
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
-    this.level = ApartmentLevel4.copy();
-    this.level.loadData(this.data);
+    this.weaponMenu = new WeaponMenu(this.ctx, this.camera, this.data);    
   }
 }

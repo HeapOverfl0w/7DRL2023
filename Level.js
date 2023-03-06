@@ -35,7 +35,7 @@ class Level
 
   getTeleportOnPlayer(camera) {
     for(let t = 0; t < this.teleports.length; t++){
-      if (this.teleports[t].isPlayerInside(camera))
+      if (Math.sqrt(Math.pow(this.teleports[t].x - camera.x, 2) + Math.pow(this.teleports[t].y - camera.y, 2)) < 1.5)
         return this.teleports[t];
     }
 
