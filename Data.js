@@ -25,6 +25,8 @@ class Data {
       "healthPotion",
       "manaPotion",
       "spookyTree",
+      "skullPile",
+      "tombstone",
       "ogre",
       "ogreAttack",
       "ogrePunch",
@@ -92,6 +94,8 @@ class Data {
     this.animations['teleport'] = new Animation(this.textures['teleport'], 128, 128, 3, 350, true);
     this.animations['shrub'] = new Animation(this.textures['shrub'], 40, 96, 2, 1000, true);
     this.animations['spookyTree'] = new Animation(this.textures['spookyTree'], 128, 260, 1,0, false);
+    this.animations['tombstone'] = new Animation(this.textures['tombstone'], 32,  128, 1, 0, false);
+    this.animations['skullPile'] = new Animation(this.textures['skullPile'], 64,  128, 1, 0, false);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -156,6 +160,8 @@ class Data {
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
+    this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);
+    this.billboards['tombstone'] = new Billboard(this.animations['tombstone'], 0, 0, 2);
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
