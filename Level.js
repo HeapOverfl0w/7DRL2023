@@ -285,6 +285,10 @@ class Level
         return this.data.textures["grass_city"];
       case 3:
         return this.data.textures["grass2_city"];
+      case 5:
+        return this.data.textures["floor1_cemetary"]
+      case 6:
+        return this.data.textures["floor2_cemetary"]
       case 15:
         return this.data.textures["default"];
       case 30:

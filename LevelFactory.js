@@ -12,6 +12,7 @@ class LevelFactory
         const levelWidth = Math.round(Math.random() * 150) + 100;
         const levelHeight = Math.round(Math.random() * 150) + 100;
         let levelArray = new Array(levelWidth);
+        let skybox = document.getElementById("defaultskybox")
 
         let levelType = Math.random();
         if (levelType < 0.2) {
@@ -31,6 +32,11 @@ class LevelFactory
             for(let y = 0; y < levelHeight; y++) {
                 levelArray[x][y] = 0;
             }
+        }
+
+        // Set Skyboxes
+        if (levelType = "cemetary") {
+            skybox = document.getElementById("skybox_cemetary")
         }
 
         //generate rooms
@@ -155,7 +161,7 @@ class LevelFactory
 
         let teleport = {type: "portal", x: farthestDistanceRoom.xStart + Math.random() * farthestDistanceRoom.width, y: farthestDistanceRoom.yStart + Math.random() * farthestDistanceRoom.height};
 
-        let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, document.getElementById("defaultskybox"), true, this.getShadeColorByLevelType(levelType), 
+        let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, skybox, true, this.getShadeColorByLevelType(levelType), 
             billboards,
             enemies,
             [], [], [teleport]);
@@ -186,6 +192,8 @@ class LevelFactory
     getShadeColorByLevelType(levelType) {
         if (levelType === 'city') {
             return '#5f8e9c';
+        } else if (levelType === 'cemetary') {
+            return '#15362b';
         } else {
             return '#1d1c1f';
         }
@@ -203,12 +211,12 @@ class LevelFactory
             }
         } else if (levelType === 'cemetary') {
             let randomWall = Math.random();
-            if (randomWall < 0.65) {
-                return 61;
-            } else if (randomWall < 0.83) {
+            if (randomWall < 0.20) {
+                return 63;
+            } else if (randomWall < 0.40) {
                 return 62;
             } else {
-                return 63;
+                return 61;
             }
         }
         else {
@@ -223,7 +231,14 @@ class LevelFactory
                 return 2;
             } else {
                 return 3;
-            }            
+            }                    
+        } else if (levelType === 'cemetary') {
+            const randomFloor = Math.random();
+            if (randomFloor < 0.7) {
+                return 5;
+            } else {
+                return 6;
+            }    
         } else if (levelType === 'cave'){
             return 15;
         } else {
