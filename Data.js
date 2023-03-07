@@ -89,7 +89,8 @@ class Data {
       "staff",
       "staffAttack",
       "magicStaff",
-      "magicStaffAttack"
+      "magicStaffAttack",
+      "fir"
     ];
   }
 
@@ -139,6 +140,7 @@ class Data {
     this.animations['skullPile'] = new Animation(this.textures['skullPile'], 64,  128, 1, 0, false);
     this.animations['shroom'] = new Animation(this.textures['shroom'], 32, 64, 1, 0, false);
     this.animations['stalactite'] = new Animation(this.textures['stalactite'], 16, 80, 3, 500, true);
+    this.animations['fir'] = new Animation(this.textures['fir'], 64, 100, 1, 0, false);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -237,6 +239,7 @@ class Data {
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
+    this.billboards['fir'] = new Billboard(this.animations['fir'], 0, 0, 3);
     this.billboards['targetPractice'] = new Billboard(this.animations['targetPractice'], 0, 0);
     this.billboards['fountain'] = new Billboard(this.animations['fountain'], 0, 0, 2);
     this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);

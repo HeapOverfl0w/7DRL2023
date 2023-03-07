@@ -116,7 +116,7 @@ class RayCaster {
       this.lastCameraMana = camera.playerMana;
     }
 
-    if (this.lastCameraHealth > camera.playerHealth) {
+    if (this.lastCameraHealth > camera.playerHealth && camera.playerHealth > 0) {
       filter.type = "red";
       this.lastFilterChange = Date.now();
       this.lastCameraHealth = camera.playerHealth;
