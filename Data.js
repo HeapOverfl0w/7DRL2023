@@ -261,7 +261,7 @@ class Data {
     this.enemies = {};
 
     this.enemies["harpy"] = new Enemy("harpy", 4, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
-    this.enemies["harpy"] = new Enemy("rat", 4, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["rat"], this.animations["ratAttack"], this.animations["ratDeath"], 0.2, 0.0, 0.3, 0.0, 0, 0);
+    this.enemies["rat"] = new Enemy("rat", 4, 3, 2, 2, false, this.projectiles["punch"], this.animations["rat"], this.animations["ratAttack"], this.animations["ratDeath"], 0.2, 0.0, 0.3, 0.0, 0, 0);
     this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1.75, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
     this.enemies["goblin"] = new Enemy("goblin", 4, 5, 2, 4, false, this.projectiles["punch"], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);

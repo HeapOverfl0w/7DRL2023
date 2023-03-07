@@ -4,6 +4,10 @@ class RayCaster {
     this.maxViewDistance = maxViewDistance;
     this.maxShadeDistance = maxViewDistance - 5;
     this.redShade = this.hexToRgbOffset("#f63f4c");
+
+    this.lastCameraHealth = 0;
+    this.lastFilterChange = 0;
+    this.lastCameraMana = 0;
   }
 
   hexToRgbOffset(hex) {
@@ -102,6 +106,29 @@ class RayCaster {
     this.drawBillboards(ctx, camera, level, zBuffer);
 
     camera.draw(this.screenBuffer);
+
+    if (this.lastCameraMana != camera.playerMana) {
+      if (this.lastCameraMana < camera.playerMana) {
+        filter.type = "blue";
+        this.lastFilterChange = Date.now();
+      }
+      
+      this.lastCameraMana = camera.playerMana;
+    }
+
+    if (this.lastCameraHealth > camera.playerHealth) {
+      filter.type = "red";
+      this.lastFilterChange = Date.now();
+      this.lastCameraHealth = camera.playerHealth;
+    } else if (this.lastCameraHealth < camera.playerHealth) {
+      filter.type = "green";
+      this.lastFilterChange = Date.now();
+      this.lastCameraHealth = camera.playerHealth;
+    }
+
+    if (this.lastFilterChange + 200 < Date.now()) {
+      filter.type = "none";
+    }
 
     filter.filter(this.screenBuffer);
 
