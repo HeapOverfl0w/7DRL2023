@@ -272,7 +272,22 @@ class LevelFactory
             } else {
                 return 17;
             }
-        } else {
+        } 
+        else if (levelType === 'islands'){
+            const randomFloor = Math.random();
+            if (randomFloor < 0.3){
+                return 11;
+            } else if (randomFloor < 0.6){
+                return 10;
+            } else if (randomFloor < 0.7){
+                return 7
+            } else if (randomFloor < 0.8){
+                return 8
+            } else {
+                return 9
+            }
+        }
+         else {
             return 1;
         }
     }
