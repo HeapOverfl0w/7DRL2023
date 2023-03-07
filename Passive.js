@@ -14,7 +14,7 @@ class Passive {
             this.value = 4 + Math.round(Math.random() * 4);
         } else if (this.cardName === 'slashCard' || this.cardName === 'bluntCard' || 
                 this.cardName === 'lightningCard' || this.cardName === 'fireCard') {
-            this.value = 1 + Math.round(Math.random() * 9) / 100;
+            this.value = (1 + Math.round(Math.random() * 9 + Number.EPSILON)) / 100;
         }
     }
 

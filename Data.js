@@ -18,6 +18,8 @@ class Data {
       'magicBowAttack',
       'sword',
       'swordAttack',
+      'magicSword',
+      'magicSwordAttack',
       'swordProjectile',
       'arrowProjectile',
       'fistsMagic',
@@ -65,7 +67,16 @@ class Data {
       "floor1_cemetary",
       "floor2_cemetary",
       "fountain",
-      "targetPractice"
+      "targetPractice",
+      "dirt_cave",
+      "dirt2_cave",
+      "dirt3_cave",
+      "wall_cave",
+      "shroom",
+      "caveSkybox",
+      "goblin",
+      "goblinAttack",
+      "goblinDeath"
     ];
   }
 
@@ -113,6 +124,7 @@ class Data {
     this.animations['fountain'] = new Animation(this.textures['fountain'], 128, 128, 3, 200, true);
     this.animations['tombstone'] = new Animation(this.textures['tombstone'], 32,  128, 1, 0, false);
     this.animations['skullPile'] = new Animation(this.textures['skullPile'], 64,  128, 1, 0, false);
+    this.animations['shroom'] = new Animation(this.textures['shroom'], 32, 64, 1, 0, false);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -122,6 +134,10 @@ class Data {
     this.animations["skeleton"] = new Animation(this.textures["skeleton"], 32, 80, 4, 400, true);
     this.animations["skeletonAttack"] = new Animation(this.textures["skeletonAttack"], 32, 80, 3, 700, false);
     this.animations["skeletonDeath"] = new Animation(this.textures["skeletonDeath"], 32, 80, 3, 400, false);
+
+    this.animations["goblin"] = new Animation(this.textures["goblin"], 32, 80, 3, 200, true);
+    this.animations["goblinAttack"] = new Animation(this.textures["goblinAttack"], 32, 80, 3, 280, false);
+    this.animations["goblinDeath"] = new Animation(this.textures["goblinDeath"], 32, 80, 3, 400, false);
 
     this.animations["gorgon"] = new Animation(this.textures["gorgon"], 64, 93, 3, 100, true);
     this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
@@ -154,7 +170,9 @@ class Data {
     this.animations['magicBowIdle'] = new Animation(this.textures['magicBow'], 720, 405, 3, 450, true);
     this.animations['magicBowAttack'] = new Animation(this.textures['magicBowAttack'], 720, 405, 4, 550, false);
     this.animations['swordIdle'] = new Animation(this.textures['sword'], 720, 405, 2, 450, true);
-    this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 350, false);
+    this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 300, false);
+    this.animations['magicSwordIdle'] = new Animation(this.textures['magicSword'], 720, 405, 2, 450, true);
+    this.animations['magicSwordAttack'] = new Animation(this.textures['magicSwordAttack'], 720, 405, 4, 300, false);
 
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
@@ -186,7 +204,7 @@ class Data {
   createBillboards() {
     this.billboards = {};
 
-    this.billboards['test'] = new Billboard(this.animations['test'], 0, 0);
+    this.billboards['shroom'] = new Billboard(this.animations['shroom'], 0, 0);
     this.billboards['statue'] = new Billboard(this.animations['statue'], 0, 0);
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
@@ -222,6 +240,7 @@ class Data {
     this.enemies["harpy"] = new Enemy("harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
+    this.enemies["goblin"] = new Enemy("goblin", 4, 5, 2, 4, false, this.projectiles["punch"], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
 
     this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
@@ -240,7 +259,8 @@ class Data {
     this.weapons['magicFists'] = new Weapon('Magic Fists', this.animations['fistsMagicIdle'], this.animations['fistsMagicAttack'], document.getElementById('fistsCardMagic'), this.projectiles['magicPunch'], 1, 0, 2);
     this.weapons['bow'] = new Weapon('Bow', this.animations['bowIdle'], this.animations['bowAttack'], document.getElementById('bowCard'), this.projectiles['arrowProjectile'], 0, 0, 0);
     this.weapons['magicBow'] = new Weapon('Magic Bow', this.animations['magicBowIdle'], this.animations['magicBowAttack'], document.getElementById('magicBowCard'), this.projectiles['arrowProjectile'], 0, 0, 2);
-    this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 0, 0, 0);
+    this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 2, 0.17, 0);
+    this.weapons['magicSword'] = new Weapon('Magic Sword', this.animations['magicSwordIdle'], this.animations['magicSwordAttack'], document.getElementById('magicSwordCard'), this.projectiles['swordProjectile'], 2, 0.17, 2);
   }
 
   createCutscenes() {

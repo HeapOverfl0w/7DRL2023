@@ -124,7 +124,7 @@ class LevelFactory
         }
 
         //add random billboards
-        const billboardCount = Math.round(Math.random() * 60);
+        const billboardCount = Math.round(Math.random() * 70);
         const billboards = [];
         for(let b = 0; b < billboardCount; b++) {
             let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
@@ -134,13 +134,13 @@ class LevelFactory
         }
 
         //add random enemies
-        const enemyCount = Math.round(Math.random() * 30);
+        const enemyCount =  10 + Math.round(Math.random() * 30);
         const enemies = [];
         
         for(let b = 0; b < enemyCount; b++) {
             let enemyIndex = Math.round(Math.random() * (this.data.enemiesArray.length - 1));
             let enemy = { type: this.data.enemiesArray[enemyIndex], x: 0, y: 0 };
-            this.placeBillboard(enemy, levelArray);
+            this.placeEnemy(enemy, levelArray, rooms);
             enemies.push(enemy);
         }
 
@@ -186,10 +186,26 @@ class LevelFactory
         billboard.y = y;
     }
 
+    placeEnemy(billboard, levelArray, rooms) {
+        let x = 0;
+        let y = 0;
+        const firstRoom = rooms[0];
+        while(!(levelArray[x][y] > 0 && levelArray[x][y] < 30) || 
+            (Math.sqrt(Math.pow(firstRoom.xStart - x, 2) + Math.pow(firstRoom.yStart - y, 2)) < 20)) {
+            x = Math.round(Math.random() * (levelArray.length - 1));
+            y = Math.round(Math.random() * (levelArray[0].length - 1));
+        }
+
+        billboard.x = x;
+        billboard.y = y;
+    }
+
     getSkyboxByLevelType(levelType) {
         // Set Skyboxes
         if (levelType === "cemetary") {
             return document.getElementById("skybox_cemetary");
+        } else if (levelType === "cave") {
+            return document.getElementById("caveSkybox");
         } else {
             return document.getElementById('defaultskybox');
         }
@@ -224,6 +240,8 @@ class LevelFactory
             } else {
                 return 61;
             }
+        } else if (levelType === 'cave') {
+            return 71;
         }
         else {
             return 50;
@@ -246,7 +264,14 @@ class LevelFactory
                 return 6;
             }    
         } else if (levelType === 'cave'){
-            return 15;
+            const randomFloor = Math.random();
+            if (randomFloor < 0.7) {
+                return 15;
+            } else if (randomFloor < 0.8){
+                return 16;
+            } else {
+                return 17;
+            }
         } else {
             return 1;
         }

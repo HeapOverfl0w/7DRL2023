@@ -244,6 +244,8 @@ class Level
           return this.data.textures["wall2_cemetary"];
         case 63:
           return this.data.textures["wall3_cemetary"];
+        case 71:
+          return this.data.textures["wall_cave"];
         default:
           return undefined;
       }
@@ -261,7 +263,11 @@ class Level
 
     switch(this.levelArray[x][y]) {
       case 15:
-        return this.data.textures["default"];
+        return this.data.textures["dirt3_cave"];
+      case 16:
+        return this.data.textures["dirt_cave"];
+      case 17:
+        return this.data.textures["dirt_cave"];
       default:
         return undefined;
     }
@@ -291,7 +297,11 @@ class Level
       case 6:
         return this.data.textures["floor2_cemetary"]
       case 15:
-        return this.data.textures["default"];
+        return this.data.textures["dirt_cave"];
+      case 16:
+        return this.data.textures["dirt2_cave"];
+      case 17:
+        return this.data.textures["dirt3_cave"];
       case 30:
         return this.data.textures["water"];
       default:
