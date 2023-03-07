@@ -150,7 +150,15 @@ class EnemyTeleport extends Billboard {
         let y = this.y + Math.sin(angle * 2) * teleportDistance;
         if (level.isPassable(Math.floor(x), Math.floor(y))) {
             this.telporting = true;
-            return  {"x": x, "y": y};
+            return  {
+                x: x, 
+                y: y
+            };
+        }
+
+        return {
+            x: this.x,
+            y: this.y
         }
     }
 
