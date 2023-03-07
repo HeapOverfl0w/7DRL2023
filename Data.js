@@ -77,7 +77,15 @@ class Data {
       "caveSkybox",
       "goblin",
       "goblinAttack",
-      "goblinDeath"
+      "goblinDeath",
+      "goblinShaman",
+      "goblinShamanAttack",
+      "goblinShamanDeath",
+      "rat",
+      "ratAttack",
+      "ratDeath",
+      "stalactite",
+      "lightningProjectile"
     ];
   }
 
@@ -126,6 +134,7 @@ class Data {
     this.animations['tombstone'] = new Animation(this.textures['tombstone'], 32,  128, 1, 0, false);
     this.animations['skullPile'] = new Animation(this.textures['skullPile'], 64,  128, 1, 0, false);
     this.animations['shroom'] = new Animation(this.textures['shroom'], 32, 64, 1, 0, false);
+    this.animations['stalactite'] = new Animation(this.textures['stalactite'], 16, 80, 3, 500, true);
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -139,6 +148,14 @@ class Data {
     this.animations["goblin"] = new Animation(this.textures["goblin"], 32, 80, 3, 200, true);
     this.animations["goblinAttack"] = new Animation(this.textures["goblinAttack"], 32, 80, 3, 280, false);
     this.animations["goblinDeath"] = new Animation(this.textures["goblinDeath"], 32, 80, 3, 400, false);
+
+    this.animations["goblinShaman"] = new Animation(this.textures["goblinShaman"], 32, 80, 3, 200, true);
+    this.animations["goblinShamanAttack"] = new Animation(this.textures["goblinShamanAttack"], 32, 80, 3, 500, false);
+    this.animations["goblinShamanDeath"] = new Animation(this.textures["goblinShamanDeath"], 32, 80, 3, 400, false);
+
+    this.animations["rat"] = new Animation(this.textures["rat"], 32, 70, 2, 300, true);
+    this.animations["ratAttack"] = new Animation(this.textures["ratAttack"], 32, 70, 3, 400, false);
+    this.animations["ratDeath"] = new Animation(this.textures["ratDeath"], 32, 70, 2, 500, false);
 
     this.animations["gorgon"] = new Animation(this.textures["gorgon"], 64, 93, 3, 100, true);
     this.animations["gorgonDeath"] = new Animation(this.textures["gorgonDeath"], 64, 93, 3, 400, false);
@@ -185,6 +202,7 @@ class Data {
     this.animations['demonProjectile'] = new Animation(this.textures['demonProjectile'], 64, 48, 4, 200, false);
     this.animations['arrowProjectile'] = new Animation(this.textures['arrowProjectile'], 16, 16, 1, 0, false);
     this.animations['swordProjectile'] = new Animation(this.textures['swordProjectile'], 32, 16, 1, 0, false);
+    this.animations['lightningProjectile'] = new Animation(this.textures['lightningProjectile'], 32, 32, 2, 100, true);
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 720, 405, 6, 800, false);
@@ -215,6 +233,7 @@ class Data {
     this.billboards['fountain'] = new Billboard(this.animations['fountain'], 0, 0, 2);
     this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);
     this.billboards['tombstone'] = new Billboard(this.animations['tombstone'], 0, 0, 2);
+    this.billboards['stalactite'] = new Billboard(this.animations['stalactite'], 0, 0);
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
@@ -229,6 +248,7 @@ class Data {
     this.projectiles['demonProjectile'] = new Projectile(this.animations['demonProjectile'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
     this.projectiles['arrowProjectile'] = new Projectile(this.animations['arrowProjectile'], 0, 0, 0, 0, 0.5, 25, 2, 3, SLASH);
     this.projectiles['swordProjectile'] = new Projectile(this.animations['swordProjectile'], 0, 0, 0, 0, 0.5, 5, 2, 3, SLASH);
+    this.projectiles['lightningProjectile'] = new Projectile(this.animations['lightningProjectile'], 0, 0, 0, 0, 0.3, 15, 2, 3, LIGHTNING);
   }
 
   createPowerups() {
@@ -240,11 +260,12 @@ class Data {
   createEnemies() {
     this.enemies = {};
 
-    this.enemies["harpy"] = new Enemy("harpy", 4, 4, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
-    this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["harpy"] = new Enemy("harpy", 4, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["harpy"] = new Enemy("rat", 4, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["rat"], this.animations["ratAttack"], this.animations["ratDeath"], 0.2, 0.0, 0.3, 0.0, 0, 0);
+    this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1.75, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
     this.enemies["goblin"] = new Enemy("goblin", 4, 5, 2, 4, false, this.projectiles["punch"], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
-
+    this.enemies["goblinShaman"] = new Enemy2("goblinShaman", 7, 2.5, 10, 2000, 6, false, this.projectiles["lightningProjectile"], this.animations["goblinShaman"], this.animations["goblinShamanAttack"], this.animations["goblinShamanDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
     this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
@@ -262,8 +283,8 @@ class Data {
     this.weapons['magicFists'] = new Weapon('Magic Fists', this.animations['fistsMagicIdle'], this.animations['fistsMagicAttack'], document.getElementById('fistsCardMagic'), this.projectiles['magicPunch'], 1, 0, 2);
     this.weapons['bow'] = new Weapon('Bow', this.animations['bowIdle'], this.animations['bowAttack'], document.getElementById('bowCard'), this.projectiles['arrowProjectile'], 0, 0, 0);
     this.weapons['magicBow'] = new Weapon('Magic Bow', this.animations['magicBowIdle'], this.animations['magicBowAttack'], document.getElementById('magicBowCard'), this.projectiles['arrowProjectile'], 0, 0, 2);
-    this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 2, 0.17, 0);
-    this.weapons['magicSword'] = new Weapon('Magic Sword', this.animations['magicSwordIdle'], this.animations['magicSwordAttack'], document.getElementById('magicSwordCard'), this.projectiles['swordProjectile'], 2, 0.17, 2);
+    this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 3, 0.17, 0);
+    this.weapons['magicSword'] = new Weapon('Magic Sword', this.animations['magicSwordIdle'], this.animations['magicSwordAttack'], document.getElementById('magicSwordCard'), this.projectiles['swordProjectile'], 3, 0.17, 2);
   }
 
   createCutscenes() {

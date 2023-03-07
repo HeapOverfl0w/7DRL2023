@@ -41,8 +41,8 @@ class Weapon {
         for (let p = 0; p < this.projectileCount; p++) {
           let angleModifier =
             p % 2 == 0
-              ? p * -1 * this.projectileAngle
-              : p * this.projectileAngle;
+              ? Math.ceil(p/2) * -1 * this.projectileAngle
+              : Math.ceil(p/2) * this.projectileAngle;
           level.projectiles.push(
             this.projectile.copy(
               camera.x,
