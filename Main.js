@@ -20,7 +20,7 @@ class Main
     let magicFists = this.data.weapons['magicStaff'].copy(magicFistsProjectile, 1, 0, 2);
     let bowProjectile = this.data.projectiles["arrowProjectile"].copyBase(10, 20, SLASH);
     let bow = this.data.weapons["bow"].copy(bowProjectile, 1, 0, 0);
-    let sword = this.data.weapons["staff"].copy(fistsProjectile, 3, 0.17, 2);
+    let sword = this.data.weapons["staff"].copy(fistsProjectile, 3, 0.17, 0);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, sword, bow, magicFists, knuckles]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
