@@ -10,6 +10,7 @@ class Data {
       'statue',
       'shrub',
       'teleport',
+      'enemyTeleport',
       'fists',
       'fistsAttack',
       'bow',
@@ -156,6 +157,8 @@ class Data {
     this.animations["demonAttack"] = new Animation(this.textures["demonAttack"], 64, 96, 3, 400, false);
     this.animations["demonDeath"] = new Animation(this.textures["demonDeath"], 64, 96, 4, 400, false);
 
+    this.animations["enemyTeleport"] = new Animation(this.textures["enemyTeleport"], 64, 96, 4, 350, false)
+
     //weapons
     this.animations['fistsIdle'] = new Animation(this.textures['fists'], 720, 405, 3, 400, true);
     this.animations['fistsAttack'] = new Animation(this.textures['fistsAttack'], 720, 405, 3, 200, false);
@@ -246,7 +249,7 @@ class Data {
     this.enemies["ogre"].sizeModifier = 1.5;
     this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
-    this.enemies["demon"] = new Enemy2("demon", 6, 2, 10, 3, 2, false, this.projectiles["demonProjectile"], this.animations["demon"], this.animations["demonAttack"], this.animations["demonDeath"], 0.1, 0.1, 0.1, -0.2, 0, 0);
+    this.enemies["demon"] = new EnemyTeleport("demon", 6, 2, 10, 3000, 15, 5000, 5, false, this.projectiles["demonProjectile"], this.animations["demon"], this.animations["demonAttack"], this.animations["demonDeath"], this.animations["enemyTeleport"], 0.1, 0.1, 0.1, -0.2, 0, 0);
 
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
