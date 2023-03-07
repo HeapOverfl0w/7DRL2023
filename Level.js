@@ -296,6 +296,16 @@ class Level
         return this.data.textures["floor1_cemetary"]
       case 6:
         return this.data.textures["floor2_cemetary"]
+      case 7:
+        return this.data.textures["sand_islands"]
+      case 8:
+        return this.data.textures["sand1_islands"]
+      case 9:
+        return this.data.textures["sand2_islands"]
+      case 10:
+        return this.data.textures["sand3_islands"]
+      case 11:
+        return this.data.textures["sand4_islands"]
       case 15:
         return this.data.textures["dirt_cave"];
       case 16:
