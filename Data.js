@@ -85,7 +85,11 @@ class Data {
       "ratAttack",
       "ratDeath",
       "stalactite",
-      "lightningProjectile"
+      "lightningProjectile",
+      "staff",
+      "staffAttack",
+      "magicStaff",
+      "magicStaffAttack"
     ];
   }
 
@@ -193,6 +197,10 @@ class Data {
     this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 300, false);
     this.animations['magicSwordIdle'] = new Animation(this.textures['magicSword'], 720, 405, 2, 450, true);
     this.animations['magicSwordAttack'] = new Animation(this.textures['magicSwordAttack'], 720, 405, 4, 300, false);
+    this.animations['staffIdle'] = new Animation(this.textures['staff'], 720, 405, 2, 450, true);
+    this.animations['staffAttack'] = new Animation(this.textures['staffAttack'], 720, 405, 4, 300, false);
+    this.animations['magicStaffIdle'] = new Animation(this.textures['magicStaff'], 720, 405, 2, 450, true);
+    this.animations['magicStaffAttack'] = new Animation(this.textures['magicStaffAttack'], 720, 405, 4, 300, false);
 
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
@@ -285,6 +293,8 @@ class Data {
     this.weapons['magicBow'] = new Weapon('Magic Bow', this.animations['magicBowIdle'], this.animations['magicBowAttack'], document.getElementById('magicBowCard'), this.projectiles['arrowProjectile'], 0, 0, 2);
     this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 3, 0.17, 0);
     this.weapons['magicSword'] = new Weapon('Magic Sword', this.animations['magicSwordIdle'], this.animations['magicSwordAttack'], document.getElementById('magicSwordCard'), this.projectiles['swordProjectile'], 3, 0.17, 2);
+    this.weapons['staff'] = new Weapon('Staff', this.animations['staffIdle'], this.animations['staffAttack'], document.getElementById('staffCard'), this.projectiles['punch'], 3, 0.17, 0);
+    this.weapons['magicStaff'] = new Weapon('Magic Staff', this.animations['magicStaffIdle'], this.animations['magicStaffAttack'], document.getElementById('magicStaffCard'), this.projectiles['swordProjectile'], 3, 0.17, 2);
   }
 
   createCutscenes() {

@@ -17,11 +17,10 @@ class Main
     let knucklesProjectile = this.data.projectiles["punch"].copyBase(5, 10, BLUNT);
     let knuckles = this.data.weapons["knuckles"].copy(knucklesProjectile, 1, 0, 0);
     let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
-    let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
+    let magicFists = this.data.weapons['magicStaff'].copy(magicFistsProjectile, 1, 0, 2);
     let bowProjectile = this.data.projectiles["arrowProjectile"].copyBase(10, 20, SLASH);
     let bow = this.data.weapons["bow"].copy(bowProjectile, 1, 0, 0);
-    let swordProjectile = this.data.projectiles["swordProjectile"].copyBase(5, 7, SLASH);
-    let sword = this.data.weapons["magicSword"].copy(swordProjectile, 3, 0.17, 2);
+    let sword = this.data.weapons["staff"].copy(fistsProjectile, 3, 0.17, 2);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, sword, bow, magicFists, knuckles]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
