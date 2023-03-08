@@ -57,6 +57,9 @@ class Data {
       "demonAttack",
       "demonDeath",
       "demonProjectile",
+      "sandSlime",
+      "sandSlimeAttack",
+      "sandSlimeDeath",
       "grass_city",
       "grass2_city",
       "wall1_city",
@@ -185,6 +188,10 @@ class Data {
     this.animations["demonAttack"] = new Animation(this.textures["demonAttack"], 64, 96, 3, 400, false);
     this.animations["demonDeath"] = new Animation(this.textures["demonDeath"], 64, 96, 4, 400, false);
 
+    this.animations["sandSlime"] = new Animation(this.textures["sandSlime"], 80, 80, 4, 400, true);
+    this.animations["sandSlimeAttack"] = new Animation(this.textures["sandSlimeAttack"], 80, 80, 4, 400, false);
+    this.animations["sandSlimeDeath"] = new Animation(this.textures["sandSlimeDeath"], 80, 80, 4, 400, false);
+
     this.animations["enemyTeleport"] = new Animation(this.textures["enemyTeleport"], 64, 96, 4, 350, false)
 
     //weapons
@@ -287,6 +294,7 @@ class Data {
     this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
     this.enemies["demon"] = new EnemyTeleport("demon", 6, 2, 10, 3000, 15, 5000, 5, false, this.projectiles["demonProjectile"], this.animations["demon"], this.animations["demonAttack"], this.animations["demonDeath"], this.animations["enemyTeleport"], 0.1, 0.1, 0.1, -0.2, 0, 0);
+    this.enemies["sandSlime"] = new Enemy2("sandSlime", 4, 1.75, 5, 3000, 2, false, this.projectiles["demonProjectile"], this.animations["sandSlime"], this.animations["sandSlimeAttack"], this.animations["sandSlimeDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
