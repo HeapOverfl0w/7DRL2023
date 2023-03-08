@@ -99,9 +99,18 @@ class AudioHandler {
 
     playPunch() {
         const rand = Math.random()
-        if (rand < 0.33) return this.punch1.play();
-        if (rand > 0.33 && rand < 0.66) return this.punch2.play();
-        if (rand > 0.66) return this.punch3.play();
+        if (rand < 0.33) {
+            this.punch1.currentTime = 0;
+            return this.punch1.play();
+        }
+        if (rand > 0.33 && rand < 0.66) {
+            this.punch2.currentTime = 0;
+            return this.punch2.play();
+        }
+        if (rand > 0.66) {
+            this.punch3.currentTime = 0;
+            return this.punch3.play();
+        }
     }
 
     playAudio(src) {
