@@ -9,7 +9,7 @@ class Camera
     this.speed = speed;
     this.score = 0;
     this.kills = 0;
-    this.level = 1
+    this.level = 1;
     this.height = 16;
     this.isStrafing = false;
     this.showWeaponCard = false;
@@ -65,13 +65,19 @@ class Camera
     ctx.fillText(`Level ${this.level}`, 130, 13);
     ctx.fillText(`Score ${this.score}`, 180, 13);
     ctx.fillText(`Speed ${this.speed}`, 230, 13);
-    ctx.fillText(`Fire Res.  ${this.resistFire * 100}%`, 275, 13);
-    ctx.fillText(`Blunt Res.  ${this.resistBlunt * 100}%`, 350, 13);
-    ctx.fillText(`Slash Res.  ${this.resistSlash * 100}%`, 430, 13);
-    ctx.fillText(`Light Res.  ${this.resistLightning * 100}%`, 510, 13);
+    ctx.fillText(`Fire Res.  ${(this.resistFire * 100).toString().split(".")[0]}%`, 275, 13);
+    ctx.fillText(`Blunt Res.  ${(this.resistBlunt * 100).toString().split(".")[0]}%`, 350, 13);
+    ctx.fillText(`Slash Res.  ${(this.resistSlash * 100).toString().split(".")[0]}%`, 430, 13);
+    ctx.fillText(`Light Res.  ${(this.resistLightning * 100).toString().split(".")[0]}%`, 510, 13);
 
     if (this.showWeaponCard) {
       this.activeWeapon.drawCard(20, 100, ctx);
+    }
+
+    if (this.level % 5 == 0) {
+      ctx.fillStyle = '#761d1d';
+      ctx.fillText('BOSS STAGE - Kill the boss to progress to the next level.', 230, 30);
+      ctx.filStyle = 'black';
     }
 
     // ctx.fillStyle = "#000000";

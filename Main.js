@@ -9,7 +9,7 @@ class Main
     this.filter = new PostRenderFilter();
     this.filter.type = "none";
     this.levelFactory = new LevelFactory(this.data);
-    this.level = this.levelFactory.generateLevel();
+    this.level = this.levelFactory.generateLevel(1);
 
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
@@ -120,7 +120,7 @@ class Main
     if (this.showItemSelection) {
       if (this.weaponMenu.handleKeyUp(keyCode)) {
         this.showItemSelection = false;
-        main.level = main.levelFactory.generateLevel();
+        main.level = main.levelFactory.generateLevel(main.camera.level);
         main.camera.x = main.level.startLocationX;
         main.camera.y = main.level.startLocationY;
       }
@@ -171,12 +171,11 @@ class Main
   restartGame() {
     this.startTime = new Date().getTime();
     this.camera.stopAllWeaponAnimations();
-    this.level = this.levelFactory.generateLevel();
 
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
-    this.level = this.levelFactory.generateLevel();
+    this.level = this.levelFactory.generateLevel(1);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
     this.weaponMenu = new WeaponMenu(this.ctx, this.camera, this.data);    
   }

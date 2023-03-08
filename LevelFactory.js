@@ -4,13 +4,15 @@ class LevelFactory
         this.data = data;
     }
 
-    generateLevel() {
-        const floor = 1;
-        const floorWithCeiling = 15;
-        const wall = 50;
+    generateLevel(levelNumber) {
         const water = 30;
-        const levelWidth = Math.round(Math.random() * 150) + 100;
-        const levelHeight = Math.round(Math.random() * 150) + 100;
+        let maxLevelSize = 150;
+        if (levelNumber < 5) {
+            maxLevelSize = 100;
+        }
+
+        const levelWidth = Math.round(Math.random() * maxLevelSize) + 100;
+        const levelHeight = Math.round(Math.random() * maxLevelSize) + 100;
         let levelArray = new Array(levelWidth);
         
 
@@ -37,7 +39,12 @@ class LevelFactory
         let skybox = this.getSkyboxByLevelType(levelType);
 
         //generate rooms
-        let roomCount = Math.round(Math.random() * 7) + 2;
+        let maxRoomCount = 8;
+        if (levelNumber < 5) {
+            maxRoomCount = 3;
+        }
+
+        let roomCount = Math.round(Math.random() * maxRoomCount) + 2;
         let rooms = new Array(roomCount);
         for(let r = 0; r < roomCount; r++) {
             let xStart = Math.round(Math.random() * (levelWidth - 60)) + 20;
@@ -134,12 +141,16 @@ class LevelFactory
         }
 
         //add random enemies
-        const enemyCount =  10 + Math.round(Math.random() * 30);
+        const enemyCount =  8 + Math.round(Math.random() * levelNumber * 3);
         const enemies = [];
+
+        //every 5 level guarantee a boss.
+        if (levelNumber % 5 == 0) {
+            enemies.push({type: getRandomBoss(), x: 0, y: 0});
+        }        
         
         for(let b = 0; b < enemyCount; b++) {
-            let enemyIndex = Math.round(Math.random() * (this.data.enemiesArray.length - 1));
-            let enemy = { type: this.data.enemiesArray[enemyIndex], x: 0, y: 0 };
+            let enemy = { type: this.getEnemyByLevelType(levelType), x: 0, y: 0 };
             this.placeEnemy(enemy, levelArray, rooms);
             enemies.push(enemy);
         }
@@ -156,12 +167,16 @@ class LevelFactory
             }
         }
 
-        let teleport = {type: "portal", x: farthestDistanceRoom.xStart + Math.random() * farthestDistanceRoom.width, y: farthestDistanceRoom.yStart + Math.random() * farthestDistanceRoom.height};
+        let teleports = [];
+
+        if (levelNumber % 5 != 0) {
+            teleports.push({type: "portal", x: farthestDistanceRoom.xStart + Math.random() * farthestDistanceRoom.width, y: farthestDistanceRoom.yStart + Math.random() * farthestDistanceRoom.height});
+        }
 
         let result = new Level(levelArray, rooms[0].xStart + 1, rooms[0].yStart + 1, skybox, true, this.getShadeColorByLevelType(levelType), 
             billboards,
             enemies,
-            [], [], [teleport]);
+            [], [], teleports);
 
         result.loadData(this.data);
 
@@ -198,6 +213,77 @@ class LevelFactory
 
         billboard.x = x + 0.5;
         billboard.y = y + 0.5;
+    }
+
+    getRandomBoss() {
+        const random = Math.random();
+        if (random < 0.3) {
+            return "ogre";
+        } else if (random < 0.6) {
+            return "knight";
+        } else {
+            return "necro";
+        }
+    }
+
+    getEnemyByLevelType(levelType) {
+        if (levelType === "snow") {
+            const random = Math.random();
+            if (random < 0.3) {
+                return "rat";
+            } else if (random < 0.5) {
+                return "harpy";
+            } else if (random < 0.7) {
+                return "demon";
+            } else if (random < 0.9) {
+                return "skeleton";
+            } else if (random < 0.97) {
+                return "gorgon";
+            } else if (random < 0.98) {
+                return "ogre";
+            } else if (random < 0.99) {
+                return "necro";
+            } else {
+                return "knight";
+            }
+        } else if (levelType === "cave") {
+            const random = Math.random();
+            if (random < 0.3) {
+                return "rat";
+            } else if (random < 0.5) {
+                return "totem";
+            } else if (random < 0.6) {
+                return "goblin";
+            } else if (random < 0.8) {
+                return "goblinShaman";
+            } else if (random < 0.9) {
+                return "harpy";
+            } else if (random < 0.98) {
+                return "gorgon";
+            } else {
+                return "ogre";
+            }
+        } else if (levelType === "city") {
+            const random = Math.random();
+            if (random < 0.4) {
+                return "rat";
+            } else if (random < 0.5) {
+                return "harpy";
+            } else if (random < 0.7) {
+                return "skeleton";
+            } else if (random < 0.8) {
+                return "goblin";
+            } else if (random < 0.9) {
+                return "goblinShaman";
+            } else if (random < 0.98) {
+                return "demon";
+            } else {
+                return "knight";
+            }
+        } else {
+            let billboardIndex = Math.round(Math.random() * (this.data.enemiesArray.length - 1));
+            return this.data.enemiesArray[billboardIndex];
+        }
     }
 
     getBillboardByLevelType(levelType) {

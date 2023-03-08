@@ -61,14 +61,8 @@ class OgreBoss extends Billboard {
             {
                 //audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
-                //drop ammo
-                let rand = Math.random();
-                if (rand < 0.50) {
-                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
-                }
-                else if (rand < 0.8) {
-                    level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
-                }
+                //drop teleport
+                this.level.teleports.push(this.data.teleports['portal'].copy(this.x, this.y));
             }
             camera.score += this.score;
             camera.kills += 1;

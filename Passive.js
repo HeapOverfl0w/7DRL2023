@@ -44,7 +44,7 @@ class Passive {
 
         if (this.cardName === 'slashCard' || this.cardName === 'bluntCard' || 
             this.cardName === 'lightningCard' || this.cardName === 'fireCard') {
-                value = `${this.value * 100} %`;
+                value = `${(this.value * 100).toString().split(".")[0]} %`;
             }
 
         ctx.fillText(value, x + 48, y + 102);

@@ -58,16 +58,9 @@ class KnightBoss extends Billboard {
 
         if (this.life <= 0) {
             if (this.activeAnimation != this.destroyAnimation) {
-                audio.playGorgonDeath();
                 this.activeAnimation = this.destroyAnimation;
-                //drop ammo
-                let rand = Math.random();
-                if (rand < 0.15) {
-                    //level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
-                }
-                else if (rand < 0.2) {
-                    //level.powerups.push(data.powerups["health"].copy(this.x, this.y));
-                }
+                //drop teleport
+                this.level.teleports.push(this.data.teleports['portal'].copy(this.x, this.y));
             }
             camera.score += this.score;
             camera.kills += 1;
@@ -155,7 +148,6 @@ class KnightBoss extends Billboard {
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
-            audio.playGorgonScream();
             if (this.projectile !== undefined) {
                 level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle)));
             }
@@ -178,7 +170,10 @@ class KnightBoss extends Billboard {
     }
 
     copy(x, y) {
-        return new KnightBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.attackDelay, this.score, this.isStationary,
+        let result = new KnightBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.attackDelay, this.score, this.isStationary,
             this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
-    }
+
+        result.sizeModifier = this.sizeModifier;
+        return result;
+}
 }

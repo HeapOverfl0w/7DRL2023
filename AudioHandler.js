@@ -4,9 +4,9 @@ class AudioHandler {
         this.musicMenu = document.getElementById("musicMenu")
         this.musicLetsGo = document.getElementById("musicLetsGo")
         this.musicBaroque = document.getElementById("musicBaroque")
-        this.musicMenu.volume = volume + 0.3;
-        this.musicLetsGo.volume = volume + 0.3;
-        this.musicBaroque.volume = volume + 0.3;
+        this.musicMenu.volume = volume;
+        this.musicLetsGo.volume = volume;
+        this.musicBaroque.volume = volume;
         this.musicPlaying = false;
 
         this.musicList = [
@@ -16,14 +16,14 @@ class AudioHandler {
         ];
         this.currentSong = 0;
 
-        this.punch1 = document.getElementById("punch1")
-        this.punch2 = document.getElementById("punch2")
-        this.punch3 = document.getElementById("punch3")
-        this.gorgonScream = document.getElementById("gorgonScream")
-        this.gorgonDeath = document.getElementById("gorgonDeath")
-        this.demonAttack = document.getElementById("demonAttack")
-        this.demonDeath = document.getElementById("demonDeath")
-        this.spell = document.getElementById("spell")
+        this.punch1 = document.getElementById("punch1");
+        this.punch2 = document.getElementById("punch2");
+        this.punch3 = document.getElementById("punch3");
+        this.gorgonScream = document.getElementById("gorgonScream");
+        this.gorgonDeath = document.getElementById("gorgonDeath");
+        this.demonAttack = document.getElementById("demonAttack");
+        this.demonDeath = document.getElementById("demonDeath");
+        this.spell = document.getElementById("spell");
 
         this.punch1.volume = volume;
         this.punch2.volume = volume;
