@@ -2,6 +2,7 @@ class Data {
   constructor() {
     this.textures = [
       'death_cutscene',
+      'introCutscene',
       'default',
       'defaultHigh',
       'test',
@@ -247,6 +248,7 @@ class Data {
 
     //cutscenes
     this.animations['death_cutscene'] = new Animation(this.textures['death_cutscene'], 720, 405, 6, 800, false);
+    this.animations['introCutscene'] = new Animation(this.textures['introCutscene'], 720, 405, 6, 800, false);
 
     //powerups
     this.animations['healthPotion'] = new Animation(this.textures['healthPotion'], 32, 32, 4, 400, true);
@@ -341,5 +343,10 @@ class Data {
       [this.animations['death_cutscene']],
       false
     );
+
+    this.introCutscene = new Cutscene(
+      [this.animations['introCutscene']],
+      false
+    )
   }
 }

@@ -11,7 +11,8 @@ class Main
     this.levelFactory = new LevelFactory(this.data);
     this.level = this.levelFactory.generateLevel(1);
 
-    this.activeCutscene = undefined;
+    this.activeCutscene = this.data.introCutscene;
+
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
     let knucklesProjectile = this.data.projectiles["punch"].copyBase(5, 10, BLUNT);
