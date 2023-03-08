@@ -126,13 +126,17 @@ class Main
       }
       return;
     }
+
+    if (this.activeCutscene === undefined && !this.audio.musicPlaying) {
+      this.audio.playAndLoopMusic();
+    }
     if (this.activeCutscene !== undefined && (this.activeCutscene.skippable || (this.activeCutscene.isOver()))) {
-      /*if (this.activeCutscene != this.data.introCutscene) {
+      if (this.activeCutscene != this.data.introCutscene) {
         this.restartGame();
       }
       else {
         this.audio.playAndLoopMusic();
-      }*/
+      }
 
       if (this.activeCutscene == this.data.deathCutscene) {
         this.restartGame();

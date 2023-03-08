@@ -1,8 +1,19 @@
 class AudioHandler {
     constructor() {
         const volume = 0.1;
+        this.musicMenu = document.getElementById("musicMenu")
+        this.musicLetsGo = document.getElementById("musicLetsGo")
+        this.musicBaroque = document.getElementById("musicBaroque")
+        this.musicMenu.volume = volume + 0.3;
+        this.musicLetsGo.volume = volume + 0.3;
+        this.musicBaroque.volume = volume + 0.3;
+        this.musicPlaying = false;
 
-        this.musicList = [];
+        this.musicList = [
+            this.musicMenu,
+            this.musicLetsGo,
+            this.musicBaroque
+        ];
         this.currentSong = 0;
 
         this.punch1 = document.getElementById("punch1")
@@ -34,9 +45,9 @@ class AudioHandler {
     }
 
     update() {
-        /*if (this.musicList[this.currentSong].ended) {
+        if (this.musicList[this.currentSong].ended) {
             this.playAndLoopMusic();
-        }*/
+        }
     }
 
     playAndLoopMusic(){
@@ -46,6 +57,7 @@ class AudioHandler {
 
         this.musicList[this.currentSong].currentTime = 0;
         this.musicList[this.currentSong].play();
+        this.musicPlaying = true;
     }
 
     playWeaponAttack(weaponName) {
