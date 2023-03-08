@@ -182,8 +182,8 @@ class LevelFactory
             y = Math.round(Math.random() * (levelArray[0].length - 1));
         }
 
-        billboard.x = x;
-        billboard.y = y;
+        billboard.x = x + 0.5;
+        billboard.y = y + 0.5;
     }
 
     placeEnemy(billboard, levelArray, rooms) {
@@ -196,8 +196,8 @@ class LevelFactory
             y = Math.round(Math.random() * (levelArray[0].length - 1));
         }
 
-        billboard.x = x;
-        billboard.y = y;
+        billboard.x = x + 0.5;
+        billboard.y = y + 0.5;
     }
 
     getSkyboxByLevelType(levelType) {

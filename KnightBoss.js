@@ -1,13 +1,14 @@
 //import { Billboard } from "./Billboard";
 
-class OgreBoss extends Billboard {
-    constructor(name, maxLife, speed, range, score, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, punchAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
+class KnightBoss extends Billboard {
+    constructor(name, maxLife, speed, range, attackDelay, score, isStationary, projectile, walkAnimation, attackAnimation, destroyAnimation, punchAnimation, resistLightning, resistFire, resistBlunt, resistSlash, x, y) {
         super(walkAnimation, x, y);
         this.name = name;
         this.life = maxLife;
         this.maxLife = maxLife;
         this.score = score;
         this.projectile = projectile;
+        this.attackDelay = attackDelay
         this.attackAnimation = attackAnimation;
         this.hasSeenCamera = false;
         this.isStationary = isStationary;
@@ -21,10 +22,9 @@ class OgreBoss extends Billboard {
         this.resistBlunt = resistBlunt;
         this.resistSlash = resistSlash;
 
-        this.lastTotemSummon = Date.now();
-
-        this.maxViewRange = 20;
+        this.maxViewRange = 50;
         this.maxAttackRange = range;
+        this.lastAttackTime = 0
     }
 
     update(level, camera, data, audio, updateInterval) {
@@ -34,7 +34,7 @@ class OgreBoss extends Billboard {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.hasSeenCamera = true;
                 let resist = 0;
-                switch(level.projectiles[p].damageType) {
+                switch (level.projectiles[p].damageType) {
                     case LIGHTNING:
                         resist = this.resistLightning;
                         break;
@@ -51,23 +51,22 @@ class OgreBoss extends Billboard {
 
                 this.life -= (level.projectiles[p].minDamage + Math.random() * (level.projectiles[p].maxDamage - level.projectiles[p].minDamage)) * (1 - resist);
                 this.isHit = true;
-                setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
+                setTimeout((enemy) => { enemy.isHit = false; }, 100, this);
                 level.projectiles[p].hitWall = true;
             }
         }
 
         if (this.life <= 0) {
-            if (this.activeAnimation != this.destroyAnimation)
-            {
-                //audio.playDeath();
+            if (this.activeAnimation != this.destroyAnimation) {
+                audio.playGorgonDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                if (rand < 0.50) {
-                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
+                if (rand < 0.15) {
+                    //level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
                 }
-                else if (rand < 0.8) {
-                    level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
+                else if (rand < 0.2) {
+                    //level.powerups.push(data.powerups["health"].copy(this.x, this.y));
                 }
             }
             camera.score += this.score;
@@ -81,35 +80,30 @@ class OgreBoss extends Billboard {
         if (distanceFromPlayer < this.maxViewRange) {
             const angle = Math.atan2(camera.y - this.y, camera.x - this.x);
             const playerInView = this.rayCastForWallsOrPlayer(level, camera, this.maxViewRange, angle);
-
+            
             if (!this.hasSeenCamera && playerInView)
                 this.hasSeenCamera = true;
 
             if (this.hasSeenCamera) {
-                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer, data);
+                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer);
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
-                
                 //randomly play enemy sounds
                 if (Math.random() < 0.001) {
                     //if (Math.random() < 0.5)
-                        //audio.playGrowl();
+                    //audio.playGrowl();
                     //else
-                        //audio.playSpirit();
+                    //audio.playSpirit();
                 }
             }
         }
     }
 
-    move(level, angle, playerInView, updateInterval, distanceFromPlayer, data) {
+    move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
+        const attackBuffer = this.lastAttackTime + this.attackDelay
+        const canAttackAgain = attackBuffer < Date.now() ? true : false
+
         if (this.isStationary)
             return;
-        if (this.lastTotemSummon + 10000 < Date.now() && this.hasSeenCamera) {
-            this.activeAnimation.stop();
-            this.activeAnimation = this.attackAnimation;
-            this.activeAnimation.start();
-            this.lastTotemSummon = Date.now();
-            level.enemies.push(data.enemies['totem'].copy(this.x + Math.random() * 3, this.y + Math.random() * 3));
-        }
         if (distanceFromPlayer < 6 && distanceFromPlayer > 2) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;
             let y = this.y + Math.sin(angle) * this.speed * updateInterval;
@@ -119,11 +113,10 @@ class OgreBoss extends Billboard {
                 this.y = y;
             }
         }
-        else if (distanceFromPlayer > this.maxAttackRange) {
+        else if (this.attackAnimation != this.activeAnimation && distanceFromPlayer > 2) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;
             let y = this.y + Math.sin(angle) * this.speed * updateInterval;
-            if (level.isPassable(Math.floor(x), Math.floor(y)))
-            {
+            if (level.isPassable(Math.floor(x), Math.floor(y))) {
                 this.x = x;
                 this.y = y;
             }
@@ -131,12 +124,16 @@ class OgreBoss extends Billboard {
     }
 
     attack(angle, playerInView, distanceFromPlayer, level, audio) {
+        const attackBuffer = this.lastAttackTime + this.attackDelay
+        const canAttackAgain = attackBuffer < Date.now() ? true : false
+   
         if (this.defaultAnimation != this.activeAnimation && this.activeAnimation.isAnimating())
             return;
         else if (this.defaultAnimation != this.activeAnimation && !this.attackAnimation.isAnimating()) {
             this.activeAnimation = this.defaultAnimation;
             this.activeAnimation.start();
         }
+
         //if we're close enough then just punch
         else if (playerInView && 4 > distanceFromPlayer) {
             this.activeAnimation.stop();
@@ -149,31 +146,31 @@ class OgreBoss extends Billboard {
                 level.projectiles.push(projectile);
             }
         }
-        else if (playerInView && 5 > distanceFromPlayer) {
-            return;
+        else if (this.attackAnimation == this.activeAnimation && !this.attackAnimation.isAnimating()) {
+            this.activeAnimation = this.defaultAnimation;
+            this.activeAnimation.start();
         }
-        else if (playerInView && this.maxAttackRange > distanceFromPlayer){
+        else if (playerInView && this.maxAttackRange > distanceFromPlayer && canAttackAgain) {
             //audio.playSpell();
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
+            audio.playGorgonScream();
             if (this.projectile !== undefined) {
-                //throw out three projectiles
                 level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle)));
-                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle + 0.261799), Math.sin(angle + 0.261799)));
-                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle - 0.261799), Math.sin(angle - 0.261799)));
             }
+            this.lastAttackTime = Date.now()
         }
     }
 
     rayCastForWallsOrPlayer(level, camera, maxViewRange, angle) {
-        
-        for(let i = 0; i < maxViewRange; i += 0.5) {
+
+        for (let i = 0; i < maxViewRange; i += 0.5) {
             let x = this.x + Math.cos(angle) * i;
             let y = this.y + Math.sin(angle) * i;
-            if (level.isWall(Math.floor(x), Math.floor(y))) 
+            if (level.isWall(Math.floor(x), Math.floor(y)))
                 return false;
-            else if (camera.isInside(x, y)) 
+            else if (camera.isInside(x, y))
                 return true;
         }
 
@@ -181,10 +178,7 @@ class OgreBoss extends Billboard {
     }
 
     copy(x, y) {
-        const result = new OgreBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
-            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(),this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
-
-        result.sizeModifier = this.sizeModifier;
-        return result;
+        return new KnightBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.attackDelay, this.score, this.isStationary,
+            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
     }
 }
