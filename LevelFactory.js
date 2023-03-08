@@ -322,6 +322,8 @@ class LevelFactory
             } else {
                 return "spookyTree";
             }
+        } else if (levelType === "islands"){
+            return "sandPile"
         } else {
             let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
             return this.data.billboardsArray[billboardIndex];

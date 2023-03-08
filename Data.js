@@ -77,6 +77,7 @@ class Data {
       "sand2_islands",
       "sand3_islands",
       "sand4_islands",
+      "sandPile",
       "targetPractice",
       "dirt_cave",
       "dirt2_cave",
@@ -160,6 +161,7 @@ class Data {
     this.animations['shroom'] = new Animation(this.textures['shroom'], 32, 64, 1, 0, false);
     this.animations['stalactite'] = new Animation(this.textures['stalactite'], 16, 80, 3, 500, true);
     this.animations['fir'] = new Animation(this.textures['fir'], 64, 100, 1, 0, false);
+    this.animations['sandPile'] = new Animation(this.textures['sandPile'], 128, 128, 1, 0, false)
 
     //enemies
     this.animations["harpy"] = new Animation(this.textures["harpy"], 40, 96, 2, 200, true);
@@ -278,6 +280,7 @@ class Data {
     this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);
     this.billboards['tombstone'] = new Billboard(this.animations['tombstone'], 0, 0, 2);
     this.billboards['stalactite'] = new Billboard(this.animations['stalactite'], 0, 0);
+    this.billboards['sandPile'] = new Billboard(this.animations['sandPile'], 0, 0)
 
     this.billboardsArray = Object.keys(this.billboards).map((key) => key);
   }
