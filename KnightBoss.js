@@ -60,7 +60,9 @@ class KnightBoss extends Billboard {
             if (this.activeAnimation != this.destroyAnimation) {
                 this.activeAnimation = this.destroyAnimation;
                 //drop teleport
-                this.level.teleports.push(this.data.teleports['portal'].copy(this.x, this.y));
+                if (camera.level % 5 == 0) {
+                    level.teleports.push(this.data.teleports['portal'].copy(this.x, this.y));
+                }                
             }
             camera.score += this.score;
             camera.kills += 1;
