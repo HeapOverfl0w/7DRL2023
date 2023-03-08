@@ -21,7 +21,7 @@ class Enemy2 extends Billboard {
         this.resistBlunt = resistBlunt;
         this.resistSlash = resistSlash;
 
-        this.maxViewRange = 50;
+        this.maxViewRange = 25;
         this.maxAttackRange = range;
         this.lastAttackTime = 0
     }

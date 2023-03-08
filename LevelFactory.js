@@ -124,11 +124,11 @@ class LevelFactory
         }
 
         //add random billboards
-        const billboardCount = Math.round(Math.random() * 70);
+        const billboardCount = Math.round(Math.random() * 100);
         const billboards = [];
         for(let b = 0; b < billboardCount; b++) {
-            let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
-            let billboard = { type: this.data.billboardsArray[billboardIndex], x: 0, y: 0 };
+            
+            let billboard = { type: this.getBillboardByLevelType(levelType), x: 0, y: 0 };
             this.placeBillboard(billboard, levelArray);
             billboards.push(billboard);
         }
@@ -198,6 +198,48 @@ class LevelFactory
 
         billboard.x = x + 0.5;
         billboard.y = y + 0.5;
+    }
+
+    getBillboardByLevelType(levelType) {
+        if (levelType === "snow") {
+            const random = Math.random();
+            if (random < 0.7) {
+                return "fir";
+            } else if (random < 0.9) {
+                return "shrub";
+            } else if (random < 0.95) {
+                return "skullPile"
+            } else {
+                return "spookyTree"
+            }
+        } else if (levelType === "cave") {
+            const random = Math.random();
+            if (random < 0.7) {
+                return "stalactite";
+            } else if (random < 0.9) {
+                return "shrub";
+            } else {
+                return "skullPile"
+            }
+        } else if (levelType === "city") {
+            const random = Math.random();
+            if (random < 0.6) {
+                return "fir";
+            } else if (random < 0.7) {
+                return "targetPractice";
+            } else if (random < 0.8) {
+                return "statue";
+            } else if (random < 0.9) {
+                return "shrub";
+            } else if (random < 0.95) {
+                return "fountain";
+            } else {
+                return "spookyTree";
+            }
+        } else {
+            let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
+            return this.data.billboardsArray[billboardIndex];
+        }
     }
 
     getSkyboxByLevelType(levelType) {

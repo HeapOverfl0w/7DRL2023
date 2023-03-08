@@ -223,17 +223,17 @@ class Data {
     this.animations['fistsMagicAttack'] = new Animation(this.textures['fistsMagicAttack'], 720, 405, 3, 200, false);
 
     this.animations['bowIdle'] = new Animation(this.textures['bow'], 720, 405, 3, 450, true);
-    this.animations['bowAttack'] = new Animation(this.textures['bowAttack'], 720, 405, 4, 550, false);
+    this.animations['bowAttack'] = new Animation(this.textures['bowAttack'], 720, 405, 4, 450, false);
     this.animations['magicBowIdle'] = new Animation(this.textures['magicBow'], 720, 405, 3, 450, true);
-    this.animations['magicBowAttack'] = new Animation(this.textures['magicBowAttack'], 720, 405, 4, 550, false);
+    this.animations['magicBowAttack'] = new Animation(this.textures['magicBowAttack'], 720, 405, 4, 450, false);
     this.animations['swordIdle'] = new Animation(this.textures['sword'], 720, 405, 2, 450, true);
-    this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 300, false);
+    this.animations['swordAttack'] = new Animation(this.textures['swordAttack'], 720, 405, 4, 200, false);
     this.animations['magicSwordIdle'] = new Animation(this.textures['magicSword'], 720, 405, 2, 450, true);
-    this.animations['magicSwordAttack'] = new Animation(this.textures['magicSwordAttack'], 720, 405, 4, 300, false);
+    this.animations['magicSwordAttack'] = new Animation(this.textures['magicSwordAttack'], 720, 405, 4, 200, false);
     this.animations['staffIdle'] = new Animation(this.textures['staff'], 720, 405, 2, 450, true);
-    this.animations['staffAttack'] = new Animation(this.textures['staffAttack'], 720, 405, 4, 300, false);
+    this.animations['staffAttack'] = new Animation(this.textures['staffAttack'], 720, 405, 4, 250, false);
     this.animations['magicStaffIdle'] = new Animation(this.textures['magicStaff'], 720, 405, 2, 450, true);
-    this.animations['magicStaffAttack'] = new Animation(this.textures['magicStaffAttack'], 720, 405, 4, 300, false);
+    this.animations['magicStaffAttack'] = new Animation(this.textures['magicStaffAttack'], 720, 405, 4, 250, false);
 
     //projectiles
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
