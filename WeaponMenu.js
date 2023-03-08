@@ -70,7 +70,7 @@ class WeaponMenu {
           this.ctx.beginPath();
           this.ctx.lineWidth = 2;
           this.ctx.rect(position, yStart, 106, 150);
-          this.ctx.strokeStyle = '#FFFF00';
+          this.ctx.strokeStyle = '#FFFFFF';
           this.ctx.stroke();
         }
       }
@@ -100,7 +100,7 @@ class WeaponMenu {
     this.ctx.beginPath();
     this.ctx.lineWidth = this.borderWidth;
     this.ctx.rect(xPos, yPos, borderLength, borderHeight);
-    this.ctx.strokeStyle = '#FFFF00';
+    this.ctx.strokeStyle = '#FFFFFF';
     this.ctx.stroke();
   }
 

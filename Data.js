@@ -98,7 +98,10 @@ class Data {
       "staffAttack",
       "magicStaff",
       "magicStaffAttack",
-      "fir"
+      "fir",
+      "floor_snow",
+      "floor2_snow",
+      "wall_snow"
     ];
   }
 

@@ -24,7 +24,7 @@ class LevelFactory
         } else if (levelType < 0.8) {
             levelType = "cemetary";
         } else {
-            levelType = "lava";
+            levelType = "snow";
         }
 
         for(let x = 0; x < levelWidth; x++) {
@@ -216,6 +216,8 @@ class LevelFactory
             return '#5f8e9c';
         } else if (levelType === 'cemetary') {
             return '#15362b';
+        } else if (levelType === 'snow') {
+            return '#3addf0'
         } else {
             return '#1d1c1f';
         }
@@ -242,6 +244,8 @@ class LevelFactory
             }
         } else if (levelType === 'cave') {
             return 71;
+        } else if (levelType === 'snow') {
+            return 81;
         }
         else {
             return 50;
@@ -285,6 +289,13 @@ class LevelFactory
                 return 8
             } else {
                 return 9
+            }
+        } else if (levelType === 'snow') {
+            const randomFloor = Math.random();
+            if (randomFloor < 0.95) {
+                return 12;
+            } else {
+                return 13;
             }
         }
          else {

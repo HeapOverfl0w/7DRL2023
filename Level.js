@@ -246,6 +246,8 @@ class Level
           return this.data.textures["wall3_cemetary"];
         case 71:
           return this.data.textures["wall_cave"];
+        case 81:
+          return this.data.textures["wall_snow"];
         default:
           return undefined;
       }
@@ -293,19 +295,23 @@ class Level
       case 3:
         return this.data.textures["grass2_city"];
       case 5:
-        return this.data.textures["floor1_cemetary"]
+        return this.data.textures["floor1_cemetary"];
       case 6:
-        return this.data.textures["floor2_cemetary"]
+        return this.data.textures["floor2_cemetary"];
       case 7:
-        return this.data.textures["sand_islands"]
+        return this.data.textures["sand_islands"];
       case 8:
-        return this.data.textures["sand1_islands"]
+        return this.data.textures["sand1_islands"];
       case 9:
-        return this.data.textures["sand2_islands"]
+        return this.data.textures["sand2_islands"];
       case 10:
-        return this.data.textures["sand3_islands"]
+        return this.data.textures["sand3_islands"];
       case 11:
-        return this.data.textures["sand4_islands"]
+        return this.data.textures["sand4_islands"];
+      case 12:
+        return this.data.textures["floor_snow"];
+      case 13:
+        return this.data.textures["floor2_snow"];
       case 15:
         return this.data.textures["dirt_cave"];
       case 16:
