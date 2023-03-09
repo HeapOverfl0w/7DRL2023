@@ -125,10 +125,13 @@ class WeaponMenu {
         let weaponModifier = 1 + (Math.random() *  this.camera.level/3);
         let manaCost = 0;
 
+        let projectileAngle = 0;
+
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
           manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (7 + this.camera.level/8));
           projectileCount = Math.floor((1 + Math.random() * 8));
+          projectileAngle = 0.175;
           if (projectileCount > 2){
             weaponModifier = weaponModifier * (3 / projectileCount);
           }
@@ -156,7 +159,7 @@ class WeaponMenu {
         projectile.maxDamage *= weaponModifier;
 
         // Figure out dmg mod
-        const FinalWeapon = weapon.copy(projectile, projectileCount, 0.087, manaCost)
+        const FinalWeapon = weapon.copy(projectile, projectileCount, projectileAngle, manaCost)
         
         nextSelections.push(FinalWeapon);
       }
