@@ -7,7 +7,8 @@ class WeaponMenu {
     this.newWeaponSelected = false;
     this.newWeapons = [this.card, this.card, this.card];
     this.selectedCard = this.newWeapons[0];
-    this.selectedIndex = this.ctx = ctx;
+    this.selectedIndex = 0
+    this.ctx = ctx;
     this.borderWidth = 2;
     this.borderGrowth = 0.2;
 
@@ -115,6 +116,7 @@ class WeaponMenu {
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
       } else {
+        const isEpicItem = Math.random() <= 0.05
     
         // Select random weapon
         const keys = Object.keys(this.data.weapons);
@@ -127,11 +129,22 @@ class WeaponMenu {
 
         let projectileAngle = 0.175;
 
+        if (isEpicItem){
+          weaponModifier = 1 + (Math.random() *  this.camera.level);
+        }
+
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
           manaCost = Math.round(1 + Math.random() * (3 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
+<<<<<<< Updated upstream
           projectileAngle = 0.122;
+=======
+          projectileAngle = 0.175;
+          if (isEpicItem){
+            projectileCount = Math.floor((3 + Math.random() * 8));
+          }
+>>>>>>> Stashed changes
           if (projectileCount > 2) {
             weaponModifier = weaponModifier * (3 / projectileCount);
           }
