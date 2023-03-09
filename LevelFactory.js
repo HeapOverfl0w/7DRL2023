@@ -7,7 +7,7 @@ class LevelFactory
     generateLevel(levelNumber) {
         const water = 30;
         let maxLevelSize = 150;
-        if (levelNumber < 5) {
+        if (levelNumber < 6) {
             maxLevelSize = 100;
         }
 
@@ -40,7 +40,7 @@ class LevelFactory
 
         //generate rooms
         let maxRoomCount = 8;
-        if (levelNumber < 5) {
+        if (levelNumber < 6) {
             maxRoomCount = 3;
         }
 
