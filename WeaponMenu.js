@@ -137,14 +137,10 @@ class WeaponMenu {
         if (projectileWeapons.includes(weapon.name)){
           manaCost = Math.round(1 + Math.random() * (3 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
-<<<<<<< Updated upstream
           projectileAngle = 0.122;
-=======
-          projectileAngle = 0.175;
           if (isEpicItem){
             projectileCount = Math.floor((3 + Math.random() * 8));
           }
->>>>>>> Stashed changes
           if (projectileCount > 2) {
             weaponModifier = weaponModifier * (3 / projectileCount);
           }
