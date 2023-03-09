@@ -63,7 +63,7 @@ class OgreBoss extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop teleport
                 if (camera.level % 5 == 0) {
-                    level.teleports.push(this.data.teleports['portal'].copy(this.x, this.y));
+                    level.teleports.push(data.teleports['portal'].copy(this.x, this.y));
                 }   
             }
             camera.score += this.score;
