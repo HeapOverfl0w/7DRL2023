@@ -110,7 +110,7 @@ class WeaponMenu {
 
     for (let i = 0; i < 3; i++) {
       if (Math.random() < 0.5) { //add passive
-        const randomPassive = Math.floor(Math.random() * 5);
+        const randomPassive = Math.floor(Math.random() * 7);
         const selectedPassive = this.passives[randomPassive];
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
@@ -129,7 +129,7 @@ class WeaponMenu {
 
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
-      if (keyCode >=49 && keyCode <= 51){
+      if (keyCode >= 49 && keyCode <= 51){
         const keyValue = keyCode - 49;
         this.selectedCard = this.newWeapons[keyValue];
         this.selectedIndex = keyValue;

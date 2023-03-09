@@ -133,10 +133,7 @@ class KnightBoss extends Billboard {
             this.activeAnimation = this.punchAnimation;
             this.activeAnimation.start();
             if (this.projectile !== undefined) {
-                const projectile = this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle));
-                projectile.minDamage = 2;
-                projectile.maxDamage = 4;
-                level.projectiles.push(projectile);
+                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.cos(angle), Math.sin(angle)));
             }
         }
         else if (this.attackAnimation == this.activeAnimation && !this.attackAnimation.isAnimating()) {
@@ -171,7 +168,7 @@ class KnightBoss extends Billboard {
 
     copy(x, y) {
         let result = new KnightBoss(this.name, this.maxLife, this.speed, this.maxAttackRange, this.attackDelay, this.score, this.isStationary,
-            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
+            this.projectile.copy(0,0), this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.punchAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
 
         result.sizeModifier = this.sizeModifier;
         return result;
