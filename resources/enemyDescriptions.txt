@@ -1,0 +1,35 @@
+•	Harpy
+o	The Razor Harpy is a terrifying creature with the body of a bird and the torso, arms, and head of a human. Its wings are large and leathery, with sharp feathers that it can use as weapons. Its arms end in long, razor-sharp claws that it uses to tear apart its enemies. The Razor Harpy has large, piercing eyes that seem to glow with malice, and its beak is hooked and sharp.
+
+•	Rat
+o	The Shadow Rat is a small, but sinister-looking rodent with jet black fur and beady red eyes that seem to glow in the darkness. Its long, pointed tail and sharp claws make it a formidable opponent, despite its small size. It moves quickly and quietly, skittering across the ground seeking its next meal.
+
+•	Gorgon
+o	Gorgon is a fearsome creature with a humanoid upper body and the lower body of a giant serpent. It has green scaly skin, glowing red eyes, and a head full of venomous snakes. Its most distinctive feature is its face, which is that of a grotesque humanoid with a mouth full of razor-sharp teeth. Its arms end in clawed hands, which it uses to cast its spells.
+
+•	Skeleton
+o	The Dread Skeleton is an undead creature that resembles a human skeleton, with bleached white bones. It wears tattered boots which is the only reminder of its former self. Its bones creak and rattle as it moves, and it emits a ghostly moan that chills the bones of its enemies.
+
+•	Goblin
+o	The Scrappy Goblin is a small and wiry creature, standing at around 3-4 feet tall. It wears tattered brown leather scraps as clothing and has a scrappy appearance. It has sharp claws and jagged teeth, which it uses to attack its enemies. Its eyes are a piercing yellow color, and it has a mischievous and cunning expression.
+
+•	Goblin Shaman
+o	The Shamanic Goblin is a larger and more imposing version of the Scrappy Goblin, standing at around 4-5 feet tall. It wears brown leather scraps as clothing, but also has a horned skull helmet and a feather necklace, indicating its status as a shaman. It has piercing yellow eyes and a sinister expression, and carries a staff made of the hardest woods.
+
+•	Ogre
+o	The Two-Headed Ogre is a massive and imposing enemy, standing at around 10-12 feet tall. It has a muscular and bulky frame, with bulging veins and sinewy muscles visible beneath its blue rags. Its two heads are both painted with crude tribal markings, and one of its heads has a large horn protruding from its forehead. The horned head has two small, beady eyes, while the other head has one large, cyclopean eye. Its expression is one of savage aggression. It can summon totems that attack its enemies with magic, making it an even more formidable foe.
+
+•	Knight
+o	Lord Malice is a menacing figure, clad in dark armor that seems to absorb the light around him. He wears a horned helmet that obscures his face, making it impossible to see his expression. He rides a massive black stallion that snorts and paws at the ground, as if eager for battle.
+
+•	Necromancer
+o	The Undead Necromancer is a terrifying enemy, dressed in black robes and with rotting flesh visible beneath its tattered clothing. Its face is twisted into a grimace of hatred, and its eyes glow with a sickly green light. The Necromancer carries a staff that is topped with the head of an undead creature, which also emits a dim green glow. The Necromancer's movements are slow and deliberate, but its spells are destructive and precise.
+
+•	Demon
+o	The Turquoise Horned Demon is a menacing enemy that floats in the air, fangs clearly visible. Its head is shaped like a horned demon, with bright turquoise skin and glowing yellow eyes that gleam with malevolence. Its mouth is filled with razor-sharp teeth, and its saliva is a searing flame that it can use to attack its enemies. The Demon's movements are fluid and graceful, and it can dart quickly through the air and even teleport short distances to evade attacks.
+
+•	Sand Slime
+o	The Sand Slime creature has adapted to life in the desert, as it can move across sand with ease. The Blue Sand Slime attacks its enemies by spitting sand balls, which may be small projectiles made of sand that are launched from its mouth burying the enemy under the weight of the sand.
+
+•	Reaper fade
+o	The Reaper Fade is a chilling and ominous enemy, resembling a grim reaper. It has no body but has long bony fingers that end in razor-sharp claws limbs. In place of a body, it has a tattered black cloak that billows in the wind as it inches closer to its enemy. Its head is that of a horse skull, with pale green eyes that seem to glow in the dark. 
