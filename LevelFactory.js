@@ -146,7 +146,9 @@ class LevelFactory
 
         //every 5 level guarantee a boss.
         if (levelNumber % 5 == 0) {
-            enemies.push({type: this.getRandomBoss(), x: 0, y: 0});
+            let enemy = {type: this.getRandomBoss(), x: 0, y: 0};
+            enemies.push(enemy);
+            this.placeEnemy(enemy, levelArray, rooms);
         }        
         
         for(let b = 0; b < enemyCount; b++) {
@@ -179,6 +181,14 @@ class LevelFactory
             [], [], teleports);
 
         result.loadData(this.data);
+
+        //update enemy strength based on levelNumber
+        for(let e = 0; e < result.enemies.length; e++) {
+            let levelMultiplier = Math.floor(levelNumber / 6);
+            result.enemies[e].life += Math.floor(result.enemies[e].life * (0.5 * levelMultiplier));
+            result.enemies[e].projectile.minDamage += Math.round(result.enemies[e].projectile.minDamage * (0.5 * levelMultiplier));
+            result.enemies[e].projectile.maxDamage += Math.round(result.enemies[e].projectile.maxDamage * (0.5 * levelMultiplier));
+        }
 
         return result;
     }
@@ -321,8 +331,10 @@ class LevelFactory
     getBillboardByLevelType(levelType) {
         if (levelType === "snow") {
             const random = Math.random();
-            if (random < 0.7) {
+            if (random < 0.6) {
                 return "fir";
+            } else if (random < 0.7) {
+                return "rock";
             } else if (random < 0.9) {
                 return "shrub";
             } else if (random < 0.95) {
@@ -332,8 +344,10 @@ class LevelFactory
             }
         } else if (levelType === "cave") {
             const random = Math.random();
-            if (random < 0.7) {
+            if (random < 0.6) {
                 return "stalactite";
+            } else if (random < 0.7) {
+                return "rock";
             } else if (random < 0.9) {
                 return "shrub";
             } else {
@@ -341,8 +355,10 @@ class LevelFactory
             }
         } else if (levelType === "cemetary") {
             const random = Math.random();
-            if (random < 0.7) {
+            if (random < 0.6) {
                 return "skullPile";
+            } else if (random < 0.7) {
+                return "rock";
             } else if (random < 0.9) {
                 return "spookyTree";
             } else {
@@ -350,8 +366,10 @@ class LevelFactory
             }
         } else if (levelType === "islands") {
             const random = Math.random();
-            if (random < 0.7) {
+            if (random < 0.6) {
                 return "palmTree";
+            } else if (random < 0.7) {
+                return "rock";
             } else if (random < 0.9) {
                 return "sandPile";
             } else {
@@ -359,8 +377,10 @@ class LevelFactory
             }
         } else if (levelType === "city") {
             const random = Math.random();
-            if (random < 0.6) {
+            if (random < 0.5) {
                 return "fir";
+            } else if (random < 0.6) {
+                return "rock";
             } else if (random < 0.7) {
                 return "targetPractice";
             } else if (random < 0.8) {

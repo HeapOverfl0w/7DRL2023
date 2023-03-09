@@ -96,8 +96,8 @@ class Main
   handleMouseMove(movementx) {
     let angle = movementx * 0.015 * Math.PI / 180
     this.camera.angle = (this.camera.angle + angle) % (2 * Math.PI);
-    if (this.angle < 0)
-      this.camera.angle = this.camera.angle + (2 * Math.PI);
+    //if (this.angle < 0)
+    //  this.camera.angle = this.camera.angle + (2 * Math.PI);
   }
 
   handleMouseDown() {

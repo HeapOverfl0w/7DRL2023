@@ -146,6 +146,6 @@ class Enemy2 extends Billboard {
 
     copy(x, y) {
         return new Enemy2(this.name, this.maxLife, this.speed, this.maxAttackRange, this.attackDelay, this.score, this.isStationary,
-            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
+            this.projectile.copy(0,0), this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
     }
 }

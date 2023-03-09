@@ -142,7 +142,7 @@ class Enemy extends Billboard {
 
     copy(x, y) {
         const result = new Enemy(this.name, this.maxLife, this.speed, this.maxAttackRange, this.score, this.isStationary, 
-            this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
+            this.projectile.copy(0,0), this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), this.resistLightning, this.resistFire, this.resistBlunt, this.resistSlash, x, y);
 
         result.sizeModifier = this.sizeModifier;
         return result;
