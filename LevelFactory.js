@@ -323,7 +323,12 @@ class LevelFactory
                 return "spookyTree";
             }
         } else if (levelType === "islands"){
-            return "sandPile"
+            const random = Math.random();
+            if (random < 0.5) {
+                return "palmTree";
+            } else {
+                return "skullPile"
+            }
         } else {
             let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
             return this.data.billboardsArray[billboardIndex];
