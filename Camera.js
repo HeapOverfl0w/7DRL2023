@@ -56,6 +56,7 @@ class Camera
     ctx.fillStyle = "#b80b1a";
     ctx.fillRect(81, 289 + (109 * (1 - (this.playerHealth / this.playerMaxHealth))), 29, 109 * (this.playerHealth / this.playerMaxHealth));
     //health counter
+    ctx.fillStyle = "#ff0f24";
     ctx.font = 'bold 16px MS Gothic';
     ctx.textAlign = 'center';
     ctx.shadowOffsetX = 1;
@@ -75,6 +76,7 @@ class Camera
     ctx.fillStyle = "#0b11b8";
     ctx.fillRect(width - 111, 289 + (109 * (1 - (this.playerMana / this.playerMaxMana))), 29, 109 * (this.playerMana / this.playerMaxMana));
     //mana counter
+    ctx.fillStyle = "#0f64ff";
     ctx.font = 'bold 16px MS Gothic';
     ctx.textAlign = 'center';
     ctx.shadowOffsetX = 1;
