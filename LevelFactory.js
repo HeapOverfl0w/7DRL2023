@@ -246,6 +246,23 @@ class LevelFactory
             } else {
                 return "knight";
             }
+        } else if (levelType === "cemetary") {
+            const random = Math.random();
+            if (random < 0.3) {
+                return "rat";
+            } else if (random < 0.5) {
+                return "skeleton";
+            } else if (random < 0.6) {
+                return "gorgon";
+            } else if (random < 0.7) {
+                return "harpy";
+            } else if (random < 0.8) {
+                return "demon";
+            } else if (random < 0.85) {
+                return "necro";
+            } else {
+                return "goblinShaman";
+            }
         } else if (levelType === "cave") {
             const random = Math.random();
             if (random < 0.3) {
@@ -260,6 +277,21 @@ class LevelFactory
                 return "harpy";
             } else if (random < 0.98) {
                 return "gorgon";
+            } else {
+                return "ogre";
+            }
+        } else if (levelType === "islands") {
+            const random = Math.random();
+            if (random < 0.3) {
+                return "sandSlime";
+            } else if (random < 0.5) {
+                return "goblin";
+            } else if (random < 0.6) {
+                return "gorgon";
+            } else if (random < 0.8) {
+                return "goblinShaman";
+            } else if (random < 0.9) {
+                return "harpy";
             } else {
                 return "ogre";
             }
@@ -307,6 +339,24 @@ class LevelFactory
             } else {
                 return "skullPile"
             }
+        } else if (levelType === "cemetary") {
+            const random = Math.random();
+            if (random < 0.7) {
+                return "skullPile";
+            } else if (random < 0.9) {
+                return "spookyTree";
+            } else {
+                return "shrub"
+            }
+        } else if (levelType === "islands") {
+            const random = Math.random();
+            if (random < 0.7) {
+                return "palmTree";
+            } else if (random < 0.9) {
+                return "sandPile";
+            } else {
+                return "shrub";
+            }
         } else if (levelType === "city") {
             const random = Math.random();
             if (random < 0.6) {
@@ -322,8 +372,6 @@ class LevelFactory
             } else {
                 return "spookyTree";
             }
-        } else if (levelType === "islands"){
-            return "sandPile"
         } else {
             let billboardIndex = Math.round(Math.random() * (this.data.billboardsArray.length - 1));
             return this.data.billboardsArray[billboardIndex];

@@ -61,6 +61,7 @@ class Data {
       "sandSlime",
       "sandSlimeAttack",
       "sandSlimeDeath",
+      "sandSlimeProjectile",
       "grass_city",
       "grass2_city",
       "wall1_city",
@@ -111,6 +112,7 @@ class Data {
       "knightAttack",
       "knightPunch",
       "knightDeath",
+      "palmTree"
     ];
   }
 
@@ -161,6 +163,7 @@ class Data {
     this.animations['shroom'] = new Animation(this.textures['shroom'], 32, 64, 1, 0, false);
     this.animations['stalactite'] = new Animation(this.textures['stalactite'], 16, 80, 3, 500, true);
     this.animations['fir'] = new Animation(this.textures['fir'], 64, 100, 1, 0, false);
+    this.animations['palmTree'] = new Animation(this.textures['palmTree'], 128, 260, 1, 0, false);
     this.animations['sandPile'] = new Animation(this.textures['sandPile'], 128, 128, 1, 0, false)
 
     //enemies
@@ -242,6 +245,7 @@ class Data {
     this.animations['punch'] = new Animation(this.textures['punch'], 32, 32, 1, 0, true);
     this.animations['magicPunch'] = new Animation(this.textures['fistsMagicProjectile'], 32, 32, 3, 250, true);
     this.animations['gorgonFire'] = new Animation(this.textures['gorgonFire'], 64, 64, 3, 200, false);
+    this.animations['sandSlimeProjectile'] = new Animation(this.textures['sandSlimeProjectile'], 80, 80, 4, 100, false);
     this.animations['ogreProjectile'] = new Animation(this.textures['ogreProjectile'], 16, 16, 1, 0, false);
     this.animations['demonProjectile'] = new Animation(this.textures['demonProjectile'], 64, 48, 4, 200, false);
     this.animations['arrowProjectile'] = new Animation(this.textures['arrowProjectile'], 16, 16, 1, 0, false);
@@ -275,6 +279,7 @@ class Data {
     this.billboards['shrub'] = new Billboard(this.animations['shrub'], 0, 0);
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
     this.billboards['fir'] = new Billboard(this.animations['fir'], 0, 0, 3);
+    this.billboards['palmTree'] = new Billboard(this.animations['palmTree'], 0, 0);
     this.billboards['targetPractice'] = new Billboard(this.animations['targetPractice'], 0, 0);
     this.billboards['fountain'] = new Billboard(this.animations['fountain'], 0, 0, 2);
     this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);
@@ -291,6 +296,7 @@ class Data {
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
     this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
+    this.projectiles['sandSlimeProjectile'] = new Projectile(this.animations['sandSlimeProjectile'], 0, 0, 0, 0, 0.25, 10, 1, 2, SLASH);
     this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 0.5, 15, 2, 3, FIRE);
     this.projectiles['demonProjectile'] = new Projectile(this.animations['demonProjectile'], 0, 0, 0, 0, 0.25, 10, 1, 2, FIRE);
     this.projectiles['arrowProjectile'] = new Projectile(this.animations['arrowProjectile'], 0, 0, 0, 0, 0.5, 25, 2, 3, SLASH);
@@ -322,7 +328,7 @@ class Data {
     this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
     this.enemies["demon"] = new EnemyTeleport("demon", 6, 2, 10, 3000, 15, 5000, 5, false, this.projectiles["demonProjectile"], this.animations["demon"], this.animations["demonAttack"], this.animations["demonDeath"], this.animations["enemyTeleport"], 0.1, 0.1, 0.1, -0.2, 0, 0);
-    this.enemies["sandSlime"] = new Enemy2("sandSlime", 4, 1.75, 5, 3000, 2, false, this.projectiles["demonProjectile"], this.animations["sandSlime"], this.animations["sandSlimeAttack"], this.animations["sandSlimeDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["sandSlime"] = new Enemy2("sandSlime", 4, 1.75, 5, 3000, 2, false, this.projectiles["sandSlimeProjectile"], this.animations["sandSlime"], this.animations["sandSlimeAttack"], this.animations["sandSlimeDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
     this.enemiesArray = Object.keys(this.enemies).map(key => key);
   }
