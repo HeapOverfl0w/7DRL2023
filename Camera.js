@@ -55,9 +55,40 @@ class Camera
     //health
     ctx.fillStyle = "#b80b1a";
     ctx.fillRect(81, 289 + (109 * (1 - (this.playerHealth / this.playerMaxHealth))), 29, 109 * (this.playerHealth / this.playerMaxHealth));
+    //health counter
+    ctx.font = 'bold 16px MS Gothic';
+    ctx.textAlign = 'center';
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'rgba(0, 0, 0, 1)'
+    ctx.fillText(Math.round(this.playerHealth), 96, 285);
+    //reset font to default style
+    ctx.font = '10px MS Gothic';
+    ctx.textAlign = 'start';
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0)'
+
     //mana
     ctx.fillStyle = "#0b11b8";
     ctx.fillRect(width - 111, 289 + (109 * (1 - (this.playerMana / this.playerMaxMana))), 29, 109 * (this.playerMana / this.playerMaxMana));
+    //mana counter
+    ctx.font = 'bold 16px MS Gothic';
+    ctx.textAlign = 'center';
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'rgba(0, 0, 0, 1)'
+    ctx.fillText(Math.round(this.playerMana), 624, 285);
+    //reset font to default style
+    ctx.font = '10px MS Gothic';
+    ctx.textAlign = 'start';
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0)'
 
     ctx.drawImage(this.hudBoxImage,0,0);
 
