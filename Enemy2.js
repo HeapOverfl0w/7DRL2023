@@ -61,11 +61,11 @@ class Enemy2 extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                if (rand < 0.15) {
-                    //level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
+                if (rand < 0.50) {
+                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
                 }
-                else if (rand < 0.2) {
-                    //level.powerups.push(data.powerups["health"].copy(this.x, this.y));
+                else if (rand < 0.8) {
+                    level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
                 }
             }
             camera.score += this.score;
@@ -88,10 +88,7 @@ class Enemy2 extends Billboard {
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
                 //randomly play enemy sounds
                 if (Math.random() < 0.001) {
-                    //if (Math.random() < 0.5)
-                    //audio.playGrowl();
-                    //else
-                    //audio.playSpirit();
+                    audio.playEnemyYell(this.name);
                 }
             }
         }

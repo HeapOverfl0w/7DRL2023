@@ -24,6 +24,14 @@ class AudioHandler {
         this.demonAttack = document.getElementById("demonAttack");
         this.demonDeath = document.getElementById("demonDeath");
         this.spell = document.getElementById("spell");
+        this.sword = document.getElementById("sword");
+        this.shoot = document.getElementById("shoot");
+        this.bat = document.getElementById("bat");
+        this.heal = document.getElementById("heal");
+        this.growl = document.getElementById("growl");
+        this.pain = document.getElementById("pain");
+        this.spirit = document.getElementById("spirit");
+        this.death = document.getElementById("death");
 
         this.punch1.volume = volume;
         this.punch2.volume = volume;
@@ -33,6 +41,14 @@ class AudioHandler {
         this.demonAttack.volume = volume;
         this.demonDeath.volume = volume;
         this.spell.volume = volume;
+        this.sword.volume = volume;
+        this.shoot.volume = volume + 0.1;
+        this.bat.volume = volume;
+        this.heal.volume = volume;
+        this.growl.volume = volume;
+        this.pain.volume = volume;
+        this.spirit.volume = volume;
+        this.death.volume = volume;
         /*this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = volume;*/
     }
@@ -68,22 +84,38 @@ class AudioHandler {
             case "Knuckles":
                 this.playPunch();
                 break;
-            case "Magic Fists":
-                this.playSpell();
+            case "Sword":
+            case "Staff":
+                this.playSword();
                 break;
-            case "shotgun":
-                this.playShotgunFire();
-                break;
-            case "introtoc":
-            case "fireaxe":
-            case "os2floppy":
-                this.playSpell();
-                break;
-            case "screwdriver":
-                this.playDrill();
+            case "Bow":
+                this.playShoot();
                 break;
             default:
-                //this.playShot();
+                this.playSpell();
+                break;
+        }
+    }
+
+    playEnemyYell(enemyName){
+        switch(enemyName) {
+            case "bat":
+            case "harpy":
+            case "rat":
+                this.bat.play();
+                break;
+            case "skeleton":
+            case "necro":
+            case "knight":
+                this.spirit.play();
+                break;
+            case "totem":
+            case "demon":
+                this.demonAttack.play();
+                break;
+            default:
+                this.growl.play();
+                break;
         }
     }
 
@@ -107,6 +139,30 @@ class AudioHandler {
 
     playDemonDeath() {
         this.demonDeath.play();
+    }
+
+    playShoot() {
+        this.shoot.play();
+    }
+
+    playSword() {
+        this.sword.play();
+    }
+
+    playBat() {
+        this.bat.play();
+    }
+
+    playPain() {
+        this.pain.play();
+    }
+
+    playHeal() {
+        this.heal.play();
+    }
+
+    playDeath() {
+        this.death.play();
     }
 
     playPunch() {

@@ -112,7 +112,7 @@ class Camera
       buttonPressed = true;
     }
 
-    if (buttonPressed && this.activeWeapon && this.activeWeapon.isReady()) {
+    if (buttonPressed && this.activeWeapon) {
       this.activeWeapon.stopAttack();
       this.stopShowWeaponCardTimer();
       this.showWeaponCard = true;

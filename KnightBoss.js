@@ -58,6 +58,7 @@ class KnightBoss extends Billboard {
 
         if (this.life <= 0) {
             if (this.activeAnimation != this.destroyAnimation) {
+                audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop teleport
                 if (camera.level % 5 == 0) {
@@ -84,10 +85,7 @@ class KnightBoss extends Billboard {
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
                 //randomly play enemy sounds
                 if (Math.random() < 0.001) {
-                    //if (Math.random() < 0.5)
-                    //audio.playGrowl();
-                    //else
-                    //audio.playSpirit();
+                    audio.playEnemyYell(this.name);
                 }
             }
         }

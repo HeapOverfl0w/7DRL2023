@@ -41,7 +41,7 @@ class Projectile extends Billboard {
             }
 
             camera.playerHealth -= (this.minDamage + Math.random() * (this.maxDamage - this.minDamage)) * (1 - resist);
-            //audio.playPain();
+            audio.playPain();
         }
 
         if (level.isWall(Math.floor(this.x), Math.floor(this.y)))

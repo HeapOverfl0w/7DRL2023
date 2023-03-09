@@ -21,8 +21,9 @@ class Weapon {
   }
 
   switchTo() {
+    this.activeAnimation.stop();
     this.activeAnimation = this.defaultAnimation;
-    if (!this.activeAnimation.isAnimating()) this.activeAnimation.start();
+    this.activeAnimation.start();
   }
 
   isReady() {
