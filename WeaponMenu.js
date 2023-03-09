@@ -156,7 +156,7 @@ class WeaponMenu {
         projectile.maxDamage *= weaponModifier;
 
         // Figure out dmg mod
-        const FinalWeapon = weapon.copy(projectile, projectileCount, 0.175, manaCost)
+        const FinalWeapon = weapon.copy(projectile, projectileCount, 0.087, manaCost)
         
         nextSelections.push(FinalWeapon);
       }
