@@ -132,31 +132,23 @@ class WeaponMenu {
           if (projectileCount !== 1){
             weaponModifier = (1 + Math.random()) * (2 / projectileCount);
           }
-        } else {
+        } else if (weapon.name !== "knuckles"){
           if (Math.random() < 0.6) {
             projectileCount = 1;
           } else {
             projectileCount = Math.floor((1 + Math.random()*3));
           }
         }
-        
-        const punchDmg = [weaponModifier*this.data.projectiles["punch"].minDamage, weaponModifier*this.data.projectiles["punch"].maxDamage]
-        const magicPunchDmg = [weaponModifier*this.data.projectiles["magicPunch"].minDamage, weaponModifier*this.data.projectiles["magicPunch"].maxDamage]
-        const arrowProjDmg = [weaponModifier*this.data.projectiles["arrowProjectile"].minDamage, weaponModifier*this.data.projectiles["arrowProjectile"].maxDamage]
-        const lighProjDmg = [weaponModifier*this.data.projectiles["lightningProjectile"].minDamage, weaponModifier*this.data.projectiles["lightningProjectile"].maxDamage]
-        const gorgonFireDmg = [weaponModifier*this.data.projectiles["gorgonFire"].minDamage, weaponModifier*this.data.projectiles["gorgonFire"].maxDamage]
-        const swordProjDmg = [weaponModifier*this.data.projectiles["swordProjectile"].minDamage, weaponModifier*this.data.projectiles["swordProjectile"].maxDamage]
 
         const weaponData = {
-          "Fists":  [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Knuckles": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(magicPunchDmg[0], magicPunchDmg[1], LIGHTNING)],
-          "Bow": [this.data.projectiles["arrowProjectile"].copyBase(arrowProjDmg[0], arrowProjDmg[1], SLASH)],
-          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
-          "Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH)],
-          "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH), this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
-          "Staff": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)]
+          "Knuckles": [this.data.projectiles["punch"].copyBase(2, 5, BLUNT)],
+          "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(1, 5, LIGHTNING)],
+          "Bow": [this.data.projectiles["arrowProjectile"].copyBase(2, 3, SLASH)],
+          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(3, 4, FIRE)],
+          "Sword": [this.data.projectiles['swordProjectile'].copyBase(3, 4, SLASH)],
+          "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(4, 5, SLASH), this.data.projectiles['lightningProjectile'].copyBase(4, 5, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
+          "Staff": [this.data.projectiles["punch"].copyBase(3, 4, BLUNT)],
+          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 5, FIRE)]
         }
 
         // Figure out dmg mod
