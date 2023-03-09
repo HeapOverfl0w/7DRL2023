@@ -109,9 +109,9 @@ class Weapon {
     ctx.fillText(`${damageType}`, position + textOffset, yStart + 90);
     ctx.fillText(`${this.manaCost}`, position + textOffset, yStart + 100);
     ctx.fillText(
-      `${this.projectile.maxDistance}`,
+      `${this.projectileCount}`,
       position + textOffset,
-      yStart + 110
+      yStart + 111
     );
   }
 

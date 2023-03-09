@@ -117,22 +117,22 @@ class WeaponMenu {
       } else { //add weapon2
     
         // Select random weapon
-        const keys = Object.keys(this.data.weapons)
+        const keys = Object.keys(this.data.weapons);
+        keys.splice(keys.indexOf('fists'), 1);
         let weapon = this.data.weapons[keys[Math.floor(Math.random()*keys.length)]]
-        let projectileCount = 1
-        let projectileAngle = 0
+        let projectileCount = 1;
         // add lvl modifier
         let weaponModifier = 1 + (Math.random() *  this.camera.level/3);
         let manaCost = 0;
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          manaCost = Math.round(1 + Math.random() * 9);
+          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (9 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
           if (projectileCount !== 1){
             weaponModifier = (1 + Math.random()) * (2 / projectileCount);
           }
-        } else if (weapon.name !== "knuckles"){
+        } else if (weapon.name !== "Knuckles"){
           if (Math.random() < 0.6) {
             projectileCount = 1;
           } else {
@@ -159,45 +159,7 @@ class WeaponMenu {
     }
 
     this.newWeapons = nextSelections;
-    // for (let i = 0; i < numWeapons; i++) {
-    //   this.newWeapons.push(fists);
-    // }
   }
-
-  /*createRandomWeapon() {
-    const weaponType = Math.random();
-    let projectile = undefined;
-    if (weaponType < 0.125) {
-      weaponType = "sword";
-      projectile = this.data.projectiles['swordProjectile'].copyBase(2, 3, SLASH);
-    } else if (weaponType < 0.25) {
-      weaponType = "staff";
-      projectile = this.data.projectiles['punch'].copyBase(2, 4, BLUNT);
-    } else if (weaponType < 0.375) {
-      weaponType = "knuckles";
-      projectile = this.data.projectiles['punch'].copyBase(1, 4, BLUNT);
-    } else if (weaponType < 0.5) {
-      weaponType = "bow";
-      projectile = this.data.projectiles['bowProjectile'].copyBase(1, 3, SLASH);
-    } else if (weaponType < 0.625) {
-      weaponType = "magicFists";
-    } else if (weaponType < 0.75) {
-      weaponType = "magicBow";
-    } else if (weaponType < 0.875) {
-      weaponType = "magicSword";
-    } else {
-      weaponType = "magicStaff";
-    }
-
-    const projectileCount = Math.round(Math.random() * 3);
-    if (weaponType.includes("magic")) {
-      projectileCount = Math.round(Math.random() * 8);
-    }
-
-    const damageModifier = 2 / projectileCount;
-
-    const weapon = this.data.weapons[weaponType].copy()
-  }*/
 
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
