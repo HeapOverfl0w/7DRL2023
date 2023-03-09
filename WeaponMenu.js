@@ -179,6 +179,7 @@ class WeaponMenu {
     } else if (this.newWeaponSelected) {
       if (keyCode >= 49 && keyCode <= 53) {
         this.camera.weapons[keyCode - 49] = this.selectedCard;
+        this.camera.activeWeapon = this.selectedCard
         this.newWeaponSelected = false;
         return true;
       }
