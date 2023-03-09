@@ -113,7 +113,10 @@ class Data {
       "knightPunch",
       "knightDeath",
       "palmTree",
-      "rock"
+      "rock",
+      "reaper",
+      "reaperAttack",
+      "reaperDeath"
     ];
   }
 
@@ -219,6 +222,10 @@ class Data {
     this.animations["sandSlimeAttack"] = new Animation(this.textures["sandSlimeAttack"], 80, 80, 4, 400, false);
     this.animations["sandSlimeDeath"] = new Animation(this.textures["sandSlimeDeath"], 80, 80, 4, 400, false);
 
+    this.animations["reaper"] = new Animation(this.textures["reaper"], 64, 100, 4, 200, true);
+    this.animations["reaperAttack"] = new Animation(this.textures["reaperAttack"], 64, 100, 4, 200, true);
+    this.animations["reaperDeath"] = new Animation(this.textures["reaperDeath"], 64, 100, 5, 200, false);
+
     this.animations["enemyTeleport"] = new Animation(this.textures["enemyTeleport"], 64, 96, 4, 350, false)
 
     //weapons
@@ -322,6 +329,7 @@ class Data {
     this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
     this.enemies["goblin"] = new Enemy("goblin", 4, 5, 2, 4, false, this.projectiles['swordProjectile'], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
     this.enemies["goblinShaman"] = new Enemy2("goblinShaman", 7, 2.5, 10, 2000, 6, false, this.projectiles["lightningProjectile"], this.animations["goblinShaman"], this.animations["goblinShamanAttack"], this.animations["goblinShamanDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["reaper"] = new Enemy("reaper", 4, 5, 2, 4, false, this.projectiles['swordProjectile'], this.animations["reaper"], this.animations["reaperAttack"], this.animations["reaperDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
     this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
     this.enemies["knight"] = new KnightBoss("knight", 20, 3.5, 12, 2500, 20, false, this.projectiles["ogreProjectile"], this.animations["knight"], this.animations["knightAttack"], this.animations["knightDeath"], this.animations["knightPunch"], 0.2, -0.2, 0.2, 0.2, 0, 0);

@@ -265,7 +265,7 @@ class LevelFactory
             } else if (random < 0.6) {
                 return "gorgon";
             } else if (random < 0.7) {
-                return "harpy";
+                return "reaper";
             } else if (random < 0.8) {
                 return "demon";
             } else if (random < 0.82) {
