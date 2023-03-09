@@ -105,19 +105,56 @@ class WeaponMenu {
   }
 
   generateNewWeapons() {
-    // Add random generation of properties for weapon
     const nextSelections = [];
-
+    const projectileWeapons = ["Magic Fists", "Magic Bow", "Magic Sword", "Magic Staff"]
+  
     for (let i = 0; i < 3; i++) {
       if (Math.random() < 0.5) { //add passive
-        const randomPassive = Math.floor(Math.random() * 7);
+        const randomPassive = Math.floor(Math.random() * 5);
         const selectedPassive = this.passives[randomPassive];
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
-      } else { //add weapon
-        let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
-        let magicFists = this.data.weapons['magicFists'].copy(magicFistsProjectile, 1, 0, 2);
-        nextSelections.push(magicFists);
+      } else { //add weapon2
+    
+        // Select random weapon
+        const keys = Object.keys(this.data.weapons)
+        let weapon = this.data.weapons[keys[Math.floor(Math.random()*keys.length)]]
+        let projectileCount = 1
+        let projectileAngle = 0
+        // add lvl modifier
+        let weaponModifier = (1 + Math.random())
+
+        // figure out number of projectiles
+        if (projectileWeapons.includes(weapon.name)){
+          projectileCount = Math.floor((1 + Math.random()*8))
+          if (projectileCount !== 1){
+            weaponModifier = (1 + Math.random()) / 1.5
+          }
+        }
+        
+        const punchDmg = [weaponModifier*this.data.projectiles["punch"].minDamage, weaponModifier*this.data.projectiles["punch"].maxDamage]
+        const magicPunchDmg = [weaponModifier*this.data.projectiles["magicPunch"].minDamage, weaponModifier*this.data.projectiles["magicPunch"].maxDamage]
+        const arrowProjDmg = [weaponModifier*this.data.projectiles["arrowProjectile"].minDamage, weaponModifier*this.data.projectiles["arrowProjectile"].maxDamage]
+        const lighProjDmg = [weaponModifier*this.data.projectiles["lightningProjectile"].minDamage, weaponModifier*this.data.projectiles["lightningProjectile"].maxDamage]
+        const gorgonFireDmg = [weaponModifier*this.data.projectiles["gorgonFire"].minDamage, weaponModifier*this.data.projectiles["gorgonFire"].maxDamage]
+        const swordProjDmg = [weaponModifier*this.data.projectiles["swordProjectile"].minDamage, weaponModifier*this.data.projectiles["swordProjectile"].maxDamage]
+
+        const weaponData = {
+          "Fists":  [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
+          "Knuckles": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
+          "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(magicPunchDmg[0], magicPunchDmg[1], LIGHTNING)],
+          "Bow": [this.data.projectiles["arrowProjectile"].copyBase(arrowProjDmg[0], arrowProjDmg[1], SLASH)],
+          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
+          "Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH)],
+          "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH), this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
+          "Staff": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
+          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)]
+        }
+
+        // Figure out dmg mod
+        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.261799, 2)
+        
+        nextSelections.push(FinalWeapon);
       }
     }
 
@@ -129,7 +166,7 @@ class WeaponMenu {
 
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
-      if (keyCode >= 49 && keyCode <= 51){
+      if (keyCode >=49 && keyCode <= 51){
         const keyValue = keyCode - 49;
         this.selectedCard = this.newWeapons[keyValue];
         this.selectedIndex = keyValue;
