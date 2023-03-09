@@ -150,10 +150,12 @@ class LevelFactory
             enemies.push(enemy);
             this.placeEnemy(enemy, levelArray, rooms);
         }        
-        
+        //add enemies
         for(let b = 0; b < enemyCount; b++) {
             let enemy = { type: this.getEnemyByLevelType(levelType), x: 0, y: 0 };
-            this.placeEnemy(enemy, levelArray, rooms);
+            if ((levelNumber > 5) || (enemy.type !== "knight" && enemy.type !== "ogre" && enemy.type !== "necro")) {
+                this.placeEnemy(enemy, levelArray, rooms);
+            }
             enemies.push(enemy);
         }
 
