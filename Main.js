@@ -15,7 +15,11 @@ class Main
 
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 5, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
+    let fists1 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists2 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists3 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists4 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists1, fists2, fists3, fists4]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -106,6 +110,11 @@ class Main
     }
   }
 
+  handleMouseWheel(deltaY) {
+    this.mouseDown = false;
+    this.camera.handleMouseWheel(deltaY);
+  }
+
   handleKeyDown(keyCode) {
     if (!this.keysDown.includes(keyCode) && !this.showItemSelection)
       this.keysDown.push(keyCode);
@@ -171,8 +180,12 @@ class Main
     this.activeCutscene = undefined;
     let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 5, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists1 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists2 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists3 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
+    let fists4 = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
     this.level = this.levelFactory.generateLevel(1);
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists1, fists2, fists3, fists4]);
     this.weaponMenu = new WeaponMenu(this.ctx, this.camera, this.data);    
   }
 }

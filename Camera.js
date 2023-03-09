@@ -137,6 +137,27 @@ class Camera
       this.activeWeapon.stopAttack();
   }
 
+  handleMouseWheel(deltaY) {
+    let delta = -1;
+    if (deltaY < 0 ) {
+      delta = 1;
+    }
+    let weaponIndex = this.weapons.indexOf(this.activeWeapon);
+    weaponIndex += delta;
+    if (weaponIndex > 4) {
+      weaponIndex = 0;
+    } else if (weaponIndex < 0) {
+      weaponIndex = 4;
+    }
+
+    this.activeWeapon.stopAttack();
+    this.stopShowWeaponCardTimer();
+    this.showWeaponCard = true;
+    this.startShowWeaponCardTimeout();
+    this.weapons[weaponIndex].switchTo();
+    this.activeWeapon = this.weapons[weaponIndex];
+  }
+
   handleKeyUp(keyCode) {
     let weaponSlot = 0;
     let buttonPressed = false;

@@ -274,6 +274,10 @@
     cvs.style.height = width / aspectRatio + 'px';
   };
 
+  document.addEventListener("wheel", function (event) {
+    if (main != undefined) main.handleMouseWheel(event.deltaY);
+  });
+
   document.addEventListener('keydown', function (event) {
     if (main != undefined) main.handleKeyDown(event.keyCode);
   });
