@@ -63,7 +63,7 @@ class Camera
     ctx.shadowOffsetY = 1;
     ctx.shadowBlur = 0;
     ctx.shadowColor = 'rgba(0, 0, 0, 1)'
-    ctx.fillText(Math.round(this.playerHealth), 96, 285);
+    ctx.fillText(Math.round(this.playerHealth).toString().split(".")[0], 96, 285);
     //reset font to default style
     ctx.font = '10px MS Gothic';
     ctx.textAlign = 'start';
@@ -83,7 +83,7 @@ class Camera
     ctx.shadowOffsetY = 1;
     ctx.shadowBlur = 0;
     ctx.shadowColor = 'rgba(0, 0, 0, 1)'
-    ctx.fillText(Math.round(this.playerMana), 624, 285);
+    ctx.fillText(Math.round(this.playerMana).toString().split(".")[0], 624, 285);
     //reset font to default style
     ctx.font = '10px MS Gothic';
     ctx.textAlign = 'start';

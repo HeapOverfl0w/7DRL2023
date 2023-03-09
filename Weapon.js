@@ -32,7 +32,7 @@ class Weapon {
 
   attack(level, camera, audio) {
     //only shoot if weapon is ready and ammo is in the magazine
-    if (this.isReady() && camera.playerMana - this.manaCost > 0) {
+    if (this.isReady() && camera.playerMana - this.manaCost >= 0) {
       audio.playWeaponAttack(this.name);
       this.activeAnimation.stop();
       this.activeAnimation = this.attackAnimation;
@@ -102,7 +102,7 @@ class Weapon {
     ctx.drawImage(this.card, Math.floor(position), Math.floor(yStart));
     ctx.fillStyle = 'black';
     ctx.fillText(
-      `${this.projectile.minDamage} - ${this.projectile.maxDamage}`,
+      `${Math.round(this.projectile.minDamage).toString().split(".")[0]} - ${Math.round(this.projectile.maxDamage).toString().split(".")[0]}`,
       position + textOffset,
       yStart + 80
     );

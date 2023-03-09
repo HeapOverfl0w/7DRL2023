@@ -106,7 +106,7 @@ class WeaponMenu {
 
   generateNewWeapons() {
     const nextSelections = [];
-    const projectileWeapons = ["Magic Fists", "Magic Bow", "Magic Sword", "Magic Staff"]
+    const projectileWeapons = ["Magic Fists", "Magic Bow", "Magic Sword", "Magic Staff"];
   
     for (let i = 0; i < 3; i++) {
       if (Math.random() < 0.5) { //add passive
@@ -122,37 +122,37 @@ class WeaponMenu {
         let projectileCount = 1
         let projectileAngle = 0
         // add lvl modifier
-        let weaponModifier = (1 + Math.random())
+        let weaponModifier = 1 + (Math.random() *  this.camera.level/3);
+        let manaCost = 0;
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          projectileCount = Math.floor((1 + Math.random()*8))
+          manaCost = Math.round(1 + Math.random() * 9);
+          projectileCount = Math.floor((1 + Math.random() * 8));
           if (projectileCount !== 1){
-            weaponModifier = (1 + Math.random()) / 1.5
+            weaponModifier = (1 + Math.random()) * (2 / projectileCount);
+          }
+        } else if (weapon.name !== "knuckles"){
+          if (Math.random() < 0.6) {
+            projectileCount = 1;
+          } else {
+            projectileCount = Math.floor((1 + Math.random()*3));
           }
         }
-        
-        const punchDmg = [weaponModifier*this.data.projectiles["punch"].minDamage, weaponModifier*this.data.projectiles["punch"].maxDamage]
-        const magicPunchDmg = [weaponModifier*this.data.projectiles["magicPunch"].minDamage, weaponModifier*this.data.projectiles["magicPunch"].maxDamage]
-        const arrowProjDmg = [weaponModifier*this.data.projectiles["arrowProjectile"].minDamage, weaponModifier*this.data.projectiles["arrowProjectile"].maxDamage]
-        const lighProjDmg = [weaponModifier*this.data.projectiles["lightningProjectile"].minDamage, weaponModifier*this.data.projectiles["lightningProjectile"].maxDamage]
-        const gorgonFireDmg = [weaponModifier*this.data.projectiles["gorgonFire"].minDamage, weaponModifier*this.data.projectiles["gorgonFire"].maxDamage]
-        const swordProjDmg = [weaponModifier*this.data.projectiles["swordProjectile"].minDamage, weaponModifier*this.data.projectiles["swordProjectile"].maxDamage]
 
         const weaponData = {
-          "Fists":  [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Knuckles": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(magicPunchDmg[0], magicPunchDmg[1], LIGHTNING)],
-          "Bow": [this.data.projectiles["arrowProjectile"].copyBase(arrowProjDmg[0], arrowProjDmg[1], SLASH)],
-          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
-          "Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH)],
-          "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(swordProjDmg[0], swordProjDmg[1], SLASH), this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)],
-          "Staff": [this.data.projectiles["punch"].copyBase(punchDmg[0], punchDmg[1], BLUNT)],
-          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(lighProjDmg[0], lighProjDmg[1], LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(gorgonFireDmg[0], gorgonFireDmg[1], FIRE)]
+          "Knuckles": [this.data.projectiles["punch"].copyBase(2, 5, BLUNT)],
+          "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(1, 5, LIGHTNING)],
+          "Bow": [this.data.projectiles["arrowProjectile"].copyBase(2, 3, SLASH)],
+          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(3, 4, FIRE)],
+          "Sword": [this.data.projectiles['swordProjectile'].copyBase(3, 4, SLASH)],
+          "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(4, 5, SLASH), this.data.projectiles['lightningProjectile'].copyBase(4, 5, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
+          "Staff": [this.data.projectiles["punch"].copyBase(3, 4, BLUNT)],
+          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 5, FIRE)]
         }
 
         // Figure out dmg mod
-        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.261799, 2)
+        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.261799, manaCost)
         
         nextSelections.push(FinalWeapon);
       }
@@ -163,6 +163,41 @@ class WeaponMenu {
     //   this.newWeapons.push(fists);
     // }
   }
+
+  /*createRandomWeapon() {
+    const weaponType = Math.random();
+    let projectile = undefined;
+    if (weaponType < 0.125) {
+      weaponType = "sword";
+      projectile = this.data.projectiles['swordProjectile'].copyBase(2, 3, SLASH);
+    } else if (weaponType < 0.25) {
+      weaponType = "staff";
+      projectile = this.data.projectiles['punch'].copyBase(2, 4, BLUNT);
+    } else if (weaponType < 0.375) {
+      weaponType = "knuckles";
+      projectile = this.data.projectiles['punch'].copyBase(1, 4, BLUNT);
+    } else if (weaponType < 0.5) {
+      weaponType = "bow";
+      projectile = this.data.projectiles['bowProjectile'].copyBase(1, 3, SLASH);
+    } else if (weaponType < 0.625) {
+      weaponType = "magicFists";
+    } else if (weaponType < 0.75) {
+      weaponType = "magicBow";
+    } else if (weaponType < 0.875) {
+      weaponType = "magicSword";
+    } else {
+      weaponType = "magicStaff";
+    }
+
+    const projectileCount = Math.round(Math.random() * 3);
+    if (weaponType.includes("magic")) {
+      projectileCount = Math.round(Math.random() * 8);
+    }
+
+    const damageModifier = 2 / projectileCount;
+
+    const weapon = this.data.weapons[weaponType].copy()
+  }*/
 
   handleKeyUp(keyCode) {
     if (!this.newWeaponSelected) {
