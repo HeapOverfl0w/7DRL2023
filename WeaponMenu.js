@@ -125,13 +125,13 @@ class WeaponMenu {
         let weaponModifier = 1 + (Math.random() *  this.camera.level/3);
         let manaCost = 0;
 
-        let projectileAngle = 0;
+        let projectileAngle = 0.175;
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
           manaCost = Math.round(1 + Math.random() * (3 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
-          projectileAngle = 0.175;
+          projectileAngle = 0.122;
           if (projectileCount > 2) {
             weaponModifier = weaponModifier * (3 / projectileCount);
           }

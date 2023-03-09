@@ -125,9 +125,10 @@ class Main
     if (this.showItemSelection) {
       if (this.weaponMenu.handleKeyUp(keyCode)) {
         this.showItemSelection = false;
-        main.level = main.levelFactory.generateLevel(main.camera.level);
-        main.camera.x = main.level.startLocationX;
-        main.camera.y = main.level.startLocationY;
+        this.level = this.levelFactory.generateLevel(main.camera.level);
+        this.camera.x = this.level.startLocationX;
+        this.camera.y = this.level.startLocationY;
+        this.mouseDown = false;
       }
       return;
     }

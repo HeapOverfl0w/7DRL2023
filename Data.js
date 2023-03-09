@@ -308,7 +308,7 @@ class Data {
     this.projectiles['ratPunch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3.5, 1, 1, BLUNT);
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3.5, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
-    this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.25, 10, 2, 3, FIRE);
+    this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.3, 15, 2, 3, FIRE);
     this.projectiles['sandSlimeProjectile'] = new Projectile(this.animations['sandSlimeProjectile'], 0, 0, 0, 0, 0.25, 10, 2, 2, SLASH);
     this.projectiles['ogreProjectile'] = new Projectile(this.animations['ogreProjectile'], 0, 0, 0, 0, 0.5, 15, 2, 3, FIRE);
     this.projectiles['demonProjectile'] = new Projectile(this.animations['demonProjectile'], 0, 0, 0, 0, 0.25, 10, 2, 2, FIRE);
