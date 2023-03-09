@@ -36,10 +36,10 @@ class AudioHandler {
         this.punch1.volume = volume;
         this.punch2.volume = volume;
         this.punch3.volume = volume;
-        this.gorgonScream.volume = volume;
-        this.gorgonDeath.volume = volume;
-        this.demonAttack.volume = volume;
-        this.demonDeath.volume = volume;
+        this.gorgonScream.volume = 0.05;
+        this.gorgonDeath.volume = 0.05;
+        this.demonAttack.volume = 0.05;
+        this.demonDeath.volume = 0.05;
         this.spell.volume = volume;
         this.sword.volume = volume;
         this.shoot.volume = volume + 0.1;

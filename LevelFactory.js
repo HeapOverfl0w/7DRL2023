@@ -146,7 +146,7 @@ class LevelFactory
 
         //every 5 level guarantee a boss.
         if (levelNumber % 5 == 0) {
-            enemies.push({type: getRandomBoss(), x: 0, y: 0});
+            enemies.push({type: this.getRandomBoss(), x: 0, y: 0});
         }        
         
         for(let b = 0; b < enemyCount; b++) {

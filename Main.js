@@ -145,7 +145,7 @@ class Main
       this.activeCutscene = undefined;
     }
 
-    if (keyCode == 86) {
+    if (keyCode == 81) {
       this.audio.toggleMute();
     }
 
