@@ -129,7 +129,7 @@ class WeaponMenu {
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          manaCost = Math.round(1 + Math.random() * (7 + this.camera.level/8));
+          manaCost = Math.round(1 + Math.random() * (3 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
           projectileAngle = 0.175;
           if (projectileCount > 2) {
@@ -147,7 +147,7 @@ class WeaponMenu {
           "Knuckles": [this.data.projectiles["punch"].copyBase(2, 5, BLUNT)],
           "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(1, 5, LIGHTNING)],
           "Bow": [this.data.projectiles["arrowProjectile"].copyBase(2, 3, SLASH)],
-          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
+          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 7, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
           "Sword": [this.data.projectiles['swordProjectile'].copyBase(3, 4, SLASH)],
           "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(4, 5, SLASH), this.data.projectiles['lightningProjectile'].copyBase(4, 5, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
           "Staff": [this.data.projectiles["punch"].copyBase(3, 4, BLUNT)],
