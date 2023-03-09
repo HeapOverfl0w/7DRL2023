@@ -114,7 +114,7 @@ class WeaponMenu {
         const selectedPassive = this.passives[randomPassive];
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
-      } else { //add weapon2
+      } else {
     
         // Select random weapon
         const keys = Object.keys(this.data.weapons);
@@ -196,10 +196,4 @@ class WeaponMenu {
 
     return false;
   }
-
-  // Handle weapon generation
-
-  // Handle Selection highlight
-
-  // Handle selection
 }
