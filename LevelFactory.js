@@ -49,8 +49,8 @@ class LevelFactory
         for(let r = 0; r < roomCount; r++) {
             let xStart = Math.round(Math.random() * (levelWidth - 60)) + 20;
             let yStart = Math.round(Math.random() * (levelHeight - 60)) + 20;
-            let width = Math.round(Math.random() * 30) + 10;
-            let height = Math.round(Math.random() * 30) + 10;
+            let width = Math.round(Math.random() * 25) + 10;
+            let height = Math.round(Math.random() * 25) + 10;
             rooms[r] = {
                 xStart: xStart, 
                 yStart: yStart, 
