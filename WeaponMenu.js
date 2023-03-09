@@ -110,7 +110,7 @@ class WeaponMenu {
   
     for (let i = 0; i < 3; i++) {
       if (Math.random() < 0.5) { //add passive
-        const randomPassive = Math.floor(Math.random() * 5);
+        const randomPassive = Math.floor(Math.random() * 7);
         const selectedPassive = this.passives[randomPassive];
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
@@ -129,10 +129,10 @@ class WeaponMenu {
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (7 + this.camera.level/8));
+          manaCost = Math.round(1 + Math.random() * (7 + this.camera.level/8));
           projectileCount = Math.floor((1 + Math.random() * 8));
           projectileAngle = 0.175;
-          if (projectileCount > 2){
+          if (projectileCount > 2) {
             weaponModifier = weaponModifier * (3 / projectileCount);
           }
         } else if (weapon.name !== "Knuckles"){

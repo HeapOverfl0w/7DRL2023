@@ -69,10 +69,11 @@ class Main
     let teleport = main.level.getTeleportOnPlayer(main.camera);
     if (teleport !== undefined) {
       main.showItemSelection = true;
-      main.keysDown = [];
       main.weaponMenu.generateNewWeapons();
       main.camera.level++;
       main.level.endLevel();
+      main.keysDown = [];
+      main.mouseDown = false;
     }
 
     if (main.mouseDown)

@@ -309,8 +309,10 @@ class LevelFactory
             }
         } else if (levelType === "city") {
             const random = Math.random();
-            if (random < 0.4) {
+            if (random < 0.3) {
                 return "rat";
+            } else if (random < 0.4) {
+                return "gorgon";
             } else if (random < 0.5) {
                 return "harpy";
             } else if (random < 0.7) {
