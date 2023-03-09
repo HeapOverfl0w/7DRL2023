@@ -144,15 +144,15 @@ class WeaponMenu {
           "Knuckles": [this.data.projectiles["punch"].copyBase(2, 5, BLUNT)],
           "Magic Fists": [this.data.projectiles['magicPunch'].copyBase(1, 5, LIGHTNING)],
           "Bow": [this.data.projectiles["arrowProjectile"].copyBase(2, 3, SLASH)],
-          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(3, 4, FIRE)],
+          "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
           "Sword": [this.data.projectiles['swordProjectile'].copyBase(3, 4, SLASH)],
           "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(4, 5, SLASH), this.data.projectiles['lightningProjectile'].copyBase(4, 5, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
           "Staff": [this.data.projectiles["punch"].copyBase(3, 4, BLUNT)],
-          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 6, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 5, FIRE)]
+          "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 7, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 6, FIRE)]
         }
 
         // Figure out dmg mod
-        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.261799, manaCost)
+        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.175, manaCost)
         
         nextSelections.push(FinalWeapon);
       }

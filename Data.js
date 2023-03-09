@@ -207,7 +207,7 @@ class Data {
     this.animations["knightPunch"] = new Animation(this.textures["knightPunch"], 128, 182, 3, 500, false);
 
     this.animations["necro"] = new Animation(this.textures["necro"], 63, 67, 4, 300, true);
-    this.animations["necroAttack"] = new Animation(this.textures["necroAttack"], 63, 67, 4, 300, false);
+    this.animations["necroAttack"] = new Animation(this.textures["necroAttack"], 63, 67, 4, 500, false);
     this.animations["necroDeath"] = new Animation(this.textures["necroDeath"], 63, 67, 5, 250, false);
 
     this.animations["totem"] = new Animation(this.textures["totem"], 32, 64, 2, 500, true);
@@ -324,18 +324,18 @@ class Data {
   createEnemies() {
     this.enemies = {};
 
-    this.enemies["harpy"] = new Enemy("harpy", 4, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
-    this.enemies["rat"] = new Enemy("rat", 4, 3, 2, 2, false, this.projectiles["punch"], this.animations["rat"], this.animations["ratAttack"], this.animations["ratDeath"], 0.2, 0.0, 0.3, 0.0, 0, 0);
+    this.enemies["harpy"] = new Enemy("harpy", 3, 3.5, 2, 2, false, this.projectiles["punch"], this.animations["harpy"], this.animations["harpyAttack"], this.animations["harpyDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["rat"] = new Enemy("rat", 2, 3, 2, 2, false, this.projectiles["punch"], this.animations["rat"], this.animations["ratAttack"], this.animations["ratDeath"], 0.2, 0.0, 0.3, 0.0, 0, 0);
     this.enemies["gorgon"] = new Enemy2("gorgon", 4, 1.75, 5, 3000, 2, false, this.projectiles["gorgonFire"], this.animations["gorgon"], this.animations["gorgonAttack"], this.animations["gorgonDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
     this.enemies["skeleton"] = new Enemy("skeleton", 4, 1.5, 2, 2, false, this.projectiles["punch"], this.animations["skeleton"], this.animations["skeletonAttack"], this.animations["skeletonDeath"], 0.3, 0.3, 0.0, 0.3, 0, 0);
-    this.enemies["goblin"] = new Enemy("goblin", 4, 5, 2, 4, false, this.projectiles['swordProjectile'], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
-    this.enemies["goblinShaman"] = new Enemy2("goblinShaman", 7, 2.5, 10, 2000, 6, false, this.projectiles["lightningProjectile"], this.animations["goblinShaman"], this.animations["goblinShamanAttack"], this.animations["goblinShamanDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
-    this.enemies["reaper"] = new Enemy("reaper", 4, 5, 2, 4, false, this.projectiles['swordProjectile'], this.animations["reaper"], this.animations["reaperAttack"], this.animations["reaperDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
+    this.enemies["goblin"] = new Enemy("goblin", 3, 5, 2, 4, false, this.projectiles['swordProjectile'], this.animations["goblin"], this.animations["goblinAttack"], this.animations["goblinDeath"], 0.0, 0.2, 0.1, -0.2, 0, 0);
+    this.enemies["goblinShaman"] = new Enemy2("goblinShaman", 6, 2.5, 10, 2000, 6, false, this.projectiles["lightningProjectile"], this.animations["goblinShaman"], this.animations["goblinShamanAttack"], this.animations["goblinShamanDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
+    this.enemies["reaper"] = new Enemy("reaper", 4, 3, 2, 5, false, this.projectiles['swordProjectile'], this.animations["reaper"], this.animations["reaperAttack"], this.animations["reaperDeath"], 0.0, 0.2, -0.2, 0, 0.1, 0);
     this.enemies["ogre"] = new OgreBoss("ogre", 20, 1.5, 12, 20, false, this.projectiles["ogreProjectile"], this.animations["ogre"], this.animations["ogreAttack"], this.animations["ogreDeath"], this.animations["ogrePunch"], 0.2, 0.3, 0.1, -0.2, 0, 0);
     this.enemies["ogre"].sizeModifier = 1.5;
     this.enemies["knight"] = new KnightBoss("knight", 20, 3.5, 12, 2500, 20, false, this.projectiles["ogreProjectile"], this.animations["knight"], this.animations["knightAttack"], this.animations["knightDeath"], this.animations["knightPunch"], -0.2, 0.0, 0.2, 0.2, 0, 0);
     this.enemies["knight"].sizeModifier = 1.5;
-    this.enemies["necro"] = new NecroBoss("necro", 20, 1.5, 12, 20, false, this.projectiles["lightningProjectile"], this.animations["necro"], this.animations["necroAttack"], this.animations["necroDeath"], 0.2, 0.0, -0.2, 0.25, 0, 0);
+    this.enemies["necro"] = new NecroBoss("necro", 16, 1.5, 12, 20, false, this.projectiles["lightningProjectile"], this.animations["necro"], this.animations["necroAttack"], this.animations["necroDeath"], 0.2, 0.0, -0.2, 0.25, 0, 0);
     this.enemies["necro"].sizeModifier = 1.3;
     this.enemies["totem"] = new Enemy("totem", 1, 0, 10, 1, true, this.projectiles["ogreProjectile"], this.animations["totem"], this.animations["totemAttack"], this.animations["totemDeath"], 0.1, 0.0, 0.1, 0.0, 0, 0);
 
