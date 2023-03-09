@@ -280,7 +280,7 @@
   });
 
   document.addEventListener('mousemove', function (event) {
-    if (main != undefined && pointerLocked)
+    if (main != undefined && pointerLocked && Math.abs(event.movementX) < 500)
       main.handleMouseMove(event.movementX);
   });
 

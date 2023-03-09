@@ -268,7 +268,7 @@ class LevelFactory
                 return "harpy";
             } else if (random < 0.8) {
                 return "demon";
-            } else if (random < 0.85) {
+            } else if (random < 0.82) {
                 return "necro";
             } else {
                 return "goblinShaman";
@@ -300,7 +300,7 @@ class LevelFactory
                 return "gorgon";
             } else if (random < 0.8) {
                 return "goblinShaman";
-            } else if (random < 0.9) {
+            } else if (random < 0.98) {
                 return "harpy";
             } else {
                 return "ogre";
