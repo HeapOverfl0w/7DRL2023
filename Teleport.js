@@ -12,6 +12,8 @@ class Teleport extends Billboard {
     }
 
     copy(x,y) {
-        return new Teleport(this.defaultAnimation, x, y);
+        let result = new Teleport(this.defaultAnimation, x, y);
+        result.sizeModifier = this.sizeModifier;
+        return result;
     }
 }

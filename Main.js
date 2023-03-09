@@ -21,7 +21,7 @@ class Main
     let magicFists = this.data.weapons['magicStaff'].copy(magicFistsProjectile, 1, 0, 2);
     let bowProjectile = this.data.projectiles["arrowProjectile"].copyBase(10, 20, SLASH);
     let bow = this.data.weapons["bow"].copy(bowProjectile, 1, 0, 0);
-    let sword = this.data.weapons["staff"].copy(fistsProjectile, 3, 0.17, 0);
+    let sword = this.data.weapons["sword"].copy(fistsProjectile, 3, 0.17, 0);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, sword, bow, magicFists, knuckles]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
@@ -50,7 +50,7 @@ class Main
       main.activeCutscene.draw(main.ctx);
 
       if (main.activeCutscene == main.data.deathCutscene && main.activeCutscene.isOver()) {
-        ctx.fillStyle = 'black';
+        main.ctx.fillStyle = 'black';
         main.ctx.fillText(`Level: ${main.camera.level}`, 350, 260);
         main.ctx.fillText(`Score: ${main.camera.score}`, 350, 270);
       }
@@ -175,7 +175,7 @@ class Main
     this.camera.stopAllWeaponAnimations();
 
     this.activeCutscene = undefined;
-    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
+    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 5, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
     this.level = this.levelFactory.generateLevel(1);
     this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);

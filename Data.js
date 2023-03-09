@@ -271,6 +271,7 @@ class Data {
     this.teleports = {};
 
     this.teleports['portal'] = new Teleport(this.animations['teleport'], 0, 0);
+    this.teleports['portal'].sizeModifier = 1.3;
   }
 
   createBillboards() {

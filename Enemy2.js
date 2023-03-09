@@ -61,10 +61,10 @@ class Enemy2 extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                if (rand < 0.50) {
+                if (rand < 0.25) {
                     level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
                 }
-                else if (rand < 0.8) {
+                else if (rand < 0.5) {
                     level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
                 }
             }
