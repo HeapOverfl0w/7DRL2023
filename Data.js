@@ -290,6 +290,7 @@ class Data {
     this.billboards['spookyTree'] = new Billboard(this.animations['spookyTree'], 0, 0, 2.5);
     this.billboards['fir'] = new Billboard(this.animations['fir'], 0, 0, 3);
     this.billboards['palmTree'] = new Billboard(this.animations['palmTree'], 0, 0);
+    this.billboards['palmTree'].sizeModifier = 2.0;
     this.billboards['targetPractice'] = new Billboard(this.animations['targetPractice'], 0, 0);
     this.billboards['fountain'] = new Billboard(this.animations['fountain'], 0, 0, 2);
     this.billboards['skullPile'] = new Billboard(this.animations['skullPile'], 0, 0, 1);
