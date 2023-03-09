@@ -65,10 +65,10 @@ class Camera
     ctx.fillText(`Level ${this.level}`, 130, 13);
     ctx.fillText(`Score ${this.score}`, 180, 13);
     ctx.fillText(`Speed ${this.speed}`, 230, 13);
-    ctx.fillText(`Fire Res.  ${(this.resistFire * 100).toString().split(".")[0]}%`, 275, 13);
-    ctx.fillText(`Blunt Res.  ${(this.resistBlunt * 100).toString().split(".")[0]}%`, 350, 13);
-    ctx.fillText(`Slash Res.  ${(this.resistSlash * 100).toString().split(".")[0]}%`, 430, 13);
-    ctx.fillText(`Light Res.  ${(this.resistLightning * 100).toString().split(".")[0]}%`, 510, 13);
+    ctx.fillText(`Fire Res.  ${(this.resistFire * 100).toString().split(".")[0]}%`, 280, 13);
+    ctx.fillText(`Blunt Res.  ${(this.resistBlunt * 100).toString().split(".")[0]}%`, 355, 13);
+    ctx.fillText(`Slash Res.  ${(this.resistSlash * 100).toString().split(".")[0]}%`, 435, 13);
+    ctx.fillText(`Light Res.  ${(this.resistLightning * 100).toString().split(".")[0]}%`, 515, 13);
 
     if (this.showWeaponCard) {
       this.activeWeapon.drawCard(20, 100, ctx);

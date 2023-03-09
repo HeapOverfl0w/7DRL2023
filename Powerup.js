@@ -13,11 +13,11 @@ class Powerup extends Billboard {
 
             switch(this.powerupType) {
                 case "health":
-                    camera.playerHealth = camera.playerHealth + 5 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 5;
+                    camera.playerHealth = camera.playerHealth + (camera.playerMaxHealth * .25) > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + (camera.playerMaxHealth * .25);
                     audio.playHeal();
                     break;
                 case "mana":
-                    camera.playerMana = camera.playerMana + 5 > camera.playerMaxMana ? camera.playerMaxMana : camera.playerMana + 5;
+                    camera.playerMana = camera.playerMana + (camera.playerMaxMana * .25) > camera.playerMaxMana ? camera.playerMaxMana : camera.playerMana + (camera.playerMaxMana * .25);
                     audio.playHeal();
                     break;
                 default:

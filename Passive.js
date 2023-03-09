@@ -7,11 +7,11 @@ class Passive {
 
     setRandomValue() {
         if (this.cardName === 'speedCard') {
-            this.value = 1 + Math.round(Math.random());
+            this.value = 0.5;
         } else if (this.cardName === 'healthCard') {
-            this.value = 4 + Math.round(Math.random() * 4);
+            this.value = 4 + Math.round(Math.random() * 6);
         } else if (this.cardName === 'manaCard') {
-            this.value = 4 + Math.round(Math.random() * 4);
+            this.value = 4 + Math.round(Math.random() * 6);
         } else if (this.cardName === 'slashCard' || this.cardName === 'bluntCard' || 
                 this.cardName === 'lightningCard' || this.cardName === 'fireCard') {
             this.value = (1 + Math.round(Math.random() * 9 + Number.EPSILON)) / 100;

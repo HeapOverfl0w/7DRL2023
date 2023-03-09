@@ -50,6 +50,7 @@ class Main
       main.activeCutscene.draw(main.ctx);
 
       if (main.activeCutscene == main.data.deathCutscene && main.activeCutscene.isOver()) {
+        ctx.fillStyle = 'black';
         main.ctx.fillText(`Level: ${main.camera.level}`, 350, 260);
         main.ctx.fillText(`Score: ${main.camera.score}`, 350, 270);
       }
