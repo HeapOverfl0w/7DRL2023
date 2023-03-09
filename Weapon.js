@@ -115,6 +115,13 @@ class Weapon {
     );
   }
 
+  drawCardMiniMenu(position, yStart, ctx, scale = 1) {
+    const cardHeight = this.card.height * scale
+    const cardWidth = this.card.width * scale
+
+    ctx.drawImage(this.card, Math.floor(position), Math.floor(yStart), cardWidth, cardHeight);
+  }
+
   copy(projectile, projectileCount, projectileAngle, manaCost) {
     return new Weapon(
       this.name,

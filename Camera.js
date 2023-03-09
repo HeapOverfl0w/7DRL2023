@@ -107,6 +107,37 @@ class Camera
       this.activeWeapon.drawCard(20, 100, ctx);
     }
 
+    let cardMenuXOffset = 264
+    let cardMenuYOffset = 355
+    
+    for (let i = 0; i < this.weapons.length; i++) {
+      if (this.weapons[i] === this.activeWeapon){
+        //selected border
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.rect(cardMenuXOffset - 3, cardMenuYOffset - 3, 38, 51);
+        ctx.strokeStyle = '#ac3232';
+        ctx.stroke();
+
+        this.weapons[i].drawCardMiniMenu(cardMenuXOffset, cardMenuYOffset, ctx, 0.3)
+        ctx.fillRect(cardMenuXOffset + 11, cardMenuYOffset - 10, 11, 11)
+        ctx.fillStyle = '#ac3232';
+        ctx.font = 'bold 11px MS Gothic';
+        ctx.fillRect(cardMenuXOffset + 11, cardMenuYOffset - 10, 11, 11)
+        ctx.fillStyle = 'white';
+        ctx.fillText(i + 1, cardMenuXOffset + 14, cardMenuYOffset);
+      } else {
+        ctx.fillStyle = 'white';
+        this.weapons[i].drawCardMiniMenu(cardMenuXOffset, cardMenuYOffset, ctx, 0.3)
+        ctx.font = '10px MS Gothic';
+        ctx.fillRect(cardMenuXOffset + 11, cardMenuYOffset - 10, 11, 11)
+        ctx.fillStyle = 'black';
+        ctx.fillText(i + 1, cardMenuXOffset + 14, cardMenuYOffset -1);
+      }
+      ctx.font = '10px MS Gothic';
+      cardMenuXOffset = cardMenuXOffset + 40
+    }
+
     if (this.level % 5 == 0) {
       ctx.fillStyle = '#761d1d';
       ctx.fillText('BOSS STAGE - Kill the boss to progress to the next level.', 230, 30);
