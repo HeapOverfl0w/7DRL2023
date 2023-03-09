@@ -127,7 +127,7 @@ class WeaponMenu {
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (7 + this.camera.level/3));
+          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (7 + this.camera.level/8));
           projectileCount = Math.floor((1 + Math.random() * 8));
           if (projectileCount > 2){
             weaponModifier = weaponModifier * (3 / projectileCount);
@@ -183,7 +183,9 @@ class WeaponMenu {
     } else if (this.newWeaponSelected) {
       if (keyCode >= 49 && keyCode <= 53) {
         this.camera.weapons[keyCode - 49] = this.selectedCard;
-        this.camera.activeWeapon = this.selectedCard
+        this.camera.activeWeapon.activeAnimation.stop();
+        this.camera.activeWeapon = this.selectedCard;
+        this.camera.activeWeapon.activeAnimation.start();
         this.newWeaponSelected = false;
         return true;
       }
