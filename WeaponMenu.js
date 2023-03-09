@@ -127,10 +127,10 @@ class WeaponMenu {
 
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
-          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (9 + this.camera.level/3));
+          manaCost = Math.round(1 + this.camera.level/7 + Math.random() * (7 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
-          if (projectileCount !== 1){
-            weaponModifier = (1 + Math.random()) * (2 / projectileCount);
+          if (projectileCount > 2){
+            weaponModifier = weaponModifier * (3 / projectileCount);
           }
         } else if (weapon.name !== "Knuckles"){
           if (Math.random() < 0.6) {
@@ -151,8 +151,12 @@ class WeaponMenu {
           "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 7, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 6, FIRE)]
         }
 
+        const projectile = weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)];
+        projectile.minDamage *= weaponModifier;
+        projectile.maxDamage *= weaponModifier;
+
         // Figure out dmg mod
-        const FinalWeapon = weapon.copy(weaponData[weapon.name][Math.floor(Math.random()*weaponData[weapon.name].length)], projectileCount, 0.175, manaCost)
+        const FinalWeapon = weapon.copy(projectile, projectileCount, 0.175, manaCost)
         
         nextSelections.push(FinalWeapon);
       }

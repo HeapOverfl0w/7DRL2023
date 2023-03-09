@@ -13,16 +13,9 @@ class Main
 
     this.activeCutscene = this.data.introCutscene;
 
-    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 3, BLUNT);
+    let fistsProjectile = this.data.projectiles["punch"].copyBase(1, 5, BLUNT);
     let fists = this.data.weapons["fists"].copy(fistsProjectile, 1, 0, 0);
-    let knucklesProjectile = this.data.projectiles["punch"].copyBase(5, 10, BLUNT);
-    let knuckles = this.data.weapons["knuckles"].copy(knucklesProjectile, 1, 0, 0);
-    let magicFistsProjectile = this.data.projectiles['magicPunch'].copyBase(2, 3, LIGHTNING);
-    let magicFists = this.data.weapons['magicStaff'].copy(magicFistsProjectile, 1, 0, 2);
-    let bowProjectile = this.data.projectiles["arrowProjectile"].copyBase(10, 20, SLASH);
-    let bow = this.data.weapons["bow"].copy(bowProjectile, 1, 0, 0);
-    let sword = this.data.weapons["sword"].copy(fistsProjectile, 3, 0.17, 0);
-    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, sword, bow, magicFists, knuckles]);
+    this.camera = new Camera(this.level.startLocationX, this.level.startLocationY, 0, Math.PI * (6/18), 6, [fists, fists, fists, fists, fists]);
     this.rayCaster = new RayCaster(50);
     this.FPS = 30;
     this.fpsCounter = 0;
