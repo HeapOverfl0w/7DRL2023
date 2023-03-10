@@ -67,7 +67,7 @@ class EnemyTeleport extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.25;
+                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.4;
                 if (rand < healthChance) {
                     level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
                 }

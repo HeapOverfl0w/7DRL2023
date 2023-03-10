@@ -18,8 +18,8 @@ class Camera
     if (this.activeWeapon)
       this.activeWeapon.switchTo();
     this.weapons = defaultWeapons;
-    this.playerMaxHealth = 20;
-    this.playerMaxMana = 20;
+    this.playerMaxHealth = 30;
+    this.playerMaxMana = 30;
     this.playerHealth = this.playerMaxHealth;
     this.playerMana = this.playerMaxMana;
     this.resistLightning = 0;

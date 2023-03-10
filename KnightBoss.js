@@ -64,10 +64,10 @@ class KnightBoss extends Billboard {
                 if (camera.level % 5 == 0) {
                     level.teleports.push(data.teleports['portal'].copy(this.x, this.y));
                 } else {
-                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
-                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
-                    level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
-                    level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
+                    level.powerups.push(data.powerups["healthPotion"].copy(this.x + 0.1, this.y));
+                    level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y + 0.1));
+                    level.powerups.push(data.powerups["manaPotion"].copy(this.x + 0.1, this.y + 0.1));
+                    level.powerups.push(data.powerups["manaPotion"].copy(this.x - 0.1, this.y - 0.1));
                 }               
             }
             camera.score += this.score;
