@@ -115,9 +115,7 @@ class WeaponMenu {
         const selectedPassive = this.passives[randomPassive];
         selectedPassive.setRandomValue();
         nextSelections.push(selectedPassive);
-      } else {
-        const isEpicItem = Math.random() <= 0.05
-    
+      } else {    
         // Select random weapon
         const keys = Object.keys(this.data.weapons);
         keys.splice(keys.indexOf('fists'), 1);
@@ -129,18 +127,11 @@ class WeaponMenu {
 
         let projectileAngle = 0.175;
 
-        if (isEpicItem){
-          weaponModifier = 1 + (Math.random() *  this.camera.level);
-        }
-
         // figure out number of projectiles
         if (projectileWeapons.includes(weapon.name)){
           manaCost = Math.round(1 + Math.random() * (3 + this.camera.level/3));
           projectileCount = Math.floor((1 + Math.random() * 8));
           projectileAngle = 0.122;
-          if (isEpicItem){
-            projectileCount = Math.floor((3 + Math.random() * 8));
-          }
           if (projectileCount > 2) {
             weaponModifier = weaponModifier * (3 / projectileCount);
           }
@@ -159,7 +150,7 @@ class WeaponMenu {
           "Magic Bow": [this.data.projectiles['lightningProjectile'].copyBase(1, 7, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
           "Sword": [this.data.projectiles['swordProjectile'].copyBase(3, 4, SLASH)],
           "Magic Sword": [this.data.projectiles['swordProjectile'].copyBase(4, 5, SLASH), this.data.projectiles['lightningProjectile'].copyBase(4, 5, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(4, 5, FIRE)],
-          "Staff": [this.data.projectiles["punch"].copyBase(3, 4, BLUNT)],
+          "Staff": [this.data.projectiles["staff"].copyBase(3, 4, BLUNT)],
           "Magic Staff": [this.data.projectiles['lightningProjectile'].copyBase(1, 7, LIGHTNING), this.data.projectiles['gorgonFire'].copyBase(2, 6, FIRE)]
         }
 

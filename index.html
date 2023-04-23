@@ -213,6 +213,7 @@
       <img id="slashCard" src="./resources/slashCard.png"/>
 
       <img src="./resources/skybox_cemetary.png" id="skybox_cemetary" />
+      <img src="./resources/damageIndicator.png" id="damageIndicator" />
     </div>
   </body>
 </html>
@@ -241,6 +242,7 @@
 <script src="Hazard.js"></script>
 <script src="Cutscene.js"></script>
 <script src="WeaponMenu.js"></script>
+<script src="DamageIndicator.js"></script>
 <script>
   var cvs = document.getElementById('scene');
   var main;
@@ -286,7 +288,7 @@
   });
 
   document.addEventListener('mousemove', function (event) {
-    if (main != undefined && pointerLocked && Math.abs(event.movementX) < 500)
+    if (main != undefined && pointerLocked && Math.abs(event.movementX) < 400)
       main.handleMouseMove(event.movementX);
   });
 

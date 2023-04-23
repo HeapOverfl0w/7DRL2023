@@ -27,6 +27,7 @@ class Camera
     this.resistBlunt = 0;
     this.resistSlash = 0;
     this.hudBoxImage = document.getElementById("hud");
+    this.damages = [];
   }
 
   stopAllWeaponAnimations() {
@@ -147,6 +148,15 @@ class Camera
     // ctx.fillStyle = "#000000";
     // ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
   }
+
+  drawAndUpdateDamages(ctx) {
+    for (let d = this.damages.length - 1; d > -1 ; d--) {
+      this.damages[d].draw(ctx);
+      if (Date.now() - this.damages[d].createTime > 2000) {
+          this.damages.splice(d, 1);
+      }
+    }
+}
 
   startShowWeaponCardTimeout() {
     this.showWeaponCardTimer = setTimeout((() => {

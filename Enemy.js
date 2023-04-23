@@ -50,6 +50,7 @@ class Enemy extends Billboard {
                 this.isHit = true;
                 setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
                 level.projectiles[p].hitWall = true;
+                break;
             }
         }
 

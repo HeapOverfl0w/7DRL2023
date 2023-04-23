@@ -30,6 +30,7 @@ class OgreBoss extends Billboard {
     update(level, camera, data, audio, updateInterval) {
         if (this.life <= 0) { return; }
 
+        let projectileHitCount = 0;
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.hasSeenCamera = true;
@@ -53,6 +54,10 @@ class OgreBoss extends Billboard {
                 this.isHit = true;
                 setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
                 level.projectiles[p].hitWall = true;
+                projectileHitCount++;
+                if (projectileHitCount > 1) {
+                    break;
+                }
             }
         }
 

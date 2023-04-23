@@ -35,11 +35,12 @@ class EnemyTeleport extends Billboard {
     update(level, camera, data, audio, updateInterval) {
         if (this.life <= 0) { return; }
 
+        let projectileHitCount = 0;
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.hasSeenCamera = true;
                 let resist = 0;
-                switch (level.projectiles[p].damageType) {
+                switch(level.projectiles[p].damageType) {
                     case LIGHTNING:
                         resist = this.resistLightning;
                         break;
@@ -56,8 +57,12 @@ class EnemyTeleport extends Billboard {
 
                 this.life -= (level.projectiles[p].minDamage + Math.random() * (level.projectiles[p].maxDamage - level.projectiles[p].minDamage)) * (1 - resist);
                 this.isHit = true;
-                setTimeout((enemy) => { enemy.isHit = false; }, 100, this);
+                setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
                 level.projectiles[p].hitWall = true;
+                projectileHitCount++;
+                if (projectileHitCount > 1) {
+                    break;
+                }
             }
         }
 

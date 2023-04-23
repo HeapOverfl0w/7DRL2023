@@ -307,6 +307,7 @@ class Data {
 
     this.projectiles['ratPunch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3.5, 1, 1, BLUNT);
     this.projectiles['punch'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 3.5, 1, 2, BLUNT);
+    this.projectiles['staff'] = new Projectile(this.animations['punch'], 0, 0, 0, 0, 1, 6, 1, 2, BLUNT);
     this.projectiles['magicPunch'] = new Projectile(this.animations['magicPunch'], 0, 0, 0, 0, 0.5, 20, 2, 3, LIGHTNING);
     this.projectiles['gorgonFire'] = new Projectile(this.animations['gorgonFire'], 0, 0, 0, 0, 0.3, 15, 2, 3, FIRE);
     this.projectiles['sandSlimeProjectile'] = new Projectile(this.animations['sandSlimeProjectile'], 0, 0, 0, 0, 0.25, 10, 2, 2, SLASH);
@@ -357,7 +358,7 @@ class Data {
     this.weapons['magicBow'] = new Weapon('Magic Bow', this.animations['magicBowIdle'], this.animations['magicBowAttack'], document.getElementById('magicBowCard'), this.projectiles['arrowProjectile'], 0, 0, 2);
     this.weapons['sword'] = new Weapon('Sword', this.animations['swordIdle'], this.animations['swordAttack'], document.getElementById('swordCard'), this.projectiles['swordProjectile'], 3, 0.17, 0);
     this.weapons['magicSword'] = new Weapon('Magic Sword', this.animations['magicSwordIdle'], this.animations['magicSwordAttack'], document.getElementById('magicSwordCard'), this.projectiles['swordProjectile'], 3, 0.17, 2);
-    this.weapons['staff'] = new Weapon('Staff', this.animations['staffIdle'], this.animations['staffAttack'], document.getElementById('staffCard'), this.projectiles['punch'], 3, 0.17, 0);
+    this.weapons['staff'] = new Weapon('Staff', this.animations['staffIdle'], this.animations['staffAttack'], document.getElementById('staffCard'), this.projectiles['staff'], 3, 0.17, 0);
     this.weapons['magicStaff'] = new Weapon('Magic Staff', this.animations['magicStaffIdle'], this.animations['magicStaffAttack'], document.getElementById('magicStaffCard'), this.projectiles['swordProjectile'], 3, 0.17, 2);
   }
 

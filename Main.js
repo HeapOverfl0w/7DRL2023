@@ -66,6 +66,7 @@ class Main
       main.rayCaster.draw(main.ctx, main.camera, main.level, main.filter);
       //draw HUD data
       main.camera.drawHUD(main.ctx);
+      main.camera.drawAndUpdateDamages(main.ctx);
     }
 
     main.audio.update();
@@ -83,17 +84,18 @@ class Main
     if (main.mouseDown)
       main.camera.handleMouseDown(main.level, main.audio);
 
-    main.fpsCounter++;
-
     //death check
     if (main.camera.playerHealth <= 0) {
        main.activeCutscene = main.data.deathCutscene;
        main.activeCutscene.restart();
     }
+
+    //main.ctx.fillText(`${Math.floor(1000 / (Date.now() - main.lastDrawTime))}`, main.ctx.canvas.width - 20, 10);
+    //main.lastDrawTime = Date.now();
   }
 
   handleMouseMove(movementx) {
-    let angle = movementx * 0.028 * Math.PI / 180
+    let angle = movementx * 0.034 * Math.PI / 180
     this.camera.angle = (this.camera.angle + angle) % (2 * Math.PI);
     if (this.angle < 0)
       this.camera.angle = this.camera.angle + (2 * Math.PI);
