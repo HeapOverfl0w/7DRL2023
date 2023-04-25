@@ -61,11 +61,11 @@ class Enemy extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.4;
+                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.3;
                 if (rand < healthChance) {
                     level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
                 }
-                else if (rand < healthChance + 0.25) {
+                else if (rand < healthChance + 0.2) {
                     level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
                 }
             }
@@ -97,7 +97,7 @@ class Enemy extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
-        if (this.isStationary)
+        if (this.isStationary || !playerInView)
             return;
         if (distanceFromPlayer > this.maxAttackRange) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;

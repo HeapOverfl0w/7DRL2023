@@ -103,7 +103,7 @@ class NecroBoss extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer, data) {
-        if (this.isStationary)
+        if (this.isStationary || !playerInView)
             return;
         if (this.lastTotemSummon + 15000 < Date.now() && this.hasSeenCamera) {
             this.activeAnimation.stop();

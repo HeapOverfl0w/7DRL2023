@@ -72,11 +72,11 @@ class EnemyTeleport extends Billboard {
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
                 let rand = Math.random();
-                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.4;
+                let healthChance = camera.playerHealth < 10 ? 0.6 : 0.3;
                 if (rand < healthChance) {
                     level.powerups.push(data.powerups["healthPotion"].copy(this.x, this.y));
                 }
-                else if (rand < healthChance + 0.25) {
+                else if (rand < healthChance + 0.2) {
                     level.powerups.push(data.powerups["manaPotion"].copy(this.x, this.y));
                 }
             }
@@ -107,8 +107,8 @@ class EnemyTeleport extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
-        const teleportBuffer = this.lastTeleportTime + this.teleportDelay
-        const canTeleportAgain = teleportBuffer < Date.now() ? true : false
+        const teleportBuffer = this.lastTeleportTime + this.teleportDelay;
+        const canTeleportAgain = teleportBuffer < Date.now() ? true : false;
 
         if (this.teleporting){
             if (this.activeAnimation.isAnimating()){
@@ -118,7 +118,9 @@ class EnemyTeleport extends Billboard {
                 const XY = this.teleport(angle, level);
                 this.x = XY.x;
                 this.y = XY.y;
+                this.activeAnimation.stop();
                 this.activeAnimation = this.defaultAnimation;
+                this.activeAnimation.start();
                 this.teleporting = false;
             }
         }

@@ -102,10 +102,7 @@ class KnightBoss extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
-        const attackBuffer = this.lastAttackTime + this.attackDelay
-        const canAttackAgain = attackBuffer < Date.now() ? true : false
-
-        if (this.isStationary)
+        if (this.isStationary  || !playerInView)
             return;
         if (distanceFromPlayer < 6 && distanceFromPlayer > 2) {
             let x = this.x + Math.cos(angle) * this.speed * updateInterval;

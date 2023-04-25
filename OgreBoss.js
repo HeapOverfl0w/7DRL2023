@@ -104,7 +104,7 @@ class OgreBoss extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer, data) {
-        if (this.isStationary)
+        if (this.isStationary || !playerInView)
             return;
         if (this.lastTotemSummon + 10000 < Date.now() && this.hasSeenCamera) {
             this.activeAnimation.stop();
