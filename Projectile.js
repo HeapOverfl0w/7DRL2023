@@ -42,7 +42,7 @@ class Projectile extends Billboard {
 
             camera.playerHealth -= (this.minDamage + Math.random() * (this.maxDamage - this.minDamage)) * (1 - resist);
             let damageIndicatorAngle = Math.atan2(this.directionY, this.directionX) - camera.angle;
-            damageIndicatorAngle = (damageIndicatorAngle + 180) % 360 - 20;
+            damageIndicatorAngle = (damageIndicatorAngle + Math.PI) % Math.PI * 2;
             camera.damages.push(new DamageIndicator(damageIndicatorAngle));
             audio.playPain();
         }

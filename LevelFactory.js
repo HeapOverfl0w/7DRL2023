@@ -6,9 +6,9 @@ class LevelFactory
 
     generateLevel(levelNumber) {
         const water = 30;
-        let maxLevelSize = 150;
+        let maxLevelSize = 130;
         if (levelNumber < 6) {
-            maxLevelSize = 100;
+            maxLevelSize = 80;
         }
 
         const levelWidth = Math.round(Math.random() * maxLevelSize) + 100;
@@ -39,7 +39,7 @@ class LevelFactory
         let skybox = this.getSkyboxByLevelType(levelType);
 
         //generate rooms
-        let maxRoomCount = 8;
+        let maxRoomCount = 7;
         if (levelNumber < 6) {
             maxRoomCount = 3;
         }

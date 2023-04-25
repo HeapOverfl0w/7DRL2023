@@ -152,7 +152,7 @@ class Camera
   drawAndUpdateDamages(ctx) {
     for (let d = this.damages.length - 1; d > -1 ; d--) {
       this.damages[d].draw(ctx);
-      if (Date.now() - this.damages[d].createTime > 2000) {
+      if (Date.now() - this.damages[d].createTime > 1500) {
           this.damages.splice(d, 1);
       }
     }
